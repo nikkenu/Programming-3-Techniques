@@ -2,8 +2,10 @@
 
 #ifndef OBJECTMANAGER_H
 #define OBJECTMANAGER_H
+using ObjectId = unsigned int;
 
 namespace Student {
+
 class ObjectManager : public Course::iGameEventHandler
 {
 public:
@@ -11,15 +13,18 @@ public:
 
     ~ObjectManager();
 
-    bool modifyResource(std::shared_ptr<Course::PlayerBase> player,
-                                    Course::BasicResource resource,
-                                    int amount);
+    void addTiles(const std::vector<std::shared_ptr<Course::TileBase>>& tiles);
 
-    bool modifyResources(std::shared_ptr<Course::PlayerBase> player,
-                                     Course::ResourceMap resources);
-};
+    std::shared_ptr<Course::TileBase> getTile(const Course::Coordinate& coordinate);
 
-}
+    std::shared_ptr<Course::TileBase> getTile(const ObjectId& id);
+
+    std::vector<std::shared_ptr<Course::TileBase>> getTiles(
+                const std::vector<Course::Coordinate>& coordinates);
+
+}; // class ObjectManager
+
+} // namespace Student
 
 
 #endif // OBJECTMANAGER_H
