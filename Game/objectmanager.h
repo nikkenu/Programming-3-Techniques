@@ -1,4 +1,4 @@
-#include "interfaces/igameeventhandler.h"
+#include "interfaces/iobjectmanager.h"
 
 #ifndef OBJECTMANAGER_H
 #define OBJECTMANAGER_H
@@ -6,7 +6,7 @@ using ObjectId = unsigned int;
 
 namespace Student {
 
-class ObjectManager : public Course::iGameEventHandler
+class ObjectManager : public Course::iObjectManager
 {
 public:
     ObjectManager();
