@@ -9,7 +9,7 @@
 #include <QDebug>
 
 #include <map>
-
+#include "boardinit.h"
 #include "interfaces/igameeventhandler.h"
 #include "graphics/simplegamescene.h"
 
@@ -40,6 +40,7 @@ public:
 
 private:
     Ui::MapWindow* m_ui;
+    BoardInit* m_boardInit; // Could this be shared_ptr?
     std::shared_ptr<Course::iGameEventHandler> m_GEHandler = nullptr;
     std::shared_ptr<Course::SimpleGameScene> m_simplescene = nullptr;
 

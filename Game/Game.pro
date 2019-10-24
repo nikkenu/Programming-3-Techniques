@@ -7,10 +7,16 @@ CONFIG += c++14
 
 SOURCES += \
     main.cpp \
-    mapwindow.cc
+    mapwindow.cc \
+    gameeventhandler.cpp \
+    objectmanager.cpp \
+    boardinit.cpp
 
 HEADERS += \
-    mapwindow.hh
+    mapwindow.hh \
+    gameeventhandler.h \
+    objectmanager.h \
+    boardinit.h
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib

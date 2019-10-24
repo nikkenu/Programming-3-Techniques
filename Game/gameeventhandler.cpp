@@ -23,4 +23,3 @@ bool Student::GameEventHandler::modifyResources(std::shared_ptr<Course::PlayerBa
 }
 
 }
-

@@ -2,7 +2,7 @@
 #include "ui_mapwindow.h"
 
 #include "graphics/simplemapitem.h"
-
+#include "QDebug"
 #include <math.h>
 
 MapWindow::MapWindow(QWidget *parent,
@@ -17,6 +17,11 @@ MapWindow::MapWindow(QWidget *parent,
     Course::SimpleGameScene* sgs_rawptr = m_simplescene.get();
 
     m_ui->graphicsView->setScene(dynamic_cast<QGraphicsScene*>(sgs_rawptr));
+
+    m_boardInit = new BoardInit(sgs_rawptr);
+    m_boardInit->initialiseWorldGenerator();
+
+    m_ui->graphicsView->setSceneRect(0,0,500,500);
 }
 
 MapWindow::~MapWindow()
