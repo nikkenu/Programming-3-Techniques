@@ -12,16 +12,25 @@ ObjectManager::~ObjectManager()
 
 }
 
-bool ObjectManager::modifyResource(std::shared_ptr<Course::PlayerBase> player, Course::BasicResource resource, int amount)
+void ObjectManager::addTiles(const std::vector<std::shared_ptr<Course::TileBase> > &tiles)
 {
 
 }
 
-bool ObjectManager::modifyResources(std::shared_ptr<Course::PlayerBase> player, Course::ResourceMap resources)
+std::shared_ptr<Course::TileBase> ObjectManager::getTile(const Course::Coordinate &coordinate)
 {
 
 }
 
+std::shared_ptr<Course::TileBase> ObjectManager::getTile(const ObjectId &id)
+{
+
+}
+
+std::vector<std::shared_ptr<Course::TileBase> > ObjectManager::getTiles(const std::vector<Course::Coordinate> &coordinates)
+{
+
+}
 
 }
 
