@@ -21,6 +21,7 @@ MapWindow::MapWindow(QWidget *parent,
     m_boardInit = new BoardInit(sgs_rawptr);
     m_boardInit->initialiseWorldGenerator();
 
+    //m_ui->graphicsView->fitInView(m_simplescene->sceneRect());
     m_ui->graphicsView->setSceneRect(0,0,500,500);
 }
 

@@ -10,13 +10,20 @@ SOURCES += \
     mapwindow.cc \
     gameeventhandler.cpp \
     objectmanager.cpp \
-    boardinit.cpp
+    boardinit.cpp \
+    water.cpp \
+    rock.cpp \
+    sand.cpp
 
 HEADERS += \
     mapwindow.hh \
     gameeventhandler.h \
     objectmanager.h \
-    boardinit.h
+    boardinit.h \
+    water.h \
+    rock.h \
+    studentresourcemaps.h \
+    sand.h
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib

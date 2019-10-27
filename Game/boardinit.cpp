@@ -12,6 +12,9 @@ void BoardInit::initialiseWorldGenerator()
 {
     Course::WorldGenerator::getInstance().addConstructor<Course::Forest>(1);
     Course::WorldGenerator::getInstance().addConstructor<Course::Grassland>(3);
-    Course::WorldGenerator::getInstance().addConstructor<Course::TileBase>(10);
+    Course::WorldGenerator::getInstance().addConstructor<Course::Grassland>(10);
+    Course::WorldGenerator::getInstance().addConstructor<Student::Rock>(3);
+    Course::WorldGenerator::getInstance().addConstructor<Student::Water>(5);
+    Course::WorldGenerator::getInstance().addConstructor<Student::Sand>(3);
     Course::WorldGenerator::getInstance().generateMap(10, 10, 10, m_objectManager, m_gameEventHandler);
 }

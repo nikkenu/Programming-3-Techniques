@@ -5,6 +5,10 @@
 #include "tiles/forest.h"
 #include "tiles/grassland.h"
 #include "tiles/tilebase.h"
+#include "rock.h"
+#include "water.h"
+#include "sand.h"
+
 #ifndef BOARDINIT_H
 #define BOARDINIT_H
 
