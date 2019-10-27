@@ -71,7 +71,6 @@ void ObjectManager::drawTiles()
     for(auto const &tile : m_tiles)
     {
         m_scene->drawItem(tile);
-
     }
 }
 
