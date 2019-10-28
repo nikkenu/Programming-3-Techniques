@@ -8,6 +8,26 @@ namespace Student {
 
 namespace ConstResourceMaps {
 
+const Course::ResourceMapDouble BW_FARMER_EFFICIENCY = {
+    {Course::MONEY, 0.25},
+    {Course::FOOD, 1.50},
+    {Course::WOOD, 1.50},
+    {Course::STONE, 0.25},
+    {Course::ORE, 0.25}
+};
+
+const Course::ResourceMapDouble BW_MINER_EFFICIENCY = {
+    {Course::MONEY, 0.25},
+    {Course::FOOD, 1.00},
+    {Course::WOOD, 0.75},
+    {Course::STONE, 1.50},
+    {Course::ORE, 1.50}
+};
+
+const Course::ResourceMap BW_RECRUITMENT_COST = {
+    {Course::MONEY, 10},
+    {Course::FOOD, 25}
+};
 
 const Course::ResourceMap ROCK_BP = {
     {Course::MONEY, 2},

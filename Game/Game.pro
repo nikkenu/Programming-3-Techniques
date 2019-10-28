@@ -13,7 +13,9 @@ SOURCES += \
     boardinit.cpp \
     water.cpp \
     rock.cpp \
-    sand.cpp
+    sand.cpp \
+    miner.cpp \
+    farmer.cpp
 
 HEADERS += \
     mapwindow.hh \
@@ -23,7 +25,9 @@ HEADERS += \
     water.h \
     rock.h \
     studentresourcemaps.h \
-    sand.h
+    sand.h \
+    miner.h \
+    farmer.h
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib
