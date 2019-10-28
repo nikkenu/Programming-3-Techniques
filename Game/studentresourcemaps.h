@@ -5,7 +5,9 @@
 
 namespace Student {
 
+
 namespace ConstResourceMaps {
+
 
 const Course::ResourceMap ROCK_BP = {
     {Course::MONEY, 2},
@@ -13,6 +15,7 @@ const Course::ResourceMap ROCK_BP = {
     {Course::WOOD, 0},
     {Course::STONE, 5},
     {Course::ORE, 3},
+    {Course::OIL, 0},
 };
 
 const Course::ResourceMap WATER_BP = {
@@ -21,6 +24,7 @@ const Course::ResourceMap WATER_BP = {
     {Course::WOOD, 0},
     {Course::STONE, 0},
     {Course::ORE, 0},
+    {Course::OIL, 5},
 };
 
 const Course::ResourceMap SAND_BP = {
@@ -29,6 +33,7 @@ const Course::ResourceMap SAND_BP = {
     {Course::WOOD, 0},
     {Course::STONE, 3},
     {Course::ORE, 5},
+    {Course::OIL, 0},
 };
 
 }
