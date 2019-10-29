@@ -15,5 +15,5 @@ void BoardInit::initialiseWorldGenerator()
     Course::WorldGenerator::getInstance().addConstructor<Student::Rock>(3);
     Course::WorldGenerator::getInstance().addConstructor<Student::Water>(3);
     Course::WorldGenerator::getInstance().addConstructor<Student::Sand>(3);
-    Course::WorldGenerator::getInstance().generateMap(10, 10, 10, m_objectManager, m_gameEventHandler);
+    Course::WorldGenerator::getInstance().generateMap(5, 5, 10, m_objectManager, m_gameEventHandler);
 }
