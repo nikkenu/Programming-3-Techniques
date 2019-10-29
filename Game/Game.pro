@@ -15,7 +15,9 @@ SOURCES += \
     rock.cpp \
     sand.cpp \
     miner.cpp \
-    farmer.cpp
+    farmer.cpp \
+    mine.cpp \
+    oilrig.cpp
 
 HEADERS += \
     mapwindow.hh \
@@ -27,7 +29,9 @@ HEADERS += \
     studentresourcemaps.h \
     sand.h \
     miner.h \
-    farmer.h
+    farmer.h \
+    mine.h \
+    oilrig.h
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib
