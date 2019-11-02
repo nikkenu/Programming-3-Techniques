@@ -1,6 +1,6 @@
 #include "interfaces/iobjectmanager.h"
 #include "tiles/tilebase.h"
-#include "graphics/simplegamescene.h"
+#include "gamescene.h"
 
 #ifndef OBJECTMANAGER_H
 #define OBJECTMANAGER_H
@@ -24,12 +24,12 @@ public:
     std::vector<std::shared_ptr<Course::TileBase>> getTiles(
                 const std::vector<Course::Coordinate>& coordinates);
 
-    void addScene(Course::SimpleGameScene* scene);
+    void addScene(Student::GameScene* scene);
 
     void drawTiles();
 
 private:
-    Course::SimpleGameScene* m_scene;
+    Student::GameScene* m_scene;
     std::vector<std::shared_ptr<Course::TileBase>> m_tiles;
 
 }; // class ObjectManager

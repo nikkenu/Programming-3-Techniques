@@ -11,7 +11,7 @@
 #include <map>
 #include "boardinit.h"
 #include "interfaces/igameeventhandler.h"
-#include "graphics/simplegamescene.h"
+#include "gamescene.h"
 
 namespace Ui {
 class MapWindow;
@@ -42,7 +42,7 @@ private:
     Ui::MapWindow* m_ui;
     BoardInit* m_boardInit; // Could this be shared_ptr?
     std::shared_ptr<Course::iGameEventHandler> m_GEHandler = nullptr;
-    std::shared_ptr<Course::SimpleGameScene> m_simplescene = nullptr;
+    std::shared_ptr<Student::GameScene> m_scene = nullptr;
 
 };
 
