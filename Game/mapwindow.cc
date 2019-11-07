@@ -16,9 +16,8 @@ MapWindow::MapWindow(QWidget *parent,
 
     Student::GameScene* sgs_rawptr = m_scene.get();
 
-    //_ui->graphicsView->setAlignment(Qt::AlignTop|Qt::AlignLeft);
-
     m_ui->graphicsView->setScene(dynamic_cast<QGraphicsScene*>(sgs_rawptr));
+
 
     m_boardInit = new BoardInit(sgs_rawptr);
     m_boardInit->initialiseWorldGenerator();
