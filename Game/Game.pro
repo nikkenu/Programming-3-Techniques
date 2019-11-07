@@ -19,7 +19,8 @@ SOURCES += \
     mine.cpp \
     oilrig.cpp \
     mapitem.cpp \
-    gamescene.cpp
+    gamescene.cpp \
+    player.cpp
 
 HEADERS += \
     mapwindow.hh \
@@ -35,7 +36,8 @@ HEADERS += \
     mine.h \
     oilrig.h \
     mapitem.h \
-    gamescene.h
+    gamescene.h \
+    player.h
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib
