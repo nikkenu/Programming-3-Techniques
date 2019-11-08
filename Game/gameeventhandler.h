@@ -2,6 +2,7 @@
 #include "core/playerbase.h"
 #include "core/resourcemaps.h"
 #include "player.h"
+#include "mapwindow.hh"
 
 #ifndef GAMEEVENTHANDLER_H
 #define GAMEEVENTHANDLER_H
@@ -22,10 +23,6 @@ public:
     bool modifyResources(std::shared_ptr<Course::PlayerBase> player,
                                      Course::ResourceMap resources);
 
-    void startGame(std::string name1, std::string name2);
-
-    std::shared_ptr<Student::Player> player1;
-    std::shared_ptr<Student::Player> player2;
 
 
 }; // class GameEventHandler

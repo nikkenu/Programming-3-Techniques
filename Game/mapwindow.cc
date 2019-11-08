@@ -22,7 +22,6 @@ MapWindow::MapWindow(QWidget *parent,
     m_boardInit = new BoardInit(sgs_rawptr);
     m_boardInit->initialiseWorldGenerator();
 
-    m_GEHandler->startGame("Player 2", "Player 2");
 }
 
 MapWindow::~MapWindow()

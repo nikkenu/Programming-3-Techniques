@@ -23,9 +23,5 @@ bool Student::GameEventHandler::modifyResources(std::shared_ptr<Course::PlayerBa
 
 }
 
-void GameEventHandler::startGame(std::string name1, std::string name2)
-{
-
-}
 
 }
