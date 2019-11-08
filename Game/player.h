@@ -7,6 +7,7 @@
 
 #include "core/gameobject.h"
 #include "core/playerbase.h"
+#include "workers/basicworker.h"
 
 namespace Student {
 

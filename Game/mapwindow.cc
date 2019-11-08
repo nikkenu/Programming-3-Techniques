@@ -6,7 +6,7 @@
 #include <math.h>
 
 MapWindow::MapWindow(QWidget *parent,
-                     std::shared_ptr<Course::iGameEventHandler> handler):
+                     std::shared_ptr<Student::GameEventHandler> handler):
     QMainWindow(parent),
     m_ui(new Ui::MapWindow),
     m_GEHandler(handler),
@@ -22,6 +22,7 @@ MapWindow::MapWindow(QWidget *parent,
     m_boardInit = new BoardInit(sgs_rawptr);
     m_boardInit->initialiseWorldGenerator();
 
+    m_GEHandler->startGame("Player 2", "Player 2");
 }
 
 MapWindow::~MapWindow()
@@ -30,7 +31,7 @@ MapWindow::~MapWindow()
 }
 
 void MapWindow::setGEHandler(
-        std::shared_ptr<Course::iGameEventHandler> nHandler)
+        std::shared_ptr<Student::GameEventHandler> nHandler)
 {
     m_GEHandler = nHandler;
 }
