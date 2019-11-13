@@ -1,4 +1,5 @@
 #include "gameeventhandler.h"
+#include <string>
 
 namespace Student {
 
@@ -21,5 +22,6 @@ bool Student::GameEventHandler::modifyResources(std::shared_ptr<Course::PlayerBa
 {
 
 }
+
 
 }

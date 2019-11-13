@@ -1,7 +1,7 @@
 #include "objectmanager.h"
 #include "gameeventhandler.h"
 #include "core/worldgenerator.h"
-#include "graphics/simplegamescene.h"
+#include "gamescene.h"
 #include "tiles/forest.h"
 #include "tiles/grassland.h"
 #include "tiles/tilebase.h"
@@ -16,14 +16,15 @@
 class BoardInit
 {
 public:
-    BoardInit(Course::SimpleGameScene* scene);
+    BoardInit(Student::GameScene* scene);
 
     void initialiseWorldGenerator();
+
 
 private:
     std::shared_ptr<Student::ObjectManager> m_objectManager = nullptr;
     std::shared_ptr<Student::GameEventHandler> m_gameEventHandler = nullptr;
-    Course::SimpleGameScene* m_scene;
+    Student::GameScene* m_scene;
 };
 
 #endif // BOARDINIT_H

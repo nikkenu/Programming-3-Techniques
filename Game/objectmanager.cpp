@@ -61,7 +61,7 @@ std::vector<std::shared_ptr<Course::TileBase> > ObjectManager::getTiles(const st
     return temporaryContainer;
 }
 
-void ObjectManager::addScene(Course::SimpleGameScene *scene)
+void ObjectManager::addScene(Student::GameScene *scene)
 {
     m_scene = scene;
 }

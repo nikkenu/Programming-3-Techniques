@@ -1,6 +1,9 @@
 #include "interfaces/igameeventhandler.h"
 #include "core/playerbase.h"
 #include "core/resourcemaps.h"
+#include "player.h"
+#include "mapwindow.hh"
+
 #ifndef GAMEEVENTHANDLER_H
 #define GAMEEVENTHANDLER_H
 
@@ -19,6 +22,8 @@ public:
 
     bool modifyResources(std::shared_ptr<Course::PlayerBase> player,
                                      Course::ResourceMap resources);
+
+
 
 }; // class GameEventHandler
 
