@@ -57,7 +57,6 @@ const Course::ResourceMap ROCK_BP = {
     {Course::WOOD, 0},
     {Course::STONE, 5},
     {Course::ORE, 3},
-    //{Course::OIL, 0},
 };
 
 const Course::ResourceMap WATER_BP = {
