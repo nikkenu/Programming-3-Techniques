@@ -1,5 +1,6 @@
 #include "mapwindow.hh"
 #include "ui_mapwindow.h"
+#include "staticstorage.h"
 
 #include "mapitem.h"
 #include "QDebug"
@@ -20,6 +21,7 @@ MapWindow::MapWindow(QWidget *parent,
 
     m_boardInit = new BoardInit(sgs_rawptr);
     m_boardInit->initialiseWorldGenerator();
+
 }
 
 MapWindow::~MapWindow()
@@ -57,6 +59,11 @@ void MapWindow::resizeEvent(QResizeEvent *event)
 {
     Q_UNUSED(event)
     m_ui->graphicsView->fitInView(m_scene.get()->sceneRect(), Qt::KeepAspectRatio);
+}
+
+void MapWindow::mousePressEvent(QMouseEvent *event)
+{
+    qDebug() << childAt(event->pos());
 }
 
 void MapWindow::removeItem(std::shared_ptr<Course::GameObject> obj)
