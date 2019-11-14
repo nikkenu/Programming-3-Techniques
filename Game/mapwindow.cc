@@ -13,15 +13,13 @@ MapWindow::MapWindow(QWidget *parent,
     m_scene(new Student::GameScene(this))
 {
     m_ui->setupUi(this);
-
     Student::GameScene* sgs_rawptr = m_scene.get();
 
     m_ui->graphicsView->setScene(dynamic_cast<QGraphicsScene*>(sgs_rawptr));
-
+    m_ui->graphicsView->setStyleSheet("background:transparent");
 
     m_boardInit = new BoardInit(sgs_rawptr);
     m_boardInit->initialiseWorldGenerator();
-
 }
 
 MapWindow::~MapWindow()
@@ -53,6 +51,12 @@ void MapWindow::resize()
 void MapWindow::updateItem(std::shared_ptr<Course::GameObject> obj)
 {
     m_scene->updateItem(obj);
+}
+
+void MapWindow::resizeEvent(QResizeEvent *event)
+{
+    Q_UNUSED(event)
+    m_ui->graphicsView->fitInView(m_scene.get()->sceneRect(), Qt::KeepAspectRatio);
 }
 
 void MapWindow::removeItem(std::shared_ptr<Course::GameObject> obj)
