@@ -11,6 +11,7 @@ SOURCES += \
     gameeventhandler.cpp \
     objectmanager.cpp \
     boardinit.cpp \
+    staticstorage.cpp \
     water.cpp \
     rock.cpp \
     sand.cpp \
@@ -27,6 +28,7 @@ HEADERS += \
     gameeventhandler.h \
     objectmanager.h \
     boardinit.h \
+    staticstorage.h \
     water.h \
     rock.h \
     studentresourcemaps.h \
@@ -65,3 +67,6 @@ else:unix: PRE_TARGETDEPS += \
 
 FORMS += \
     mapwindow.ui
+
+RESOURCES += \
+    resources.qrc

@@ -42,6 +42,7 @@ public:
 
 private:
     void resizeEvent(QResizeEvent* event);
+    void mousePressEvent(QMouseEvent* event);
 
     Ui::MapWindow* m_ui;
     BoardInit* m_boardInit; // Could this be shared_ptr?
