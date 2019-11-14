@@ -41,6 +41,8 @@ public:
 
 
 private:
+    void resizeEvent(QResizeEvent* event);
+
     Ui::MapWindow* m_ui;
     BoardInit* m_boardInit; // Could this be shared_ptr?
     std::shared_ptr<Student::GameEventHandler> m_GEHandler = nullptr;
