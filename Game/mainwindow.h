@@ -39,6 +39,7 @@ private:
     void mousePressEvent(QMouseEvent* event);
     void startGame();
     void setLCDs();
+    void setLCDpalette();
 
     Ui::MainWindow* m_ui;
     Student::BoardInit* m_boardInit;

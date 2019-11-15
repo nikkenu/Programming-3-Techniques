@@ -76,12 +76,14 @@ void ObjectManager::drawTiles()
 
 void ObjectManager::setPlayers(std::vector<std::string> names)
 {
+
     for (unsigned int i = 0; i < names.size(); i++)
         {
             std::shared_ptr<Player> player = std::make_shared<Player>(names.at(i));
             player->setName(names.at(i));
             playerVector.push_back(player);
     }
+
 }
 
 std::vector<int> ObjectManager::playerWealth(std::string &name)

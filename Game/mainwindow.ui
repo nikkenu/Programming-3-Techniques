@@ -221,6 +221,9 @@
                <property name="mouseTracking">
                 <bool>false</bool>
                </property>
+               <property name="styleSheet">
+                <string notr="true">color: rgb(46, 52, 54)</string>
+               </property>
               </widget>
              </item>
              <item row="0" column="1">

@@ -15,11 +15,8 @@ MainWindow::MainWindow(QWidget *parent,
     m_boardInit = new Student::BoardInit(gameScene_ptr);
     m_boardInit->initialiseWorldGenerator();
     m_objectManager = std::make_shared<Student::ObjectManager>();
-    m_ui->moneyLCDNumber->setPalette(Qt::black);
-    m_ui->foodLCDNumber->setPalette(Qt::black);
-    m_ui->woodLCDNumber->setPalette(Qt::black);
-    m_ui->stoneLCDNumber->setPalette(Qt::black);
-    m_ui->oreLCDNumber->setPalette(Qt::black);
+    setLCDpalette();
+    startGame();
 }
 
 MainWindow::~MainWindow()
@@ -60,8 +57,8 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
 
 void MainWindow::startGame()
 {
-    std::string player1 = "Player1";
-    std::string player2 = "Player2";
+    std::string player1 = "Player 1";
+    std::string player2 = "Player 2";
     QString turnText = "Turn:" + QString::fromStdString(player1);
     m_playerNames.push_back(player1);
     m_playerNames.push_back(player2);
@@ -79,5 +76,15 @@ void MainWindow::setLCDs()
     m_ui->stoneLCDNumber->display(numbers.at(3));
     m_ui->oreLCDNumber->display(numbers.at(4));
 }
+
+void MainWindow::setLCDpalette()
+{
+    m_ui->moneyLCDNumber->setPalette(Qt::black);
+    m_ui->foodLCDNumber->setPalette(Qt::black);
+    m_ui->woodLCDNumber->setPalette(Qt::black);
+    m_ui->stoneLCDNumber->setPalette(Qt::black);
+    m_ui->oreLCDNumber->setPalette(Qt::black);
+}
+
 
 
