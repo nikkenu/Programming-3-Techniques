@@ -39,14 +39,15 @@ private:
     void mousePressEvent(QMouseEvent* event);
     void startGame();
     void setLCDs();
+    void setLCDpalette();
 
     Ui::MainWindow* m_ui;
-    BoardInit* m_boardInit;
+    Student::BoardInit* m_boardInit;
     std::shared_ptr<Student::GameEventHandler> m_GEHandler = nullptr;
     std::shared_ptr<Student::GameScene> m_scene = nullptr;
     std::shared_ptr<Student::ObjectManager> m_objectManager = nullptr;
     std::vector<std::string> m_playerNames;
-    std::string m_inTurn = "";
+    std::string m_inTurn = "Player 1";
 };
 
 
