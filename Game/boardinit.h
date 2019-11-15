@@ -12,19 +12,24 @@
 #ifndef BOARDINIT_H
 #define BOARDINIT_H
 
+namespace Student {
+
+
 
 class BoardInit
 {
 public:
-    BoardInit(Student::GameScene* scene);
+    BoardInit(GameScene* scene);
 
     void initialiseWorldGenerator();
 
+    void startGame();
+
 
 private:
-    std::shared_ptr<Student::ObjectManager> m_objectManager = nullptr;
-    std::shared_ptr<Student::GameEventHandler> m_gameEventHandler = nullptr;
-    Student::GameScene* m_scene;
+    std::shared_ptr<ObjectManager> m_objectManager = nullptr;
+    std::shared_ptr<GameEventHandler> m_gameEventHandler = nullptr;
+    GameScene* m_scene;
 };
-
+}
 #endif // BOARDINIT_H

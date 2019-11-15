@@ -39,6 +39,12 @@ public:
      */
     virtual ~Player() = default;
 
+    int money = 1000;
+    int food = 1000;
+    int wood = 1000;
+    int stone = 1000;
+    int ore = 1000;
+
 private:
     std::string playerName;
     std::vector<std::weak_ptr<Course::GameObject> > playerObjects;

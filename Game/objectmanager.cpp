@@ -74,6 +74,33 @@ void ObjectManager::drawTiles()
     }
 }
 
+void ObjectManager::setPlayers(std::vector<std::string> names)
+{
+    for (unsigned int i = 0; i < names.size(); i++)
+        {
+            std::shared_ptr<Player> player = std::make_shared<Player>(names.at(i));
+            player->setName(names.at(i));
+            playerVector.push_back(player);
+    }
+}
+
+std::vector<int> ObjectManager::playerWealth(std::string &name)
+{
+    std::vector<int> wealth;
+    for (unsigned int i = 0; i < playerVector.size(); i++)
+    {
+        if (name == playerVector.at(i)->getName())
+        {
+            wealth.push_back(playerVector.at(i)->money);
+            wealth.push_back(playerVector.at(i)->food);
+            wealth.push_back(playerVector.at(i)->wood);
+            wealth.push_back(playerVector.at(i)->stone);
+            wealth.push_back(playerVector.at(i)->ore);
+        }
+    }
+    return wealth;
+}
+
 }
 
 
