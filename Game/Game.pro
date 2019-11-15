@@ -7,7 +7,6 @@ CONFIG += c++14
 
 SOURCES += \
     main.cpp \
-    mapwindow.cc \
     gameeventhandler.cpp \
     objectmanager.cpp \
     boardinit.cpp \
@@ -21,10 +20,10 @@ SOURCES += \
     oilrig.cpp \
     mapitem.cpp \
     gamescene.cpp \
-    player.cpp
+    player.cpp \
+    mainwindow.cpp
 
 HEADERS += \
-    mapwindow.hh \
     gameeventhandler.h \
     objectmanager.h \
     boardinit.h \
@@ -39,7 +38,9 @@ HEADERS += \
     oilrig.h \
     mapitem.h \
     gamescene.h \
-    player.h
+    player.h \
+    mapwindow.hh \
+    mainwindow.h
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib
@@ -66,7 +67,7 @@ else:unix: PRE_TARGETDEPS += \
     $$OUT_PWD/../Course/CourseLib/libCourseLib.a
 
 FORMS += \
-    mapwindow.ui
+    mainwindow.ui
 
 RESOURCES += \
     resources.qrc
