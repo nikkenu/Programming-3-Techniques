@@ -12,8 +12,6 @@ MainWindow::MainWindow(QWidget *parent,
     Student::GameScene* gameScene_ptr = m_scene.get();
     m_graphicsView = std::make_shared<Student::GameGraphicsView>(gameScene_ptr);
     m_graphicsView->setScene(gameScene_ptr);
-    m_graphicsView->setMinimumSize(500,500);
-    m_graphicsView->setFrameStyle(0);
     m_ui->verticalLayout->addWidget(m_graphicsView.get());
 
     initializeGame();
@@ -47,7 +45,6 @@ void MainWindow::updateItem(std::shared_ptr<Course::GameObject> obj)
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
     Q_UNUSED(event)
-   // m_ui->graphicsView->fitInView(m_scene.get()->sceneRect(), Qt::KeepAspectRatio);
     m_graphicsView->fitInView(m_scene.get()->sceneRect(), Qt::KeepAspectRatio);
 }
 
