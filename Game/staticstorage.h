@@ -25,20 +25,7 @@ namespace Student {
         StaticStorage& operator=(StaticStorage&&) = delete;
 
         QPixmap getItemPixmap(Items item);
-        /*
-        // Buildings
-        QPixmap getHeadquarterImg();
-        QPixmap getOutpostImg();
-        QPixmap getFarmImg();
-        QPixmap getMineImg();
-        QPixmap getOilrigImg();
-
-        // Workers
-        QPixmap getMinerImg();
-        QPixmap getFarmerImg();
-        QPixmap getWorkerImg();*/
-
-
+        QString getItemName(Items item);
 
     private:
         StaticStorage();

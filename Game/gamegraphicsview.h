@@ -16,7 +16,6 @@ class GameGraphicsView : public QGraphicsView
 public:
     GameGraphicsView(GameScene* scene, QWidget *parent = 0);
 
-    void dragEnterEvent(QDragEnterEvent *event);
     void dropEvent(QDropEvent *event);
 
 private:

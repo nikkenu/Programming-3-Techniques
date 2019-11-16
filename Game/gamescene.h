@@ -109,8 +109,6 @@ public:
      */
     bool event(QEvent* event);
 
-    void getDrop();
-
 private:
     QGraphicsItem* m_mapBoundRect;
     int m_width;
