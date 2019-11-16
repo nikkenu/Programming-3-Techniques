@@ -117,7 +117,6 @@ bool GameScene::event(QEvent *event)
     return false;
 }
 
-
 void GameScene::removeItem(std::shared_ptr<Course::GameObject> obj)
 {
     QList<QGraphicsItem*> items_list = items(obj->getCoordinate().asQpoint());

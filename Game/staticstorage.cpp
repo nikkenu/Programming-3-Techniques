@@ -2,62 +2,87 @@
 
 namespace Student {
 
-    StaticStorage::StaticStorage()
+StaticStorage& StaticStorage::getInstance()
+{
+    static StaticStorage instance;
+    return instance;
+}
+
+QPixmap StaticStorage::getItemPixmap(Items item)
+{
+    switch(item)
     {
-        m_headquater.load(":/images/images/headquarter.png");
-        m_farm.load(":/images/images/scarecrow.png");
-        m_mine.load(":/images/images/data.png");
-        m_outpost.load(":/images/images/lighthouse.png");
+        case Items::FARM:
+        return m_farmPic;
 
-        m_miner.load(":/images/images/miner.png");
-        m_farmer.load(":/images/images/farmer.png");
-        m_worker.load(":/images/images/worker.png");
+        case Items::MINE:
+        return m_minePic;
+
+        case Items::MINER:
+        return m_minerPic;
+
+        case Items::FARMER:
+        return m_farmerPic;
+
+        case Items::OILRIG:
+        return m_oilrigPic;
+
+        case Items::WORKER:
+        return m_workerPic;
+
+        case Items::OUTPOST:
+        return m_outpostPic;
+
+        case Items::HEADQUARTER:
+        return m_headquarterPic;
+
     }
+}
 
-    StaticStorage::~StaticStorage()
+QString StaticStorage::getItemName(StaticStorage::Items item)
+{
+    switch(item)
     {
+        case Items::FARM:
+        return "Farm";
+
+        case Items::MINE:
+        return "Mine";
+
+        case Items::MINER:
+        return "Miner";
+
+        case Items::FARMER:
+        return "Farmer";
+
+        case Items::OILRIG:
+        return "Oilrig";
+
+        case Items::WORKER:
+        return "Worker";
+
+        case Items::OUTPOST:
+        return "Outpost";
+
+        case Items::HEADQUARTER:
+        return "Headquarter";
 
     }
+}
 
-    QPixmap StaticStorage::getHeadquaterImg()
-    {
-        return m_headquater;
-    }
+StaticStorage::StaticStorage()
+{
+    m_headquarterPic.load(":/images/images/headquarter.png");
+    m_farmPic.load(":/images/images/scarecrow.png");
+    m_minePic.load(":/images/images/data.png");
+    m_outpostPic.load(":/images/images/lighthouse.png");
+    m_oilrigPic.load(":/images/images/oilrig.png");
 
-    QPixmap StaticStorage::getOutpostImg()
-    {
-        return m_outpost;
-    }
+    m_minerPic.load(":/images/images/miner.png");
+    m_farmerPic.load(":/images/images/farmer.png");
+    m_workerPic.load(":/images/images/worker.png");
+}
 
-    QPixmap StaticStorage::getFarmImg()
-    {
-        return m_farm;
-    }
-
-    QPixmap StaticStorage::getMineImg()
-    {
-        return m_mine;
-    }
-
-    QPixmap StaticStorage::getOilrigImg()
-    {
-        return m_oilrig;
-    }
-
-    QPixmap StaticStorage::getMinerImg()
-    {
-        return m_miner;
-    }
-
-    QPixmap StaticStorage::getFarmerImg()
-    {
-        return m_farmer;
-    }
-
-    QPixmap StaticStorage::getWorkerImg()
-    {
-        return m_worker;
-    }
 }
 
 
