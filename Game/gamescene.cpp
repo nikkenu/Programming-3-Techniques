@@ -116,6 +116,26 @@ bool GameScene::event(QEvent *event)
 
     return false;
 }
+/*
+void GameScene::dropEvent(QGraphicsSceneDragDropEvent  *event)
+{
+    event->acceptProposedAction();
+    qDebug() << "drop";
+}
+
+void GameScene::dragEnterEvent(QGraphicsSceneDragDropEvent  *event)
+{
+    event->acceptProposedAction();
+    qDebug() << "drop";
+}
+
+
+void GameScene::dragMoveEvent(QGraphicsSceneDragDropEvent *event)
+{
+    event->acceptProposedAction();
+    qDebug() << "drop";
+}*/
+
 
 
 void GameScene::removeItem(std::shared_ptr<Course::GameObject> obj)

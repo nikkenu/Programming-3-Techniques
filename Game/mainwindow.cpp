@@ -10,13 +10,13 @@ MainWindow::MainWindow(QWidget *parent,
 {
     m_ui->setupUi(this);
     Student::GameScene* gameScene_ptr = m_scene.get();
-    m_ui->graphicsView->setScene(dynamic_cast<QGraphicsScene*>(gameScene_ptr));
-    m_ui->graphicsView->setStyleSheet("background:transparent");
-    m_boardInit = new Student::BoardInit(gameScene_ptr);
-    m_boardInit->initialiseWorldGenerator();
-    m_objectManager = std::make_shared<Student::ObjectManager>();
-    setLCDpalette();
-    startGame();
+    m_graphicsView = std::make_shared<Student::GameGraphicsView>(gameScene_ptr);
+    m_graphicsView->setScene(gameScene_ptr);
+    m_graphicsView->setMinimumSize(500,500);
+    m_graphicsView->setFrameStyle(0);
+    m_ui->verticalLayout->addWidget(m_graphicsView.get());
+
+    initializeGame();
 }
 
 MainWindow::~MainWindow()
@@ -47,13 +47,10 @@ void MainWindow::updateItem(std::shared_ptr<Course::GameObject> obj)
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
     Q_UNUSED(event)
-    m_ui->graphicsView->fitInView(m_scene.get()->sceneRect(), Qt::KeepAspectRatio);
+   // m_ui->graphicsView->fitInView(m_scene.get()->sceneRect(), Qt::KeepAspectRatio);
+    m_graphicsView->fitInView(m_scene.get()->sceneRect(), Qt::KeepAspectRatio);
 }
 
-void MainWindow::mousePressEvent(QMouseEvent *event)
-{
-    qDebug() << childAt(event->pos());
-}
 
 void MainWindow::startGame()
 {
@@ -84,6 +81,50 @@ void MainWindow::setLCDpalette()
     m_ui->woodLCDNumber->setPalette(Qt::black);
     m_ui->stoneLCDNumber->setPalette(Qt::black);
     m_ui->oreLCDNumber->setPalette(Qt::black);
+}
+
+void MainWindow::initializeWorkerMenu()
+{
+    m_workerLayout = new QGridLayout();
+    Student::ItemLabel* worker = new Student::ItemLabel(Student::StaticStorage::WORKER);
+    Student::ItemLabel* farmer = new Student::ItemLabel(Student::StaticStorage::FARMER);
+    Student::ItemLabel* miner = new Student::ItemLabel(Student::StaticStorage::MINER);
+
+    m_workerLayout->addWidget(worker, 0, 0);
+    m_workerLayout->addWidget(farmer, 0, 1);
+    m_workerLayout->addWidget(miner, 0, 2);
+
+    m_ui->verticalLayout_4->addLayout(m_workerLayout);
+}
+
+void MainWindow::initializeBuildingMenu()
+{
+    m_buildingLayout = new QGridLayout();
+    Student::ItemLabel* headquarter = new Student::ItemLabel(Student::StaticStorage::HEADQUARTER);
+    Student::ItemLabel* outpost = new Student::ItemLabel(Student::StaticStorage::OUTPOST);
+    Student::ItemLabel* farm = new Student::ItemLabel(Student::StaticStorage::FARM);
+    Student::ItemLabel* oilrig = new Student::ItemLabel(Student::StaticStorage::OILRIG);
+    Student::ItemLabel* mine = new Student::ItemLabel(Student::StaticStorage::MINE);
+
+    m_buildingLayout->addWidget(headquarter, 0, 0);
+    m_buildingLayout->addWidget(outpost, 0, 1);
+    m_buildingLayout->addWidget(farm, 0, 2);
+    m_buildingLayout->addWidget(oilrig, 1, 0);
+    m_buildingLayout->addWidget(mine, 1, 1);
+
+    m_ui->verticalLayout_5->addLayout(m_buildingLayout);
+}
+
+void MainWindow::initializeGame()
+{
+    m_boardInit = new Student::BoardInit(m_scene.get());
+    m_boardInit->initialiseWorldGenerator();
+    m_objectManager = std::make_shared<Student::ObjectManager>();
+
+    initializeWorkerMenu();
+    initializeBuildingMenu();
+    setLCDpalette();
+    startGame();
 }
 
 

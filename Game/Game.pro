@@ -6,6 +6,8 @@ QT += core gui widgets
 CONFIG += c++14
 
 SOURCES += \
+    gamegraphicsview.cpp \
+    itemlabel.cpp \
     main.cpp \
     gameeventhandler.cpp \
     objectmanager.cpp \
@@ -25,6 +27,8 @@ SOURCES += \
 
 HEADERS += \
     gameeventhandler.h \
+    gamegraphicsview.h \
+    itemlabel.h \
     objectmanager.h \
     boardinit.h \
     staticstorage.h \

@@ -6,11 +6,28 @@ namespace Student {
     class StaticStorage
     {
     public:
-        StaticStorage();
-        ~StaticStorage();
+        enum Items {
+            HEADQUARTER,
+            OUTPOST,
+            FARM,
+            MINE,
+            OILRIG,
+            MINER,
+            FARMER,
+            WORKER
+        };
 
+        static StaticStorage& getInstance();
+
+        StaticStorage(const StaticStorage&) = delete;
+        StaticStorage& operator=(const StaticStorage&) = delete;
+        StaticStorage(StaticStorage&&) = delete;
+        StaticStorage& operator=(StaticStorage&&) = delete;
+
+        QPixmap getItemPixmap(Items item);
+        /*
         // Buildings
-        QPixmap getHeadquaterImg();
+        QPixmap getHeadquarterImg();
         QPixmap getOutpostImg();
         QPixmap getFarmImg();
         QPixmap getMineImg();
@@ -19,21 +36,26 @@ namespace Student {
         // Workers
         QPixmap getMinerImg();
         QPixmap getFarmerImg();
-        QPixmap getWorkerImg();
+        QPixmap getWorkerImg();*/
+
+
 
     private:
+        StaticStorage();
+        ~StaticStorage() = default;
 
         // Buildings
-        QPixmap m_headquater;
-        QPixmap m_outpost;
-        QPixmap m_farm;
-        QPixmap m_mine;
-        QPixmap m_oilrig;
+        QPixmap m_headquarterPic;
+        QPixmap m_outpostPic;
+        QPixmap m_farmPic;
+        QPixmap m_minePic;
+        QPixmap m_oilrigPic;
 
         // Workers
-        QPixmap m_farmer;
-        QPixmap m_miner;
-        QPixmap m_worker;
+        QPixmap m_farmerPic;
+        QPixmap m_minerPic;
+        QPixmap m_workerPic;
+
     };
 }
 

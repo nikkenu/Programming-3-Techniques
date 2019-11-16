@@ -7,6 +7,11 @@
 #include <QMouseEvent>
 #include <QGraphicsSceneMouseEvent>
 #include <QDebug>
+#include <QGridLayout>
+#include <QLabel>
+#include <QVector>
+#include <QDrag>
+#include <QMimeData>
 
 #include <map>
 #include "boardinit.h"
@@ -14,6 +19,9 @@
 #include "gamescene.h"
 #include "gameeventhandler.h"
 #include "objectmanager.h"
+#include "itemlabel.h"
+#include "gamegraphicsview.h"
+#include "staticstorage.h"
 
 namespace Ui {
 class MainWindow;
@@ -36,17 +44,24 @@ public:
 
 private:
     void resizeEvent(QResizeEvent* event);
-    void mousePressEvent(QMouseEvent* event);
+
     void startGame();
     void setLCDs();
     void setLCDpalette();
+    void initializeWorkerMenu();
+    void initializeBuildingMenu();
+    void initializeGame();
 
     Ui::MainWindow* m_ui;
     Student::BoardInit* m_boardInit;
+    QGridLayout* m_workerLayout;
+    QGridLayout* m_buildingLayout;
     std::shared_ptr<Student::GameEventHandler> m_GEHandler = nullptr;
     std::shared_ptr<Student::GameScene> m_scene = nullptr;
     std::shared_ptr<Student::ObjectManager> m_objectManager = nullptr;
+    std::shared_ptr<Student::GameGraphicsView> m_graphicsView = nullptr;
     std::vector<std::string> m_playerNames;
+
     std::string m_inTurn = "Player 1";
 };
 

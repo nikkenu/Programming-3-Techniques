@@ -4,6 +4,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QDebug>
+#include <QMimeData>
 
 #include <map>
 #include <memory>
@@ -107,6 +108,8 @@ public:
      * False: if the event handling was passed over.
      */
     bool event(QEvent* event);
+
+    void getDrop();
 
 private:
     QGraphicsItem* m_mapBoundRect;
