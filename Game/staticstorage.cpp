@@ -70,6 +70,42 @@ QString StaticStorage::getItemName(StaticStorage::Items item)
     }
 }
 
+StaticStorage::Items StaticStorage::getItemNameAsEnum(QString itemName)
+{
+    if(itemName == "Farm")
+    {
+        return Items::FARM;
+    }
+    else if(itemName == "Mine")
+    {
+        return Items::MINE;
+    }
+    else if(itemName == "Miner")
+    {
+        return Items::MINER;
+    }
+    else if(itemName == "Farmer")
+    {
+        return Items::FARMER;
+    }
+    else if(itemName == "Oilrig")
+    {
+        return Items::OILRIG;
+    }
+    else if(itemName == "Worker")
+    {
+        return Items::WORKER;
+    }
+    else if(itemName == "Outpost")
+    {
+        return Items::OUTPOST;
+    }
+    else if(itemName == "Headquarter")
+    {
+        return Items::HEADQUARTER;
+    }
+}
+
 QPixmap StaticStorage::getEpiclorePixmap()
 {
     return m_epiclorePic;

@@ -11,13 +11,6 @@ GameGraphicsView::GameGraphicsView(GameScene* scene, QWidget *parent):
     setFrameStyle(0);
 }
 
-void GameGraphicsView::dropEvent(QDropEvent *event)
-{
-    event->acceptProposedAction();
-    qDebug() << event->mimeData()->text();
-    //qDebug() << event->pos();
-}
-
 }
 
 

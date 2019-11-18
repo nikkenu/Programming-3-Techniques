@@ -8,6 +8,7 @@
 #include <map>
 
 #include "core/gameobject.h"
+#include "staticstorage.h"
 
 namespace Student {
 
@@ -42,7 +43,7 @@ public:
      */
     void paint(QPainter *painter,
                const QStyleOptionGraphicsItem *option,
-               QWidget *widget);
+               QWidget *widget, QPixmap pixmap);
     /**
      * @brief getBoundObject
      * @return the object this item is bound to.
@@ -76,6 +77,8 @@ public:
      * @post Exception guarantee: No-throw
      */
     void setSize(int size);
+
+    void drawToItem(QPixmap pixmap);
 
 private:
     const std::shared_ptr<Course::GameObject> m_gameobject;

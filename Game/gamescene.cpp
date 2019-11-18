@@ -88,6 +88,7 @@ void GameScene::updateItem(std::shared_ptr<Course::GameObject> obj)
 
 bool GameScene::event(QEvent *event)
 {
+    //I think we don't need this first event, because of drag and drop implementation
     if(event->type() == QEvent::GraphicsSceneMousePress)
     {
         QGraphicsSceneMouseEvent* mouse_event =
@@ -110,10 +111,25 @@ bool GameScene::event(QEvent *event)
                             ->getBoundObject()->ID  << " pressed.";
                 return true;
             }
+        }
+    } else if (event->type() == QEvent::GraphicsSceneDrop){
+        QGraphicsSceneDragDropEvent* drop = dynamic_cast<QGraphicsSceneDragDropEvent*>(event);
 
+        if(sceneRect().contains(drop->scenePos())){
+            QPointF point = drop->scenePos() / m_scale;
+            point.rx() = floor(point.rx());
+            point.ry() = floor(point.ry());
+
+            QGraphicsItem* item = itemAt(point * m_scale, QTransform());
+            if(item != m_mapBoundRect){
+                Student::MapItem* mapItem = static_cast<Student::MapItem*>(item);
+                Student::StaticStorage::Items itemNameInEnum = Student::StaticStorage::getInstance().getItemNameAsEnum(drop->mimeData()->text());
+                QPixmap pixmap(Student::StaticStorage::getInstance().getItemPixmap(itemNameInEnum));
+                mapItem->drawToItem(pixmap);
+
+            }
         }
     }
-
     return false;
 }
 

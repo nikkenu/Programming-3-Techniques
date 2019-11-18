@@ -26,7 +26,7 @@ namespace Student {
 
         QPixmap getItemPixmap(Items item);
         QString getItemName(Items item);
-
+        Items getItemNameAsEnum(QString itemName);
         QPixmap getEpiclorePixmap();
 
     private:

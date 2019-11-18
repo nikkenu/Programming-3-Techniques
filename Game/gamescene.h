@@ -109,6 +109,7 @@ public:
      */
     bool event(QEvent* event);
 
+
 private:
     QGraphicsItem* m_mapBoundRect;
     int m_width;

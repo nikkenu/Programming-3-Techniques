@@ -20,14 +20,11 @@ void ItemLabel::mousePressEvent(QMouseEvent *ev)
     if(ev->button() == Qt::LeftButton){
         QDrag *drag = new QDrag(this);
         QMimeData *mimeData = new QMimeData;
-
         mimeData->setText(StaticStorage::getInstance().getItemName(m_item));
         QPixmap pixmap(*this->pixmap());
 
         drag->setMimeData(mimeData);
         drag->setPixmap(pixmap.scaled(50,50,Qt::KeepAspectRatio));
-        drag->exec();
-
         drag->exec(Qt::CopyAction);
     }
 
