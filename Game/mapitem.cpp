@@ -16,10 +16,11 @@ QRectF MapItem::boundingRect() const
     return QRectF(m_scenelocation * m_size, m_scenelocation * m_size + QPoint(m_size, m_size));
 }
 
-void MapItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget, QPixmap pixmap)
+void MapItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    Q_UNUSED( option ) Q_UNUSED( widget ) Q_UNUSED(pixmap)
+    Q_UNUSED( option ) Q_UNUSED( widget )
     painter->setBrush(QBrush(c_mapcolors.at(m_gameobject->getType())));
+
     if ( m_gameobject->getType() == "Grassland" )
     {
         painter->setBrush(Qt::green);
@@ -40,6 +41,14 @@ void MapItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
     {
         painter->setBrush(Qt::yellow);
     }
+
+
+    if(m_tileHasBuilding)
+    {
+        QPixmap pixmap(m_building.second);
+        painter->setBrush(pixmap.scaled(m_size,m_size));
+    }
+
     painter->drawRect(boundingRect());
 }
 
@@ -75,9 +84,12 @@ void MapItem::setSize(int size)
     }
 }
 
-void MapItem::drawToItem(QPixmap pixmap)
+void MapItem::addBuildingToTile(StaticStorage::Items item, QPixmap pixmap)
 {
-
+    qDebug() << m_scenelocation * m_size;
+    m_building.first = item;
+    m_building.second = pixmap;
+    m_tileHasBuilding = true;
 }
 
 void MapItem::addNewColor(std::string type)

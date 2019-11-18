@@ -6,6 +6,8 @@
 
 #include <memory>
 #include <map>
+#include <QPair>
+#include <QDebug>
 
 #include "core/gameobject.h"
 #include "staticstorage.h"
@@ -43,7 +45,7 @@ public:
      */
     void paint(QPainter *painter,
                const QStyleOptionGraphicsItem *option,
-               QWidget *widget, QPixmap pixmap);
+               QWidget *widget);
     /**
      * @brief getBoundObject
      * @return the object this item is bound to.
@@ -78,12 +80,14 @@ public:
      */
     void setSize(int size);
 
-    void drawToItem(QPixmap pixmap);
+    void addBuildingToTile(Student::StaticStorage::Items item, QPixmap pixmap);
 
 private:
     const std::shared_ptr<Course::GameObject> m_gameobject;
     QPoint m_scenelocation;
     int m_size;
+    bool m_tileHasBuilding = false;
+    QPair<Student::StaticStorage::Items, QPixmap> m_building;
 
     static std::map<std::string, QColor> c_mapcolors;
     static void addNewColor(std::string type);

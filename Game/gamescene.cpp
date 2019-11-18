@@ -125,8 +125,7 @@ bool GameScene::event(QEvent *event)
                 Student::MapItem* mapItem = static_cast<Student::MapItem*>(item);
                 Student::StaticStorage::Items itemNameInEnum = Student::StaticStorage::getInstance().getItemNameAsEnum(drop->mimeData()->text());
                 QPixmap pixmap(Student::StaticStorage::getInstance().getItemPixmap(itemNameInEnum));
-                mapItem->drawToItem(pixmap);
-
+                mapItem->addBuildingToTile(itemNameInEnum, pixmap);
             }
         }
     }
