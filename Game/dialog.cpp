@@ -16,8 +16,7 @@ Dialog::Dialog(QWidget *parent) :
 
     connect(ui->loreButton, &QPushButton::clicked,
             this, &Dialog::lore);
-    ui->amountSpinBox->setMaximum(4);
-    ui->amountSpinBox->setMinimum(1);
+
 
 }
 
@@ -28,9 +27,18 @@ Dialog::~Dialog()
 
 void Dialog::accept()
 {
-    int numberOfPlayers = ui->amountSpinBox->value();
-    emit this->playerAmountSignal(numberOfPlayers);
-    this->done(1);
+    if (ui->p1Name->text().isEmpty() && ui->p2Name->text().isEmpty() &&
+        ui->p3Name->text().isEmpty() && ui->p4Name->text().isEmpty())
+    {
+        ui->infoLabel->setText("You must have at least one player!");
+    }
+    else
+    {
+        emit this->playerNameSignal(ui->p1Name->text(), ui->p2Name->text(),
+                                    ui->p3Name->text(), ui->p4Name->text());
+        this->done(1);
+    }
+
 }
 
 void Dialog::reject()
