@@ -2,6 +2,7 @@
 #include "ui_dialog.h"
 #include <QDesktopServices>
 #include <QUrl>
+#include <QDebug>
 
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),

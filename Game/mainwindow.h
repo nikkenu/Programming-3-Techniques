@@ -42,10 +42,12 @@ public:
     void removeItem( std::shared_ptr<Course::GameObject> obj);
     void updateItem( std::shared_ptr<Course::GameObject> obj);
 
+public slots:
+    void startGame(QString name1, QString name2, QString name3, QString name4);
+
 private:
     void resizeEvent(QResizeEvent* event);
 
-    void startGame();
     void setLCDs();
     void setLCDpalette();
     void initializeWorkerMenu();
@@ -60,9 +62,9 @@ private:
     std::shared_ptr<Student::GameScene> m_scene = nullptr;
     std::shared_ptr<Student::ObjectManager> m_objectManager = nullptr;
     std::shared_ptr<Student::GameGraphicsView> m_graphicsView = nullptr;
-    std::vector<std::string> m_playerNames;
+    std::vector<QString> m_playerNames;
 
-    std::string m_inTurn = "Player 1";
+    std::string m_inTurn;
 };
 
 
