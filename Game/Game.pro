@@ -45,7 +45,6 @@ HEADERS += \
     mapitem.h \
     gamescene.h \
     player.h \
-    mapwindow.hh \
     mainwindow.h \
     dialog.h \
     lore.h
