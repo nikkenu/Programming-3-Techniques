@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "dialog.h"
 
 MainWindow::MainWindow(QWidget *parent,
                        std::shared_ptr<Student::GameEventHandler> handler):
@@ -42,6 +43,7 @@ void MainWindow::updateItem(std::shared_ptr<Course::GameObject> obj)
     m_scene->updateItem(obj);
 }
 
+
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
     Q_UNUSED(event)
@@ -49,13 +51,26 @@ void MainWindow::resizeEvent(QResizeEvent *event)
 }
 
 
-void MainWindow::startGame()
+void MainWindow::startGame(QString name1, QString name2, QString name3, QString name4)
 {
-    std::string player1 = "Player 1";
-    std::string player2 = "Player 2";
-    QString turnText = "Turn:" + QString::fromStdString(player1);
-    m_playerNames.push_back(player1);
-    m_playerNames.push_back(player2);
+    if (name1 != "")
+    {
+        m_playerNames.push_back(name1);
+    }
+    if (name2 != "")
+    {
+        m_playerNames.push_back(name2);
+    }
+    if (name3 != "")
+    {
+        m_playerNames.push_back(name3);
+    }
+    if (name4 != "")
+    {
+        m_playerNames.push_back(name4);
+    }
+    QString turnText = "Turn: " + m_playerNames.at(0);
+    m_inTurn = m_playerNames.at(0).toStdString();
     m_objectManager->setPlayers(m_playerNames);
     m_ui->playerTurnLabel->setText(turnText);
     setLCDs();
@@ -121,7 +136,6 @@ void MainWindow::initializeGame()
     initializeWorkerMenu();
     initializeBuildingMenu();
     setLCDpalette();
-    startGame();
 }
 
 

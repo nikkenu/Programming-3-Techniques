@@ -8,5 +8,6 @@
         <file>images/miner.png</file>
         <file>images/worker.png</file>
         <file>images/oilrig.png</file>
+        <file>images/epiclore.png</file>
     </qresource>
 </RCC>

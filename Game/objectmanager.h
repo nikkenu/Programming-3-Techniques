@@ -32,7 +32,7 @@ public:
 
     void drawTiles();
 
-    void setPlayers(std::vector<std::string> names);
+    void setPlayers(std::vector<QString> names);
 
     std::vector<int> playerWealth(std::string &name);
 

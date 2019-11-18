@@ -27,6 +27,8 @@ namespace Student {
         QPixmap getItemPixmap(Items item);
         QString getItemName(Items item);
 
+        QPixmap getEpiclorePixmap();
+
     private:
         StaticStorage();
         ~StaticStorage() = default;
@@ -42,6 +44,9 @@ namespace Student {
         QPixmap m_farmerPic;
         QPixmap m_minerPic;
         QPixmap m_workerPic;
+
+        //Lore
+        QPixmap m_epiclorePic;
 
     };
 }

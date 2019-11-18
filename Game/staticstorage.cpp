@@ -70,6 +70,11 @@ QString StaticStorage::getItemName(StaticStorage::Items item)
     }
 }
 
+QPixmap StaticStorage::getEpiclorePixmap()
+{
+    return m_epiclorePic;
+}
+
 StaticStorage::StaticStorage()
 {
     m_headquarterPic.load(":/images/images/headquarter.png");
@@ -81,6 +86,8 @@ StaticStorage::StaticStorage()
     m_minerPic.load(":/images/images/miner.png");
     m_farmerPic.load(":/images/images/farmer.png");
     m_workerPic.load(":/images/images/worker.png");
+
+    m_epiclorePic.load(":/images/images/epiclore.png");
 }
 
 }
