@@ -3,7 +3,11 @@
 namespace Student {
 
 
-BoardInit::BoardInit(Student::GameScene* scene): m_scene(scene)
+BoardInit::BoardInit(Student::GameScene* scene, std::shared_ptr<ObjectManager> manager,
+                     std::shared_ptr<GameEventHandler> handler):
+    m_scene(scene),
+    m_objectManager(manager),
+    m_gameEventHandler(handler)
 {
     m_objectManager = std::make_shared<ObjectManager>();
     m_objectManager->addScene(m_scene);
