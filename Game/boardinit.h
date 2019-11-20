@@ -19,7 +19,7 @@ namespace Student {
 class BoardInit
 {
 public:
-    BoardInit(GameScene* scene);
+    BoardInit(GameScene* scene, std::shared_ptr<ObjectManager>, std::shared_ptr<GameEventHandler> handler);
 
     void initialiseWorldGenerator();
 

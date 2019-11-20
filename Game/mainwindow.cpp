@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent,
     m_ui->verticalLayout->addWidget(m_graphicsView.get());
 
     initializeGame();
+
 }
 
 MainWindow::~MainWindow()
@@ -76,6 +77,7 @@ void MainWindow::startGame(QString name1, QString name2, QString name3, QString 
     setLCDs();
 }
 
+
 void MainWindow::setLCDs()
 {
     std::vector<int> numbers = m_objectManager->playerWealth(m_inTurn);
@@ -129,9 +131,9 @@ void MainWindow::initializeBuildingMenu()
 
 void MainWindow::initializeGame()
 {
-    m_boardInit = new Student::BoardInit(m_scene.get());
-    m_boardInit->initialiseWorldGenerator();
     m_objectManager = std::make_shared<Student::ObjectManager>();
+    m_boardInit = new Student::BoardInit(m_scene.get(), m_objectManager, m_GEHandler);
+    m_boardInit->initialiseWorldGenerator();
 
     initializeWorkerMenu();
     initializeBuildingMenu();
