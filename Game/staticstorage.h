@@ -1,6 +1,7 @@
 #ifndef STATICSTORAGE_H
 #define STATICSTORAGE_H
 #include <QPixmap>
+#include <QVector>
 
 namespace Student {
     class StaticStorage
@@ -26,12 +27,17 @@ namespace Student {
 
         QPixmap getItemPixmap(Items item);
         QString getItemName(Items item);
-
+        Items getItemNameAsEnum(QString itemName);
         QPixmap getEpiclorePixmap();
+        QVector<Items> getBuildings();
+        QVector<Items> getWorkers();
 
     private:
         StaticStorage();
         ~StaticStorage() = default;
+
+        QVector<Items> m_buildings;
+        QVector<Items> m_workers;
 
         // Buildings
         QPixmap m_headquarterPic;

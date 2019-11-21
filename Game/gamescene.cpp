@@ -1,6 +1,6 @@
 #include "gamescene.h"
 #include "mapitem.h"
-
+#include "objectmanager.h"
 #include <QEvent>
 #include <QGraphicsSceneMouseEvent>
 
@@ -112,9 +112,46 @@ bool GameScene::event(QEvent *event)
             }
 
         }
-    }
+    } else if (event->type() == QEvent::GraphicsSceneDrop)
 
+    {
+        QGraphicsSceneDragDropEvent* drop = dynamic_cast<QGraphicsSceneDragDropEvent*>(event);
+        if(sceneRect().contains(drop->scenePos()))
+        {
+            QPointF point = drop->scenePos() / m_scale;
+            point.rx() = floor(point.rx());
+            point.ry() = floor(point.ry());
+
+            QGraphicsItem* item = itemAt(point * m_scale, QTransform());
+            if(item != m_mapBoundRect)
+            {
+                Student::MapItem* mapItem = static_cast<Student::MapItem*>(item);
+                QString dropType = drop->mimeData()->text();
+                Student::StaticStorage::Items itemAsEnum = Student::StaticStorage::getInstance().getItemNameAsEnum(dropType);
+
+                if(Student::StaticStorage::getInstance().getWorkers().contains(itemAsEnum))
+                {
+                    m_objectManager->createWorker(dropType, point, m_objectManager);
+                    mapItem->addWorker(Student::StaticStorage::getInstance().getItemPixmap(Student::StaticStorage::getInstance().getItemNameAsEnum(dropType)));
+                    views().at(0)->viewport()->repaint();
+                }
+
+                if(Student::StaticStorage::getInstance().getBuildings().contains(itemAsEnum))
+                {
+                    m_objectManager->createBuilding(dropType, point, m_objectManager);
+                    mapItem->addBuilding(Student::StaticStorage::getInstance().getItemPixmap(Student::StaticStorage::getInstance().getItemNameAsEnum(dropType)));
+                    views().at(0)->viewport()->repaint();
+                }
+
+            }
+        }
+    }
     return false;
+}
+
+void GameScene::addObjectManager(std::shared_ptr<ObjectManager> objectManager)
+{
+    m_objectManager = objectManager;
 }
 
 void GameScene::removeItem(std::shared_ptr<Course::GameObject> obj)
