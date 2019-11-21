@@ -2,19 +2,23 @@
 #include "ui_mainwindow.h"
 #include "dialog.h"
 
-MainWindow::MainWindow(QWidget *parent,
-                       std::shared_ptr<Student::GameEventHandler> handler):
+MainWindow::MainWindow(QWidget *parent, std::shared_ptr<Student::GameEventHandler> handler):
     QMainWindow(parent),
     m_ui(new Ui::MainWindow),
     m_GEHandler(handler),
     m_scene(new Student::GameScene(this))
 {
     m_ui->setupUi(this);
+
+    m_objectManager = std::make_shared<Student::ObjectManager>();
+    m_GEHandler = std::make_shared<Student::GameEventHandler>();
     Student::GameScene* gameScene_ptr = m_scene.get();
     m_graphicsView = std::make_shared<Student::GameGraphicsView>(gameScene_ptr);
     m_graphicsView->setScene(gameScene_ptr);
     m_ui->verticalLayout->addWidget(m_graphicsView.get());
-
+    m_objectManager->addScene(m_scene.get());
+    m_scene->addObjectManager(m_objectManager);
+    m_objectManager->addGameEventHandler(m_GEHandler);
     initializeGame();
 
 }
@@ -131,10 +135,7 @@ void MainWindow::initializeBuildingMenu()
 
 void MainWindow::initializeGame()
 {
-    m_objectManager = std::make_shared<Student::ObjectManager>();
     m_boardInit = new Student::BoardInit(m_scene.get(), m_objectManager, m_GEHandler);
-    m_boardInit->initialiseWorldGenerator();
-
     initializeWorkerMenu();
     initializeBuildingMenu();
     setLCDpalette();

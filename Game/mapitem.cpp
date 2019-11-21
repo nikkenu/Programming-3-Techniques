@@ -19,27 +19,20 @@ QRectF MapItem::boundingRect() const
 void MapItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED( option ) Q_UNUSED( widget )
-    painter->setBrush(QBrush(c_mapcolors.at(m_gameobject->getType())));
-    if ( m_gameobject->getType() == "Grassland" )
+
+    //painter->setBrush(QBrush(c_mapcolors.at(m_gameobject->getType())));
+    if(m_itemHasBuilding)
     {
-        painter->setBrush(Qt::green);
+        if(m_itemHasWorker)
+        {
+            // What if tile has workers as well, how we suppose to scale merge images... // KOODITORIO
+        }
+        else
+        {
+            painter->drawPixmap(boundingRect().toRect(), m_building.scaled(m_size, m_size, Qt::KeepAspectRatio));
+        }
     }
-    else if ( m_gameobject->getType() == "Forest" )
-    {
-        painter->setBrush(Qt::darkGreen);
-    }
-    else if ( m_gameobject->getType() == "Rock" )
-    {
-        painter->setBrush(Qt::darkGray);
-    }
-    else if ( m_gameobject->getType() == "Water" )
-    {
-        painter->setBrush(Qt::blue);
-    }
-    else if ( m_gameobject->getType() == "Sand" )
-    {
-        painter->setBrush(Qt::yellow);
-    }
+
     painter->drawRect(boundingRect());
 }
 
@@ -73,6 +66,19 @@ void MapItem::setSize(int size)
     if ( size > 0 && size <= 500 ){
         m_size = size;
     }
+}
+
+void MapItem::addBuilding(QPixmap building)
+{
+    m_building = building;
+    m_itemHasBuilding = true;
+
+}
+
+void MapItem::addWorker(QPixmap worker)
+{
+    m_worker = worker;
+    m_itemHasWorker = true;
 }
 
 void MapItem::addNewColor(std::string type)

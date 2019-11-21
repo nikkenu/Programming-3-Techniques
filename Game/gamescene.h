@@ -13,6 +13,8 @@
 
 namespace Student {
 
+class ObjectManager;
+
 const std::pair<int, int> SCENE_MAX_WIDTH = {1, 100};
 const std::pair<int, int> SCENE_MAX_HEIGHT = {1, 100};
 const std::pair<int, int> SCENE_MAX_SCALE = {1, 500};
@@ -109,8 +111,12 @@ public:
      */
     bool event(QEvent* event);
 
+    void addObjectManager(std::shared_ptr<ObjectManager> objectManager);
+
+
 private:
     QGraphicsItem* m_mapBoundRect;
+    std::shared_ptr<ObjectManager> m_objectManager = nullptr;
     int m_width;
     int m_height;
     int m_scale;

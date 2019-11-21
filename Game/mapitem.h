@@ -8,6 +8,7 @@
 #include <map>
 
 #include "core/gameobject.h"
+#include "buildings/buildingbase.h"
 
 namespace Student {
 
@@ -77,6 +78,10 @@ public:
      */
     void setSize(int size);
 
+    void addBuilding(QPixmap building);
+
+    void addWorker(QPixmap worker);
+
 private:
     const std::shared_ptr<Course::GameObject> m_gameobject;
     QPoint m_scenelocation;
@@ -84,6 +89,12 @@ private:
 
     static std::map<std::string, QColor> c_mapcolors;
     static void addNewColor(std::string type);
+
+    QPixmap m_building;
+    bool m_itemHasBuilding = false;
+
+    QPixmap m_worker;
+    bool m_itemHasWorker = false;
 };
 }
 #endif // MAPITEM_HH

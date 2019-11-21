@@ -43,15 +43,49 @@ public:
     void updateItem( std::shared_ptr<Course::GameObject> obj);
 
 public slots:
+    /**
+     * @brief Getting player names from start up dialog.
+     * @see Dialog class.
+     */
     void startGame(QString name1, QString name2, QString name3, QString name4);
 
 private:
+
+    /**
+     * @brief When window is resized, event is trigged, which
+     * automatically fits the QGraphicsScene to QGraphicsView.
+     * @param event that has happened.
+     */
     void resizeEvent(QResizeEvent* event);
 
+    /**
+     * @brief Sets player resource in UI.
+     */
     void setLCDs();
+
+    /**
+     * @brief Sets LCDNumber palette to wanted color
+     */
     void setLCDpalette();
+
+    /**
+     * @brief Create custom worker labels, then
+     * add them to UI.
+     * @see ItemLabel class
+     */
     void initializeWorkerMenu();
+
+    /**
+     * @brief Create custom building labels, then
+     * add them to UI.
+     * @see ItemLabel class
+     */
     void initializeBuildingMenu();
+
+    /**
+     * @brief Mostly done, because we are avoiding to
+     * initialize everything in MainWindow constructor
+     */
     void initializeGame();
 
     Ui::MainWindow* m_ui;

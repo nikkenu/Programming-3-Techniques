@@ -1,5 +1,3 @@
-#include "objectmanager.h"
-#include "gameeventhandler.h"
 #include "core/worldgenerator.h"
 #include "gamescene.h"
 #include "tiles/forest.h"
@@ -8,18 +6,18 @@
 #include "rock.h"
 #include "water.h"
 #include "sand.h"
+#include "gameeventhandler.h"
+#include "objectmanager.h"
 
 #ifndef BOARDINIT_H
 #define BOARDINIT_H
 
 namespace Student {
 
-
-
 class BoardInit
 {
 public:
-    BoardInit(GameScene* scene, std::shared_ptr<ObjectManager>, std::shared_ptr<GameEventHandler> handler);
+    BoardInit(GameScene* scene, std::shared_ptr<ObjectManager> objectManager, std::shared_ptr<GameEventHandler> gameEventHandler);
 
     void initialiseWorldGenerator();
 

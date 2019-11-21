@@ -70,9 +70,55 @@ QString StaticStorage::getItemName(StaticStorage::Items item)
     }
 }
 
+StaticStorage::Items StaticStorage::getItemNameAsEnum(QString itemName)
+{
+    if(itemName == "Headquarter")
+    {
+        return Items::HEADQUARTER;
+    }
+    else if(itemName == "Outpost")
+    {
+        return Items::OUTPOST;
+    }
+    else if(itemName == "Farm")
+    {
+        return Items::FARM;
+    }
+    else if(itemName == "Oilrig")
+    {
+        return Items::OILRIG;
+    }
+    else if(itemName == "Miner")
+    {
+        return Items::MINER;
+    }
+    else if(itemName == "Farmer")
+    {
+        return Items::FARMER;
+    }
+    else if(itemName == "Worker")
+    {
+        return Items::WORKER;
+    }
+    else if(itemName == "Mine")
+    {
+        return Items::MINE;
+    }
+}
+
 QPixmap StaticStorage::getEpiclorePixmap()
 {
     return m_epiclorePic;
+}
+
+QVector<StaticStorage::Items> StaticStorage::getBuildings()
+{
+    return m_buildings;
+}
+
+QVector<StaticStorage::Items> StaticStorage::getWorkers()
+{
+    return m_workers;
 }
 
 StaticStorage::StaticStorage()
@@ -88,6 +134,16 @@ StaticStorage::StaticStorage()
     m_workerPic.load(":/images/images/worker.png");
 
     m_epiclorePic.load(":/images/images/epiclore.png");
+
+    m_buildings.push_back(Items::FARM);
+    m_buildings.push_back(Items::OUTPOST);
+    m_buildings.push_back(Items::OILRIG);
+    m_buildings.push_back(Items::HEADQUARTER);
+    m_buildings.push_back(Items::MINE);
+
+    m_workers.push_back(Items::MINER);
+    m_workers.push_back(Items::FARMER);
+    m_workers.push_back(Items::WORKER);
 }
 
 }

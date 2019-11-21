@@ -4,6 +4,15 @@
 #include "player.h"
 #include <vector>
 #include <string>
+#include <buildings/headquarters.h>
+#include <buildings/farm.h>
+#include <buildings/outpost.h>
+#include "oilrig.h"
+#include "mine.h"
+#include "gameeventhandler.h"
+#include "workers/basicworker.h"
+#include "miner.h"
+#include "farmer.h"
 
 
 #ifndef OBJECTMANAGER_H
@@ -36,10 +45,36 @@ public:
 
     std::vector<int> playerWealth(std::string &name);
 
+    /**
+     * @brief Add GameEventHandler to this class,
+     * because we need it to make builders and workers.
+     * @param Gets GameEventHandler as shared_ptr from
+     * MainWindow, so we are not creating new GameEventHandler.
+     */
+    void addGameEventHandler(std::shared_ptr<GameEventHandler> gameEventHandler);
+
+    /**
+     * @brief Creates specific building to a tile.
+     * @param buildType ex."Mine", point gives tile position in scene
+     * and it gets ObjectManager as shared_ptr, because otherwise
+     * we would need to cast "this" to shared_ptr so this was much trivial.
+     */
+    void createBuilding(QString buildingType, QPointF point, std::shared_ptr<ObjectManager> objectManager);
+
+    /**
+     * @brief Creates specific worker to a tile.
+     * @param workerType ex."Miner", point gives tile position in scene
+     * and it gets ObjectManager as shared_ptr, because otherwise
+     * we would need to cast "this" to shared_ptr so this was much trivial.
+     */
+    void createWorker(QString workerType, QPointF point, std::shared_ptr<ObjectManager> objectManager);
+
 private:
     Student::GameScene* m_scene;
     std::vector<std::shared_ptr<Course::TileBase>> m_tiles;
-    std::vector<std::shared_ptr<Student::Player>> playerVector;
+    std::vector<std::shared_ptr<Student::Player>> m_playerVector;
+    std::shared_ptr<GameEventHandler> m_gameEventHandler = nullptr;
+    unsigned int m_intTurnNumber = 0;
 
 
 }; // class ObjectManager
