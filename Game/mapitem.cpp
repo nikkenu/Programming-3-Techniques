@@ -21,6 +21,27 @@ void MapItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
     Q_UNUSED( option ) Q_UNUSED( widget )
 
     //painter->setBrush(QBrush(c_mapcolors.at(m_gameobject->getType())));
+    if ( m_gameobject->getType() == "Grassland" )
+    {
+    painter->fillRect(boundingRect(), Qt::green);
+    }
+    else if ( m_gameobject->getType() == "Forest" )
+    {
+       painter->fillRect(boundingRect(), Qt::darkGreen);
+    }
+    else if ( m_gameobject->getType() == "Rock" )
+    {
+       painter->fillRect(boundingRect(), Qt::darkGray);
+    }
+    else if ( m_gameobject->getType() == "Water" )
+    {
+       painter->fillRect(boundingRect(), Qt::blue);
+    }
+    else if ( m_gameobject->getType() == "Sand" )
+    {
+        painter->fillRect(boundingRect(), Qt::yellow);
+    }
+    painter->drawRect(boundingRect());
     if(m_itemHasBuilding)
     {
         if(m_itemHasWorker)
@@ -30,10 +51,9 @@ void MapItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
         else
         {
             painter->drawPixmap(boundingRect().toRect(), m_building.scaled(m_size, m_size, Qt::KeepAspectRatio));
+            painter->drawRect(boundingRect());
         }
     }
-
-    painter->drawRect(boundingRect());
 }
 
 const std::shared_ptr<Course::GameObject> &MapItem::getBoundObject()

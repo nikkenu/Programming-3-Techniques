@@ -21,9 +21,13 @@ bool Student::GameEventHandler::modifyResource(std::shared_ptr<Course::PlayerBas
 
 bool Student::GameEventHandler::modifyResources(std::shared_ptr<Course::PlayerBase> player, Course::ResourceMap resources)
 {
-    Q_UNUSED(player) Q_UNUSED(resources)
-    return true;
+    //Q_UNUSED(player) Q_UNUSED(resources)
+    std::shared_ptr<Player> derivedPlayer = std::dynamic_pointer_cast<Player>(player);
+    if (derivedPlayer->deductBuildCosts(resources))
+    {
+        return true;
+    }
+    return false;
 }
-
 
 }
