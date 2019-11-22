@@ -138,11 +138,12 @@ bool GameScene::event(QEvent *event)
 
                 if(Student::StaticStorage::getInstance().getBuildings().contains(itemAsEnum))
                 {
-                    m_objectManager->createBuilding(dropType, point, m_objectManager);
-                    mapItem->addBuilding(Student::StaticStorage::getInstance().getItemPixmap(Student::StaticStorage::getInstance().getItemNameAsEnum(dropType)));
-                    views().at(0)->viewport()->repaint();
+                    if (m_objectManager->createBuilding(dropType, point, m_objectManager))
+                    {
+                        mapItem->addBuilding(Student::StaticStorage::getInstance().getItemPixmap(Student::StaticStorage::getInstance().getItemNameAsEnum(dropType)));
+                        views().at(0)->viewport()->repaint();
+                    }
                 }
-
             }
         }
     }

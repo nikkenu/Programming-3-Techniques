@@ -110,7 +110,7 @@ void ObjectManager::addGameEventHandler(std::shared_ptr<GameEventHandler> gameEv
     m_gameEventHandler = gameEventHandler;
 }
 
-void ObjectManager::createBuilding(QString buildingType, QPointF point, std::shared_ptr<ObjectManager> objectManager)
+bool ObjectManager::createBuilding(QString buildingType, QPointF point, std::shared_ptr<ObjectManager> objectManager)
 {
     int xCoord = static_cast<int>(point.rx());
     int yCoord = static_cast<int>(point.ry());
@@ -120,13 +120,13 @@ void ObjectManager::createBuilding(QString buildingType, QPointF point, std::sha
     if(tile == nullptr)
     {
         qDebug() << "Tile was null returning from method";
-        return;
+        return false;
     }
     std::shared_ptr<Course::BuildingBase> building;
     if(buildingType == "Headquarter")
     {
        building = std::make_shared<Course::HeadQuarters>(m_gameEventHandler, objectManager, m_playerVector.at(m_intTurnNumber));
-        qDebug() << "Added headquarter to the tile";
+       qDebug() << "Added headquarter to the tile";
     }
     else if(buildingType == "Outpost")
     {
@@ -151,13 +151,14 @@ void ObjectManager::createBuilding(QString buildingType, QPointF point, std::sha
     else
     {
         qDebug() << "No such building";
-        return;
+        return false;
     }
-    if (m_gameEventHandler->modifyResources(m_playerVector.at(m_intTurnNumber), building->BUILD_COST))
+    if (m_gameEventHandler->modifyResources(m_playerVector.at(m_intTurnNumber), building->BUILD_COST) == false)
     {
-        tile->addBuilding(building);
+        return false;
     }
-
+    tile->addBuilding(building);
+    return true;
 }
 
 void ObjectManager::createWorker(QString workerType, QPointF point, std::shared_ptr<ObjectManager> objectManager)

@@ -39,6 +39,8 @@ public:
      */
     virtual ~Player() = default;
 
+    bool deductBuildCosts(Course::ResourceMap resources);
+
     int money = 1000;
     int food = 1000;
     int wood = 1000;

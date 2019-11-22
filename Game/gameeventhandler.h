@@ -9,6 +9,7 @@
 
 namespace Student {
 
+
 class GameEventHandler : public Course::iGameEventHandler
 {
 
@@ -23,6 +24,8 @@ public:
 
     bool modifyResources(std::shared_ptr<Course::PlayerBase> player,
                                      Course::ResourceMap resources);
+
+
 
 }; // class GameEventHandler
 

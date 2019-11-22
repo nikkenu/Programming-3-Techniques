@@ -61,7 +61,7 @@ public:
      * and it gets ObjectManager as shared_ptr, because otherwise
      * we would need to cast "this" to shared_ptr so this was much trivial.
      */
-    void createBuilding(QString buildingType, QPointF point, std::shared_ptr<ObjectManager> objectManager);
+    bool createBuilding(QString buildingType, QPointF point, std::shared_ptr<ObjectManager> objectManager);
 
     /**
      * @brief Creates specific worker to a tile.
