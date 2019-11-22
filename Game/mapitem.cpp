@@ -30,6 +30,30 @@ void MapItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
         else
         {
             painter->drawPixmap(boundingRect().toRect(), m_building.scaled(m_size, m_size, Qt::KeepAspectRatio));
+
+        }
+    }
+    else
+    {
+        if ( m_gameobject->getType() == "Grassland" )
+        {
+            painter->setBrush(Qt::green);
+        }
+        else if ( m_gameobject->getType() == "Forest" )
+        {
+           painter->setBrush(Qt::darkGreen);
+        }
+        else if ( m_gameobject->getType() == "Rock" )
+        {
+           painter->setBrush(Qt::darkGray);
+        }
+        else if ( m_gameobject->getType() == "Water" )
+        {
+           painter->setBrush(Qt::blue);
+        }
+        else if ( m_gameobject->getType() == "Sand" )
+        {
+            painter->setBrush(Qt::yellow);
         }
     }
 

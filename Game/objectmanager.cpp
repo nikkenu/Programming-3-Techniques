@@ -122,44 +122,40 @@ void ObjectManager::createBuilding(QString buildingType, QPointF point, std::sha
         qDebug() << "Tile was null returning from method";
         return;
     }
-
+    std::shared_ptr<Course::BuildingBase> building;
     if(buildingType == "Headquarter")
     {
-        std::shared_ptr<Course::HeadQuarters> hq
-                = std::make_shared<Course::HeadQuarters>(m_gameEventHandler, objectManager, m_playerVector.at(m_intTurnNumber));
-        tile->addBuilding(hq);
+       building = std::make_shared<Course::HeadQuarters>(m_gameEventHandler, objectManager, m_playerVector.at(m_intTurnNumber));
         qDebug() << "Added headquarter to the tile";
     }
     else if(buildingType == "Outpost")
     {
-        std::shared_ptr<Course::Outpost> outpost
-                = std::make_shared<Course::Outpost>(m_gameEventHandler, objectManager, m_playerVector.at(m_intTurnNumber));
-        tile->addBuilding(outpost);
+        building = std::make_shared<Course::Outpost>(m_gameEventHandler, objectManager, m_playerVector.at(m_intTurnNumber));
         qDebug() << "Added outpost to the tile";
     }
     else if(buildingType == "Farm")
     {
-        std::shared_ptr<Course::Farm> farm
-                = std::make_shared<Course::Farm>(m_gameEventHandler, objectManager, m_playerVector.at(m_intTurnNumber));
-        tile->addBuilding(farm);
+        building = std::make_shared<Course::Farm>(m_gameEventHandler, objectManager, m_playerVector.at(m_intTurnNumber));
         qDebug() << "Added farm to the tile";
     }
     else if(buildingType == "Oilrig")
     {
-        std::shared_ptr<OilRig> oilrig
-                = std::make_shared<OilRig>(m_gameEventHandler, objectManager, m_playerVector.at(m_intTurnNumber));
-        tile->addBuilding(oilrig);
+        building = std::make_shared<OilRig>(m_gameEventHandler, objectManager, m_playerVector.at(m_intTurnNumber));
         qDebug() << "Added oilrig to the tile";
     }
     else if(buildingType == "Mine")
     {
-        std::shared_ptr<Mine> mine
-                = std::make_shared<Mine>(m_gameEventHandler, objectManager, m_playerVector.at(m_intTurnNumber));
-            tile->addBuilding(mine);
-            qDebug() << "Added mine to the tile";
-    } else
+        building = std::make_shared<Mine>(m_gameEventHandler, objectManager, m_playerVector.at(m_intTurnNumber));
+        qDebug() << "Added mine to the tile";
+    }
+    else
     {
-        qDebug() << "There is no that buildingtype";
+        qDebug() << "No such building";
+        return;
+    }
+    if (m_gameEventHandler->modifyResources(m_playerVector.at(m_intTurnNumber), building->BUILD_COST))
+    {
+        tile->addBuilding(building);
     }
 
 }

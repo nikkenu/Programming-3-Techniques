@@ -11,6 +11,8 @@
 #include "mine.h"
 #include "gameeventhandler.h"
 #include "workers/basicworker.h"
+#include "core/placeablegameobject.h"
+#include "core/basicresources.h"
 #include "miner.h"
 #include "farmer.h"
 
@@ -68,6 +70,7 @@ public:
      * we would need to cast "this" to shared_ptr so this was much trivial.
      */
     void createWorker(QString workerType, QPointF point, std::shared_ptr<ObjectManager> objectManager);
+
 
 private:
     Student::GameScene* m_scene;
