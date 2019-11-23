@@ -76,6 +76,7 @@ private:
     Student::GameScene* m_scene;
     std::vector<std::shared_ptr<Course::TileBase>> m_tiles;
     std::vector<std::shared_ptr<Student::Player>> m_playerVector;
+    std::vector<std::shared_ptr<Course::BuildingBase>> m_buildings;
     std::shared_ptr<GameEventHandler> m_gameEventHandler = nullptr;
     unsigned int m_intTurnNumber = 0;
 

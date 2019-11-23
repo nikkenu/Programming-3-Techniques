@@ -29,7 +29,6 @@ std::shared_ptr<Course::TileBase> ObjectManager::getTile(const Course::Coordinat
         }
     }
 
-    return nullptr;
 }
 
 std::shared_ptr<Course::TileBase> ObjectManager::getTile(const ObjectId &id)
@@ -41,7 +40,6 @@ std::shared_ptr<Course::TileBase> ObjectManager::getTile(const ObjectId &id)
             return tile;
         }
     }
-
     return nullptr;
 }
 
@@ -116,37 +114,32 @@ bool ObjectManager::createBuilding(QString buildingType, QPointF point, std::sha
     int yCoord = static_cast<int>(point.ry());
     const Course::Coordinate coord(xCoord, yCoord);
     std::shared_ptr<Course::TileBase> tile = getTile(coord);
-
-    if(tile == nullptr)
+    std::shared_ptr<Course::BuildingBase> building;
+    if (tile->getBuildingCount() > 0)
     {
-        qDebug() << "Tile was null returning from method";
+        qDebug() << "Tile full";
         return false;
     }
-    std::shared_ptr<Course::BuildingBase> building;
+
     if(buildingType == "Headquarter")
     {
        building = std::make_shared<Course::HeadQuarters>(m_gameEventHandler, objectManager, m_playerVector.at(m_intTurnNumber));
-       qDebug() << "Added headquarter to the tile";
     }
     else if(buildingType == "Outpost")
     {
         building = std::make_shared<Course::Outpost>(m_gameEventHandler, objectManager, m_playerVector.at(m_intTurnNumber));
-        qDebug() << "Added outpost to the tile";
     }
     else if(buildingType == "Farm")
     {
         building = std::make_shared<Course::Farm>(m_gameEventHandler, objectManager, m_playerVector.at(m_intTurnNumber));
-        qDebug() << "Added farm to the tile";
     }
     else if(buildingType == "Oilrig")
     {
         building = std::make_shared<OilRig>(m_gameEventHandler, objectManager, m_playerVector.at(m_intTurnNumber));
-        qDebug() << "Added oilrig to the tile";
     }
     else if(buildingType == "Mine")
     {
         building = std::make_shared<Mine>(m_gameEventHandler, objectManager, m_playerVector.at(m_intTurnNumber));
-        qDebug() << "Added mine to the tile";
     }
     else
     {
@@ -157,7 +150,10 @@ bool ObjectManager::createBuilding(QString buildingType, QPointF point, std::sha
     {
         return false;
     }
+    qDebug() << tile->getBuildingCount();
+    m_buildings.push_back(building);
     tile->addBuilding(building);
+    m_playerVector.at(m_intTurnNumber)->addObject(building);
     return true;
 }
 
