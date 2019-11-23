@@ -43,16 +43,14 @@ void MapItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
     }
     painter->drawRect(boundingRect());
     if(m_itemHasBuilding)
+    {      
+        painter->drawPixmap(boundingRect().toRect(), m_building.scaled(m_size, m_size, Qt::KeepAspectRatio));
+        painter->drawRect(boundingRect());
+    }
+    if(m_itemHasWorker)
     {
-        if(m_itemHasWorker)
-        {
-            // What if tile has workers as well, how we suppose to scale merge images... // KOODITORIO
-        }
-        else
-        {
-            painter->drawPixmap(boundingRect().toRect(), m_building.scaled(m_size, m_size, Qt::KeepAspectRatio));
-            painter->drawRect(boundingRect());
-        }
+        // What if tile has workers as well, how we suppose to scale merge images... // KOODITORIO
+        return;
     }
 }
 

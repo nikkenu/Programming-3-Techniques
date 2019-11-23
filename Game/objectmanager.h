@@ -13,6 +13,7 @@
 #include "workers/basicworker.h"
 #include "core/placeablegameobject.h"
 #include "core/basicresources.h"
+#include "workers/workerbase.h"
 #include "miner.h"
 #include "farmer.h"
 
@@ -69,7 +70,7 @@ public:
      * and it gets ObjectManager as shared_ptr, because otherwise
      * we would need to cast "this" to shared_ptr so this was much trivial.
      */
-    void createWorker(QString workerType, QPointF point, std::shared_ptr<ObjectManager> objectManager);
+    bool createWorker(QString workerType, QPointF point, std::shared_ptr<ObjectManager> objectManager);
 
 
 private:
@@ -77,6 +78,7 @@ private:
     std::vector<std::shared_ptr<Course::TileBase>> m_tiles;
     std::vector<std::shared_ptr<Student::Player>> m_playerVector;
     std::vector<std::shared_ptr<Course::BuildingBase>> m_buildings;
+    std::vector<std::shared_ptr<Course::WorkerBase>> m_workers;
     std::shared_ptr<GameEventHandler> m_gameEventHandler = nullptr;
     unsigned int m_intTurnNumber = 0;
 
