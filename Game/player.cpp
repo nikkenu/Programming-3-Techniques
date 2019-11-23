@@ -43,6 +43,18 @@ bool Player::deductBuildCosts(Course::ResourceMap resources)
     return true;
 }
 
+bool Player::deductRecruitmentCosts(Course::ResourceMap resources)
+{
+    if (resources.at(Course::BasicResource::MONEY) > money ||
+        resources.at(Course::BasicResource::FOOD) > food)
+    {
+        return false;
+    }
+    money = money - resources.at(Course::BasicResource::MONEY);
+    food = food - resources.at(Course::BasicResource::FOOD);
+    return true;
+}
+
 } // namesace Student
 
 

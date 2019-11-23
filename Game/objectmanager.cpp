@@ -28,7 +28,7 @@ std::shared_ptr<Course::TileBase> ObjectManager::getTile(const Course::Coordinat
             return tile;
         }
     }
-
+    return nullptr;
 }
 
 std::shared_ptr<Course::TileBase> ObjectManager::getTile(const ObjectId &id)
@@ -115,12 +115,16 @@ bool ObjectManager::createBuilding(QString buildingType, QPointF point, std::sha
     const Course::Coordinate coord(xCoord, yCoord);
     std::shared_ptr<Course::TileBase> tile = getTile(coord);
     std::shared_ptr<Course::BuildingBase> building;
+    if(tile == nullptr)
+    {
+        qDebug() << "Tile was null returning from method";
+        return false;;
+    }
     if (tile->getBuildingCount() > 0)
     {
         qDebug() << "Tile full";
         return false;
     }
-
     if(buildingType == "Headquarter")
     {
        building = std::make_shared<Course::HeadQuarters>(m_gameEventHandler, objectManager, m_playerVector.at(m_intTurnNumber));
@@ -150,46 +154,64 @@ bool ObjectManager::createBuilding(QString buildingType, QPointF point, std::sha
     {
         return false;
     }
-    qDebug() << tile->getBuildingCount();
     m_buildings.push_back(building);
+    tile->setOwner(m_playerVector.at(m_intTurnNumber));
+    building->setOwner(m_playerVector.at(m_intTurnNumber));
     tile->addBuilding(building);
     m_playerVector.at(m_intTurnNumber)->addObject(building);
     return true;
 }
 
-void ObjectManager::createWorker(QString workerType, QPointF point, std::shared_ptr<ObjectManager> objectManager)
+bool ObjectManager::createWorker(QString workerType, QPointF point, std::shared_ptr<ObjectManager> objectManager)
 {
     int xCoord = static_cast<int>(point.rx());
     int yCoord = static_cast<int>(point.ry());
     const Course::Coordinate coord(xCoord, yCoord);
     std::shared_ptr<Course::TileBase> tile = getTile(coord);
-
+    std::shared_ptr<Course::WorkerBase> worker;
+    if (tile->getBuildingCount() == 0)
+    {
+        qDebug() << "No building for workers!";
+        return false;
+    }
+    if (tile->getWorkerCount()== tile->MAX_WORKERS)
+    {
+        qDebug() << "Tile is full of workers";
+        return false;
+    }
     if(tile == nullptr)
     {
         qDebug() << "Tile was null returning from method";
-        return;
+        return false;
     }
-
     if(workerType == "Worker")
     {
-        std::shared_ptr<Course::BasicWorker> worker
-                = std::make_shared<Course::BasicWorker>(m_gameEventHandler, objectManager, m_playerVector.at(m_intTurnNumber));
-        tile->addWorker(worker);
-        qDebug() << "Added worker to the tile";
+        worker = std::make_shared<Course::BasicWorker>(m_gameEventHandler, objectManager, m_playerVector.at(m_intTurnNumber));
     }
     else if(workerType == "Miner")
     {
-        std::shared_ptr<Miner> miner
-                = std::make_shared<Miner>(m_gameEventHandler, objectManager, m_playerVector.at(m_intTurnNumber));
-        tile->addWorker(miner);
-        qDebug() << "Added miner to the tile";
+        worker = std::make_shared<Miner>(m_gameEventHandler, objectManager, m_playerVector.at(m_intTurnNumber));
     }
     else if(workerType == "Farmer")
     {
-        std::shared_ptr<Farmer> farmer
-                = std::make_shared<Farmer>(m_gameEventHandler, objectManager, m_playerVector.at(m_intTurnNumber));
-        tile->addWorker(farmer);
-        qDebug() << "Added farmer to the tile";
+        worker = std::make_shared<Farmer>(m_gameEventHandler, objectManager, m_playerVector.at(m_intTurnNumber));
+    }
+    try
+    {
+        if (m_gameEventHandler->modifyResources(m_playerVector.at(m_intTurnNumber), worker->RECRUITMENT_COST) == false)
+        {
+            return false;
+        }
+        m_workers.push_back(worker);
+        worker->setOwner(m_playerVector.at(m_intTurnNumber));
+        tile->addWorker(worker);
+        m_playerVector.at(m_intTurnNumber)->addObject(worker);
+        return true;
+    }
+    catch(const std::exception &)
+    {
+        qDebug() << "Illegal action";
+        return false;
     }
 }
 
