@@ -155,6 +155,8 @@ bool ObjectManager::createBuilding(QString buildingType, QPointF point, std::sha
         return false;
     }
     m_buildings.push_back(building);
+    tile->setOwner(m_playerVector.at(m_intTurnNumber));
+    building->setOwner(m_playerVector.at(m_intTurnNumber));
     tile->addBuilding(building);
     m_playerVector.at(m_intTurnNumber)->addObject(building);
     return true;
@@ -200,8 +202,8 @@ bool ObjectManager::createWorker(QString workerType, QPointF point, std::shared_
         return false;
     }
     m_workers.push_back(worker);
-    qDebug() << "perkele";
-    //tile->addWorker(worker); //CRÄSHÄÄÄ TÄHÄN
+    worker->setOwner(m_playerVector.at(m_intTurnNumber));
+    tile->addWorker(worker); //CRÄSHÄÄÄ TÄHÄN
     m_playerVector.at(m_intTurnNumber)->addObject(worker);
     return true;
 }
