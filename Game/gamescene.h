@@ -26,6 +26,10 @@ const std::pair<int, int> SCENE_MAX_SCALE = {1, 500};
 class GameScene : public QGraphicsScene
 {
     Q_OBJECT
+
+signals:
+    void resetLCDsignal();
+
 public:
     /**
          * @brief Constructor for the class.

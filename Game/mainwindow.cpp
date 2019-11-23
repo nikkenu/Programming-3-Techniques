@@ -20,6 +20,8 @@ MainWindow::MainWindow(QWidget *parent, std::shared_ptr<Student::GameEventHandle
     m_scene->addObjectManager(m_objectManager);
     m_objectManager->addGameEventHandler(m_GEHandler);
     initializeGame();
+    QObject::connect(m_scene.get(), &Student::GameScene::resetLCDsignal,
+                     this, &MainWindow::resetLCDslot);
 
 }
 
@@ -78,6 +80,11 @@ void MainWindow::startGame(QString name1, QString name2, QString name3, QString 
     m_inTurn = m_playerNames.at(0).toStdString();
     m_objectManager->setPlayers(m_playerNames);
     m_ui->playerTurnLabel->setText(turnText);
+    setLCDs();
+}
+
+void MainWindow::resetLCDslot()
+{
     setLCDs();
 }
 

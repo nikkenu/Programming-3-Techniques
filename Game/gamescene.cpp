@@ -146,6 +146,8 @@ bool GameScene::event(QEvent *event)
                 }
             }
         }
+        emit this->resetLCDsignal();
+        return true;
     }
     return false;
 }
