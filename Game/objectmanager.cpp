@@ -174,7 +174,7 @@ bool ObjectManager::createWorker(QString workerType, QPointF point, std::shared_
         qDebug() << "No building for workers!";
         return false;
     }
-    if (tile->getWorkerCount() == 3)
+    if (tile->getWorkerCount()== tile->MAX_WORKERS)
     {
         qDebug() << "Tile is full of workers";
         return false;
@@ -196,16 +196,23 @@ bool ObjectManager::createWorker(QString workerType, QPointF point, std::shared_
     {
         worker = std::make_shared<Farmer>(m_gameEventHandler, objectManager, m_playerVector.at(m_intTurnNumber));
     }
-
-    if (m_gameEventHandler->modifyResources(m_playerVector.at(m_intTurnNumber), worker->RECRUITMENT_COST) == false)
+    try
     {
+        if (m_gameEventHandler->modifyResources(m_playerVector.at(m_intTurnNumber), worker->RECRUITMENT_COST) == false)
+        {
+            return false;
+        }
+        m_workers.push_back(worker);
+        worker->setOwner(m_playerVector.at(m_intTurnNumber));
+        tile->addWorker(worker);
+        m_playerVector.at(m_intTurnNumber)->addObject(worker);
+        return true;
+    }
+    catch(const std::exception &)
+    {
+        qDebug() << "Illegal action";
         return false;
     }
-    m_workers.push_back(worker);
-    worker->setOwner(m_playerVector.at(m_intTurnNumber));
-    tile->addWorker(worker); //CRÄSHÄÄÄ TÄHÄN
-    m_playerVector.at(m_intTurnNumber)->addObject(worker);
-    return true;
 }
 
 }
