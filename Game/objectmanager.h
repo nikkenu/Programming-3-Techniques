@@ -80,6 +80,8 @@ public:
 
     bool sellBuilding(QPointF point);
 
+    std::shared_ptr<Player> getPlayer(std::string playerName);
+
 
 private:
     Student::GameScene* m_scene;

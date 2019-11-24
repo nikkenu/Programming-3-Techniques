@@ -19,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent, std::shared_ptr<Student::GameEventHandle
     m_objectManager->addScene(m_scene.get());
     m_scene->addObjectManager(m_objectManager);
     m_objectManager->addGameEventHandler(m_GEHandler);
+    m_GEHandler->addObjectManager(m_objectManager);
     initializeGame();
     QObject::connect(m_scene.get(), &Student::GameScene::resetLCDsignal,
                      this, &MainWindow::resetLCDslot);
@@ -161,6 +162,7 @@ void MainWindow::changeTurn()
     setTurnLabel();
     setLCDs();
     m_objectManager->setPlayerInTurn(m_inTurnNumber);
+    m_GEHandler->playerResourceGain(m_inTurn);
 }
 
 void MainWindow::setTurnLabel()

@@ -154,11 +154,13 @@ bool ObjectManager::createBuilding(QString buildingType, QPointF point, std::sha
     {
         return false;
     }
+    building->setLocationTile(tile);
     m_buildings.push_back(building);
     tile->setOwner(m_playerVector.at(m_intTurnNumber));
     building->setOwner(m_playerVector.at(m_intTurnNumber));
     tile->addBuilding(building);
     m_playerVector.at(m_intTurnNumber)->addObject(building);
+    m_playerVector.at(m_intTurnNumber)->addBuilding(building);
     return true;
 }
 
@@ -202,6 +204,7 @@ bool ObjectManager::createWorker(QString workerType, QPointF point, std::shared_
         {
             return false;
         }
+        worker->setLocationTile(tile);
         m_workers.push_back(worker);
         worker->setOwner(m_playerVector.at(m_intTurnNumber));
         tile->addWorker(worker);
@@ -246,6 +249,18 @@ bool ObjectManager::sellBuilding(QPointF point)
     }
     tile->setOwner(nullptr);
     return true;
+}
+
+std::shared_ptr<Player> ObjectManager::getPlayer(std::string playerName)
+{
+    for (unsigned int i = 0; i < m_playerVector.size(); i++)
+    {
+        if (m_playerVector.at(i)->getName() == playerName)
+        {
+            return m_playerVector.at(i);
+        }
+    }
+    return nullptr;
 }
 
 }

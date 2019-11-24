@@ -8,6 +8,9 @@
 #include "core/gameobject.h"
 #include "core/playerbase.h"
 #include "workers/basicworker.h"
+#include "buildings/buildingbase.h"
+#include "tiles/tilebase.h"
+#include "workers/workerbase.h"
 
 namespace Student {
 
@@ -44,6 +47,10 @@ public:
     bool deductRecruitmentCosts(Course::ResourceMap resources);
 
     void collectSellingPrize(Course::ResourceMap prize);
+    
+    void gainResorces();
+
+    void addBuilding(std::shared_ptr<Course::BuildingBase> building);
 
     int money = 1500;
     int food = 1500;
@@ -54,6 +61,7 @@ public:
 private:
     std::string playerName;
     std::vector<std::weak_ptr<Course::GameObject> > playerObjects;
+    std::vector<std::shared_ptr<Course::BuildingBase>> m_playerBuildings;
 
 };
 
