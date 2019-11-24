@@ -61,24 +61,13 @@ void MainWindow::resizeEvent(QResizeEvent *event)
 }
 
 
-void MainWindow::startGame(QString name1, QString name2, QString name3, QString name4)
+void MainWindow::startGame(QStringList names)
 {
-    if (name1 != "")
+    for(QString name : names)
     {
-        m_playerNames.push_back(name1);
+        m_playerNames.push_back(name);
     }
-    if (name2 != "")
-    {
-        m_playerNames.push_back(name2);
-    }
-    if (name3 != "")
-    {
-        m_playerNames.push_back(name3);
-    }
-    if (name4 != "")
-    {
-        m_playerNames.push_back(name4);
-    }
+
     setTurnLabel();
     m_objectManager->setPlayers(m_playerNames);  
     setLCDs();

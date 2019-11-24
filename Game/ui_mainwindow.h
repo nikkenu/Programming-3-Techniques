@@ -154,7 +154,7 @@ public:
         moneyLCDNumber->setMinimumSize(QSize(0, 20));
         moneyLCDNumber->setMaximumSize(QSize(16777215, 5355));
         moneyLCDNumber->setMouseTracking(false);
-        moneyLCDNumber->setStyleSheet(QString::fromUtf8("color: rgb(46, 52, 54)"));
+        moneyLCDNumber->setStyleSheet(QString::fromUtf8(""));
 
         formLayout->setWidget(0, QFormLayout::LabelRole, moneyLCDNumber);
 
@@ -173,6 +173,7 @@ public:
         foodLCDNumber->setSizePolicy(sizePolicy1);
         foodLCDNumber->setMinimumSize(QSize(0, 20));
         foodLCDNumber->setMaximumSize(QSize(16777215, 5355));
+        foodLCDNumber->setStyleSheet(QString::fromUtf8(""));
 
         formLayout->setWidget(1, QFormLayout::LabelRole, foodLCDNumber);
 
@@ -191,6 +192,7 @@ public:
         woodLCDNumber->setSizePolicy(sizePolicy1);
         woodLCDNumber->setMinimumSize(QSize(0, 20));
         woodLCDNumber->setMaximumSize(QSize(16777215, 5355));
+        woodLCDNumber->setStyleSheet(QString::fromUtf8(""));
 
         formLayout->setWidget(2, QFormLayout::LabelRole, woodLCDNumber);
 
@@ -209,6 +211,7 @@ public:
         stoneLCDNumber->setSizePolicy(sizePolicy1);
         stoneLCDNumber->setMinimumSize(QSize(0, 20));
         stoneLCDNumber->setMaximumSize(QSize(16777215, 5355));
+        stoneLCDNumber->setStyleSheet(QString::fromUtf8(""));
 
         formLayout->setWidget(3, QFormLayout::LabelRole, stoneLCDNumber);
 
@@ -227,6 +230,7 @@ public:
         oreLCDNumber->setSizePolicy(sizePolicy1);
         oreLCDNumber->setMinimumSize(QSize(0, 20));
         oreLCDNumber->setMaximumSize(QSize(16777215, 5355));
+        oreLCDNumber->setStyleSheet(QString::fromUtf8(""));
 
         formLayout->setWidget(4, QFormLayout::LabelRole, oreLCDNumber);
 

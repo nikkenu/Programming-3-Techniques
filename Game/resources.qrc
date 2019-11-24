@@ -9,5 +9,6 @@
         <file>images/worker.png</file>
         <file>images/oilrig.png</file>
         <file>images/epiclore.png</file>
+        <file>images/icon.png</file>
     </qresource>
 </RCC>

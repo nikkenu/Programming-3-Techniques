@@ -47,7 +47,7 @@ public slots:
      * @brief Getting player names from start up dialog.
      * @see Dialog class.
      */
-    void startGame(QString name1, QString name2, QString name3, QString name4);
+    void startGame(QStringList names);
     void resetLCDslot();
 
 private:
