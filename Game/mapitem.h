@@ -6,6 +6,7 @@
 
 #include <memory>
 #include <map>
+#include <QDebug>
 
 #include "core/gameobject.h"
 #include "buildings/buildingbase.h"
@@ -78,11 +79,19 @@ public:
      */
     void setSize(int size);
 
-    void addBuilding(QPixmap building);
+    void addBuilding(QPixmap building, QString buildingName);
 
-    void addWorker(QPixmap worker);
+    void addWorker(QPixmap worker, QString workerName);
 
     void removeBuilding();
+
+    bool checkForBuildings();
+
+    bool checkForWorkers();
+
+    QString getBuildingName();
+
+    QVector<QString> getWorkerNames();
 
 private:
     const std::shared_ptr<Course::GameObject> m_gameobject;
@@ -94,9 +103,11 @@ private:
 
     QPixmap m_building;
     bool m_itemHasBuilding = false;
+    QString m_buildingName;
 
-    QPixmap m_worker;
+    QVector<QPixmap> m_worker;
     bool m_itemHasWorker = false;
+    QVector<QString> m_workerNames;
 };
 }
 #endif // MAPITEM_HH

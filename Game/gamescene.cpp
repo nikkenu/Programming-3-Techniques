@@ -1,5 +1,4 @@
 #include "gamescene.h"
-#include "mapitem.h"
 #include "objectmanager.h"
 #include <QEvent>
 #include <QGraphicsSceneMouseEvent>
@@ -93,7 +92,7 @@ bool GameScene::event(QEvent *event)
         QGraphicsSceneMouseEvent* mouse_event =
                 dynamic_cast<QGraphicsSceneMouseEvent*>(event);
 
-        if ( sceneRect().contains(mouse_event->scenePos()))
+        if ( sceneRect().contains(mouse_event->scenePos()) && mouse_event->button() == Qt::RightButton)
         {
 
             QPointF point = mouse_event->scenePos() / m_scale;
@@ -103,19 +102,9 @@ bool GameScene::event(QEvent *event)
 
             QGraphicsItem* pressed = itemAt(point * m_scale, QTransform());
 
-            if ( pressed == m_mapBoundRect )
+            if ( pressed != m_mapBoundRect )
             {
-                qDebug() << "Click on map area.";
-            }
-            else
-            {
-                Student::MapItem* mapItem = static_cast<Student::MapItem*>(pressed);
-                if (m_objectManager->sellBuilding(point))
-                {
-                    mapItem->removeBuilding();
-                    views().at(0)->viewport()->repaint();
-                }
-                emit this->resetLCDsignal();
+                contextMenu(mouse_event->scenePos(), point);
                 return true;
             }
 
@@ -141,7 +130,7 @@ bool GameScene::event(QEvent *event)
                 {
                     if(m_objectManager->createWorker(dropType, point, m_objectManager))
                     {
-                        mapItem->addWorker(Student::StaticStorage::getInstance().getItemPixmap(Student::StaticStorage::getInstance().getItemNameAsEnum(dropType)));
+                        mapItem->addWorker(Student::StaticStorage::getInstance().getItemPixmap(Student::StaticStorage::getInstance().getItemNameAsEnum(dropType)), dropType);
                         views().at(0)->viewport()->repaint();
                     }
                 }
@@ -150,7 +139,7 @@ bool GameScene::event(QEvent *event)
                 {
                     if (m_objectManager->createBuilding(dropType, point, m_objectManager))
                     {
-                        mapItem->addBuilding(Student::StaticStorage::getInstance().getItemPixmap(Student::StaticStorage::getInstance().getItemNameAsEnum(dropType)));
+                        mapItem->addBuilding(Student::StaticStorage::getInstance().getItemPixmap(Student::StaticStorage::getInstance().getItemNameAsEnum(dropType)), dropType);
                         views().at(0)->viewport()->repaint();
                     }
                 }
@@ -162,10 +151,79 @@ bool GameScene::event(QEvent *event)
     return false;
 }
 
+
+
 void GameScene::addObjectManager(std::shared_ptr<ObjectManager> objectManager)
 {
     m_objectManager = objectManager;
 }
+
+void GameScene::contextMenu(QPointF mouse_event, QPointF point)
+{
+    QPointF newPoint = point;
+    point.rx() = floor(point.rx());
+    point.ry() = floor(point.ry());
+
+    QGraphicsItem* item = itemAt(newPoint * m_scale, QTransform());
+    Student::MapItem* mapItem = static_cast<Student::MapItem*>(item);
+
+    QMenu* menu = new QMenu();
+
+    QAction *buildingInfo = new QAction("Tile information...", this);
+    QObject::connect(buildingInfo, &QAction::triggered, std::bind(&GameScene::checkTileInformation, this, mapItem));
+    menu->addAction(buildingInfo);
+
+    if(mapItem->checkForBuildings())
+    {
+        QAction *removeAct = new QAction("Remove building", this);
+        QObject::connect(removeAct, &QAction::triggered, std::bind(&GameScene::removeBuildingFromTile, this, newPoint, mapItem));
+        menu->addAction(removeAct);
+    }
+
+    menu->exec(views().at(0)->mapToGlobal(mouse_event.toPoint()));
+
+
+}
+
+void GameScene::removeBuildingFromTile(QPointF point, MapItem* mapItem)
+{
+    if (m_objectManager->sellBuilding(point))
+    {
+        mapItem->removeBuilding();
+        views().at(0)->viewport()->repaint();
+    }
+    emit this->resetLCDsignal();
+}
+
+void GameScene::checkTileInformation(MapItem *mapItem)
+{
+    QMessageBox msgBox;
+    msgBox.setWindowTitle("Tile information");
+    if(!mapItem->checkForBuildings())
+    {
+        msgBox.setText("Tile is empty.");
+    }
+    else
+    {
+        if(mapItem->checkForWorkers())
+        {
+            msgBox.setText("Tile has building and worker(s) on it.");
+            QString workers = "Worker(s): ";
+            for(QString workerName : mapItem->getWorkerNames())
+            {
+                workers += " " + workerName;
+            }
+            msgBox.setInformativeText("Building: " + mapItem->getBuildingName() + "\n" + workers);
+        }
+        else
+        {
+            msgBox.setText("Tile has building on it");
+            msgBox.setInformativeText("Building: " + mapItem->getBuildingName());
+        }
+    }
+    msgBox.exec();
+}
+
 
 void GameScene::removeItem(std::shared_ptr<Course::GameObject> obj)
 {

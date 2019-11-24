@@ -5,11 +5,14 @@
 #include <QGraphicsView>
 #include <QDebug>
 #include <QMimeData>
+#include <QMenu>
+#include <QMessageBox>
 
 #include <map>
 #include <memory>
 
 #include "core/gameobject.h"
+#include "mapitem.h"
 
 namespace Student {
 
@@ -117,6 +120,11 @@ public:
 
     void addObjectManager(std::shared_ptr<ObjectManager> objectManager);
 
+    void contextMenu(QPointF mouse_event, QPointF point);
+
+public slots:
+    void removeBuildingFromTile(QPointF point, MapItem* mapItem);
+    void checkTileInformation(MapItem* mapItem);
 
 private:
     QGraphicsItem* m_mapBoundRect;
