@@ -43,11 +43,11 @@ public:
 
     bool deductRecruitmentCosts(Course::ResourceMap resources);
 
-    int money = 1000;
-    int food = 1000;
-    int wood = 1000;
-    int stone = 1000;
-    int ore = 1000;
+    int money = 1500;
+    int food = 1500;
+    int wood = 1500;
+    int stone = 1500;
+    int ore = 1500;
 
 private:
     std::string playerName;

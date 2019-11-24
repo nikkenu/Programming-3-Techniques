@@ -89,6 +89,19 @@ private:
      */
     void initializeGame();
 
+    /**
+     * @brief Changes the turn when "End Turn"-button
+     * is pressed
+     * @see ObjectManager class
+     */
+    void changeTurn();
+
+    /**
+     * @brief Set's the name of the player who's in turn
+     * to the label at mainwindow.
+     */
+    void setTurnLabel();
+
     Ui::MainWindow* m_ui;
     Student::BoardInit* m_boardInit;
     QGridLayout* m_workerLayout;
@@ -100,6 +113,7 @@ private:
     std::vector<QString> m_playerNames;
 
     std::string m_inTurn;
+    unsigned int m_inTurnNumber = 0;
 };
 
 
