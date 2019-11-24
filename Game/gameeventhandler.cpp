@@ -1,4 +1,5 @@
 #include "gameeventhandler.h"
+#include "objectmanager.h"
 #include <string>
 
 namespace Student {
@@ -21,7 +22,6 @@ bool Student::GameEventHandler::modifyResource(std::shared_ptr<Course::PlayerBas
 
 bool Student::GameEventHandler::modifyResources(std::shared_ptr<Course::PlayerBase> player, Course::ResourceMap resources)
 {
-    //Q_UNUSED(player) Q_UNUSED(resources)
     std::shared_ptr<Player> derivedPlayer = std::dynamic_pointer_cast<Player>(player);
     if (resources.size() == 2)
     {
@@ -36,6 +36,17 @@ bool Student::GameEventHandler::modifyResources(std::shared_ptr<Course::PlayerBa
         return true;
     }
     return false;
+}
+
+void GameEventHandler::playerResourceGain(std::string playerName)
+{
+    std::shared_ptr<Player> player = m_objectManager->getPlayer(playerName);
+    player->gainResorces();
+}
+
+void GameEventHandler::addObjectManager(std::shared_ptr<ObjectManager> objectManager)
+{
+    m_objectManager = objectManager;
 }
 
 }
