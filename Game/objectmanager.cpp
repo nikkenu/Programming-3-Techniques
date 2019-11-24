@@ -128,40 +128,60 @@ bool ObjectManager::createBuilding(QString buildingType, QPointF point, std::sha
     if(buildingType == "Headquarter")
     {
        building = std::make_shared<Course::HeadQuarters>(m_gameEventHandler, objectManager, m_playerVector.at(m_intTurnNumber));
+       tile->setOwner(m_playerVector.at(m_intTurnNumber));
+       building->setCoordinate(coord);
+       building->onBuildAction();
     }
     else if(buildingType == "Outpost")
     {
         building = std::make_shared<Course::Outpost>(m_gameEventHandler, objectManager, m_playerVector.at(m_intTurnNumber));
+        building->setCoordinate(coord);
     }
     else if(buildingType == "Farm")
     {
         building = std::make_shared<Course::Farm>(m_gameEventHandler, objectManager, m_playerVector.at(m_intTurnNumber));
+        building->setCoordinate(coord);
     }
     else if(buildingType == "Oilrig")
     {
         building = std::make_shared<OilRig>(m_gameEventHandler, objectManager, m_playerVector.at(m_intTurnNumber));
+        building->setCoordinate(coord);
     }
     else if(buildingType == "Mine")
     {
         building = std::make_shared<Mine>(m_gameEventHandler, objectManager, m_playerVector.at(m_intTurnNumber));
+        building->setCoordinate(coord);
     }
     else
     {
         qDebug() << "No such building";
         return false;
     }
-    if (m_gameEventHandler->modifyResources(m_playerVector.at(m_intTurnNumber), building->BUILD_COST) == false)
+    if(tile->getOwner() == nullptr)
     {
+        qDebug() << "Not your tile!";
         return false;
     }
-    building->setLocationTile(tile);
-    m_buildings.push_back(building);
-    tile->setOwner(m_playerVector.at(m_intTurnNumber));
-    building->setOwner(m_playerVector.at(m_intTurnNumber));
-    tile->addBuilding(building);
-    m_playerVector.at(m_intTurnNumber)->addObject(building);
-    m_playerVector.at(m_intTurnNumber)->addBuilding(building);
-    return true;
+    try
+    {
+        if (m_gameEventHandler->modifyResources(m_playerVector.at(m_intTurnNumber), building->BUILD_COST) == false)
+        {
+            return false;
+        }
+        building->setLocationTile(tile);
+        m_buildings.push_back(building);
+        building->setOwner(m_playerVector.at(m_intTurnNumber));
+        tile->addBuilding(building);
+        m_playerVector.at(m_intTurnNumber)->addObject(building);
+        m_playerVector.at(m_intTurnNumber)->addBuilding(building);
+        return true;
+    }
+    catch(const std::exception &)
+    {
+        qDebug() << "Illegal action";
+        return false;
+    }
+
 }
 
 bool ObjectManager::createWorker(QString workerType, QPointF point, std::shared_ptr<ObjectManager> objectManager)
@@ -171,6 +191,11 @@ bool ObjectManager::createWorker(QString workerType, QPointF point, std::shared_
     const Course::Coordinate coord(xCoord, yCoord);
     std::shared_ptr<Course::TileBase> tile = getTile(coord);
     std::shared_ptr<Course::WorkerBase> worker;
+    if (tile->getOwner() != m_playerVector.at(m_intTurnNumber))
+    {
+        qDebug() << "No building for you!";
+        return false;
+    }
     if (tile->getBuildingCount() == 0)
     {
         qDebug() << "No building for workers!";

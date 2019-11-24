@@ -114,6 +114,7 @@ private:
 
     std::string m_inTurn;
     unsigned int m_inTurnNumber = 0;
+    unsigned int m_round = 1;
 };
 
 
