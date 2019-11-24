@@ -43,6 +43,8 @@ public:
 
     bool deductRecruitmentCosts(Course::ResourceMap resources);
 
+    void collectSellingPrize(Course::ResourceMap prize);
+
     int money = 1500;
     int food = 1500;
     int wood = 1500;

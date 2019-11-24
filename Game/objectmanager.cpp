@@ -220,6 +220,34 @@ void ObjectManager::setPlayerInTurn(unsigned int inTurnNumber)
     m_intTurnNumber = inTurnNumber;
 }
 
+bool ObjectManager::sellBuilding(QPointF point)
+{
+    int xCoord = static_cast<int>(point.rx());
+    int yCoord = static_cast<int>(point.ry());
+    const Course::Coordinate coord(xCoord, yCoord);
+    std::shared_ptr<Course::TileBase> tile = getTile(coord);
+    if (tile->getBuildingCount() == 0)
+    {
+        qDebug() << "No building to sell here.";
+        return false;
+    }
+    if (tile->getOwner() != m_playerVector.at(m_intTurnNumber))
+    {
+        qDebug() << "Not your building!";
+        return false;
+    }
+    for (unsigned int i; i < m_buildings.size(); i++)
+    {
+        if (m_buildings.at(i)->getCoordinate() == coord)
+        {
+            m_playerVector.at(m_intTurnNumber)->collectSellingPrize(m_buildings.at(i)->BUILD_COST);
+            m_buildings.erase(m_buildings.begin() + i);
+        }
+    }
+    tile->setOwner(nullptr);
+    return true;
+}
+
 }
 
 

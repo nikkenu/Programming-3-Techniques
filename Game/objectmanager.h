@@ -78,6 +78,8 @@ public:
      */
     void setPlayerInTurn(unsigned int inTurnNumber);
 
+    bool sellBuilding(QPointF point);
+
 
 private:
     Student::GameScene* m_scene;

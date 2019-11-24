@@ -93,7 +93,8 @@ bool GameScene::event(QEvent *event)
         QGraphicsSceneMouseEvent* mouse_event =
                 dynamic_cast<QGraphicsSceneMouseEvent*>(event);
 
-        if ( sceneRect().contains(mouse_event->scenePos())){
+        if ( sceneRect().contains(mouse_event->scenePos()))
+        {
 
             QPointF point = mouse_event->scenePos() / m_scale;
 
@@ -102,12 +103,19 @@ bool GameScene::event(QEvent *event)
 
             QGraphicsItem* pressed = itemAt(point * m_scale, QTransform());
 
-            if ( pressed == m_mapBoundRect ){
+            if ( pressed == m_mapBoundRect )
+            {
                 qDebug() << "Click on map area.";
-            }else{
-                qDebug() << "ObjID: " <<
-                            static_cast<Student::MapItem*>(pressed)
-                            ->getBoundObject()->ID  << " pressed.";
+            }
+            else
+            {
+                Student::MapItem* mapItem = static_cast<Student::MapItem*>(pressed);
+                if (m_objectManager->sellBuilding(point))
+                {
+                    mapItem->removeBuilding();
+                    views().at(0)->viewport()->repaint();
+                }
+                emit this->resetLCDsignal();
                 return true;
             }
 

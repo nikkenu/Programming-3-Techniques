@@ -1,5 +1,6 @@
 #include "player.h"
 #include <QDebug>
+#include <cmath>
 
 namespace Student {
 
@@ -38,8 +39,6 @@ bool Player::deductBuildCosts(Course::ResourceMap resources)
     money = money - resources.at(Course::BasicResource::MONEY);
     food = food - resources.at(Course::BasicResource::FOOD);
     wood = wood - resources.at(Course::BasicResource::WOOD);
-
-
     return true;
 }
 
@@ -53,6 +52,21 @@ bool Player::deductRecruitmentCosts(Course::ResourceMap resources)
     money = money - resources.at(Course::BasicResource::MONEY);
     food = food - resources.at(Course::BasicResource::FOOD);
     return true;
+}
+
+void Player::collectSellingPrize(Course::ResourceMap prize)
+{
+    if (prize.find(Course::BasicResource::STONE) != prize.end())
+    {
+        stone = stone + floor(prize.at(Course::BasicResource::STONE) / 2);
+    }
+    if (prize.find(Course::BasicResource::ORE) != prize.end())
+    {
+        ore = ore + floor(prize.at(Course::BasicResource::ORE) / 2);
+    }
+    money = money + floor(prize.at(Course::BasicResource::MONEY) / 2);
+    food = food + floor(prize.at(Course::BasicResource::FOOD) / 2);
+    wood = wood + floor(prize.at(Course::BasicResource::WOOD) / 2);
 }
 
 } // namesace Student

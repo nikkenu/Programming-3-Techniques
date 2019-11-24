@@ -20,7 +20,6 @@ void MapItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
 {
     Q_UNUSED( option ) Q_UNUSED( widget )
 
-    //painter->setBrush(QBrush(c_mapcolors.at(m_gameobject->getType())));
     if ( m_gameobject->getType() == "Grassland" )
     {
     painter->fillRect(boundingRect(), Qt::green);
@@ -97,6 +96,13 @@ void MapItem::addWorker(QPixmap worker)
 {
     m_worker = worker;
     m_itemHasWorker = true;
+}
+
+void MapItem::removeBuilding()
+{
+    //m_building = nullptr;
+    m_itemHasBuilding = false;
+    m_itemHasWorker = false;
 }
 
 void MapItem::addNewColor(std::string type)
