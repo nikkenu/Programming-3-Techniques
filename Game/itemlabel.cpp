@@ -27,8 +27,6 @@ void ItemLabel::mousePressEvent(QMouseEvent *ev)
         drag->setMimeData(mimeData);
         drag->setPixmap(pixmap.scaled(50,50,Qt::KeepAspectRatio));
         drag->exec();
-
-        drag->exec(Qt::CopyAction);
     }
 
 }

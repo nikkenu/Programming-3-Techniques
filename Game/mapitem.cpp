@@ -42,14 +42,24 @@ void MapItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
     }
     painter->drawRect(boundingRect());
     if(m_itemHasBuilding)
-    {      
-        painter->drawPixmap(boundingRect().toRect(), m_building.scaled(m_size, m_size, Qt::KeepAspectRatio));
-        painter->drawRect(boundingRect());
-    }
-    if(m_itemHasWorker)
     {
-        // What if tile has workers as well, how we suppose to scale merge images... // KOODITORIO
-        return;
+        if(m_itemHasWorker)
+        {
+            painter->drawPixmap(static_cast<int>(boundingRect().x())+10, static_cast<int>(boundingRect().y()), m_size-20, m_size - 20, m_building);
+            int workerSize = m_size / m_worker.size();
+            int nextWorkerXposition = 0;
+            for(QPixmap worker : m_worker)
+            {
+                painter->drawPixmap(static_cast<int>(boundingRect().x())+nextWorkerXposition, static_cast<int>(boundingRect().y())+30, 20, workerSize, worker);
+                nextWorkerXposition += workerSize;
+            }
+            painter->drawRect(boundingRect());
+        }
+        else
+        {
+            painter->drawPixmap(boundingRect().toRect(), m_building);
+            painter->drawRect(boundingRect());
+        }
     }
 }
 
@@ -85,24 +95,60 @@ void MapItem::setSize(int size)
     }
 }
 
-void MapItem::addBuilding(QPixmap building)
+void MapItem::addBuilding(QPixmap building, QString buildingName)
 {
     m_building = building;
     m_itemHasBuilding = true;
-
+    m_buildingName = buildingName;
 }
 
-void MapItem::addWorker(QPixmap worker)
+void MapItem::addWorker(QPixmap worker, QString workerName)
 {
-    m_worker = worker;
+    m_worker.push_back(worker);
     m_itemHasWorker = true;
+    m_workerNames.push_back(workerName);
 }
 
 void MapItem::removeBuilding()
 {
-    //m_building = nullptr;
     m_itemHasBuilding = false;
     m_itemHasWorker = false;
+    m_buildingName = "";
+    m_workerNames.empty();
+}
+
+bool MapItem::checkForBuildings()
+{
+    if(m_itemHasBuilding)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+bool MapItem::checkForWorkers()
+{
+    if(m_itemHasWorker)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+QString MapItem::getBuildingName()
+{
+    return m_buildingName;
+}
+
+QVector<QString> MapItem::getWorkerNames()
+{
+    return m_workerNames;
 }
 
 void MapItem::addNewColor(std::string type)
