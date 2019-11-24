@@ -154,6 +154,9 @@ void MainWindow::changeTurn()
     if (m_inTurnNumber == m_playerNames.size() - 1)
     {
         m_inTurnNumber = 0;
+        m_round++;
+        QString roundText = "Round: " + QString::number(m_round);
+        m_ui->roundLabel->setText(roundText);
     }
     else
     {
