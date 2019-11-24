@@ -72,6 +72,12 @@ public:
      */
     bool createWorker(QString workerType, QPointF point, std::shared_ptr<ObjectManager> objectManager);
 
+    /**
+     * @brief Sets the player in turn.
+     * @param New player number in turn.
+     */
+    void setPlayerInTurn(unsigned int inTurnNumber);
+
 
 private:
     Student::GameScene* m_scene;

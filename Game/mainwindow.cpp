@@ -22,6 +22,8 @@ MainWindow::MainWindow(QWidget *parent, std::shared_ptr<Student::GameEventHandle
     initializeGame();
     QObject::connect(m_scene.get(), &Student::GameScene::resetLCDsignal,
                      this, &MainWindow::resetLCDslot);
+    connect(m_ui->endTurnPushButton, &QPushButton::clicked,
+            this, &MainWindow::changeTurn);
 
 }
 
@@ -76,10 +78,8 @@ void MainWindow::startGame(QString name1, QString name2, QString name3, QString 
     {
         m_playerNames.push_back(name4);
     }
-    QString turnText = "Turn: " + m_playerNames.at(0);
-    m_inTurn = m_playerNames.at(0).toStdString();
-    m_objectManager->setPlayers(m_playerNames);
-    m_ui->playerTurnLabel->setText(turnText);
+    setTurnLabel();
+    m_objectManager->setPlayers(m_playerNames);  
     setLCDs();
 }
 
@@ -146,6 +146,28 @@ void MainWindow::initializeGame()
     initializeWorkerMenu();
     initializeBuildingMenu();
     setLCDpalette();
+}
+
+void MainWindow::changeTurn()
+{
+    if (m_inTurnNumber == m_playerNames.size() - 1)
+    {
+        m_inTurnNumber = 0;
+    }
+    else
+    {
+        m_inTurnNumber++;
+    }
+    setTurnLabel();
+    setLCDs();
+    m_objectManager->setPlayerInTurn(m_inTurnNumber);
+}
+
+void MainWindow::setTurnLabel()
+{
+    QString turnText = "Turn: " + m_playerNames.at(m_inTurnNumber);
+    m_inTurn = m_playerNames.at(m_inTurnNumber).toStdString();
+    m_ui->playerTurnLabel->setText(turnText);
 }
 
 

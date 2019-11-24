@@ -215,6 +215,11 @@ bool ObjectManager::createWorker(QString workerType, QPointF point, std::shared_
     }
 }
 
+void ObjectManager::setPlayerInTurn(unsigned int inTurnNumber)
+{
+    m_intTurnNumber = inTurnNumber;
+}
+
 }
 
 
