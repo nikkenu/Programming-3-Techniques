@@ -12,6 +12,7 @@ SOURCES += \
     gameeventhandler.cpp \
     objectmanager.cpp \
     boardinit.cpp \
+    playerqlineedit.cpp \
     staticstorage.cpp \
     water.cpp \
     rock.cpp \
@@ -33,6 +34,7 @@ HEADERS += \
     itemlabel.h \
     objectmanager.h \
     boardinit.h \
+    playerqlineedit.h \
     staticstorage.h \
     water.h \
     rock.h \

@@ -82,7 +82,6 @@ void Player::gainResorces()
         std::vector<std::shared_ptr<Course::WorkerBase>> workers = tile->getWorkers();
         for (unsigned int j = 0; j < workers.size(); j++)
         {
-            qDebug() << "pam";
             money += (m_playerBuildings.at(i)->PRODUCTION_EFFECT.at(Course::BasicResource::MONEY) * 100 +
                       tile->BASE_PRODUCTION.at(Course::BasicResource::MONEY) * 100) *
                       workers.at(j)->WORKER_EFFICIENCY.at(Course::BasicResource::MONEY);

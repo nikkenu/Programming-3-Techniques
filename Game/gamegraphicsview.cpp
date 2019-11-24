@@ -9,6 +9,7 @@ GameGraphicsView::GameGraphicsView(GameScene* scene, QWidget *parent):
     m_scene = scene;
     setMinimumSize(500,500);
     setFrameStyle(0);
+    setStyleSheet("background:transparent");
     setContextMenuPolicy(Qt::CustomContextMenu);
 }
 
