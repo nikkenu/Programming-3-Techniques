@@ -25,8 +25,10 @@ const Course::ResourceMap MINE_PRODUCTION = {
 // Building - Oil rig
 const Course::ResourceMap OILRIG_BUILD_COST = {
     {Course::BasicResource::MONEY, 50},
-    {Course::BasicResource::FOOD, 100},
-    {Course::BasicResource::WOOD, 25}
+    {Course::BasicResource::FOOD, 10},
+    {Course::BasicResource::WOOD, 0},
+    {Course::BasicResource::STONE, 75},
+    {Course::BasicResource::ORE, 75}
 };
 const Course::ResourceMap OILRIG_PRODUCTION = {
     {Course::BasicResource::MONEY, 10},
