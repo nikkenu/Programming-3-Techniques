@@ -34,7 +34,7 @@ void MapItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
     }
     else if ( m_gameobject->getType() == "Water" )
     {
-       painter->fillRect(boundingRect(), Qt::blue);
+       painter->fillRect(boundingRect(), Qt::cyan);
     }
     else if ( m_gameobject->getType() == "Sand" )
     {
