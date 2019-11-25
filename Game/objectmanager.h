@@ -82,6 +82,8 @@ public:
 
     std::shared_ptr<Player> getPlayer(std::string playerName);
 
+    void gainPlayerResources();
+
 
 private:
     Student::GameScene* m_scene;

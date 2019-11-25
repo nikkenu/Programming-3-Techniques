@@ -48,7 +48,7 @@ public:
 
     void collectSellingPrize(Course::ResourceMap prize);
     
-    void gainResorces();
+    void gainResorces(Course::ResourceMap resources);
 
     void addBuilding(std::shared_ptr<Course::BuildingBase> building);
 

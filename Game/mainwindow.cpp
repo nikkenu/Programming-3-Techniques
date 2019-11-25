@@ -146,15 +146,17 @@ void MainWindow::changeTurn()
         m_round++;
         QString roundText = "Round: " + QString::number(m_round);
         m_ui->roundLabel->setText(roundText);
+        m_objectManager->setPlayerInTurn(m_inTurnNumber);
+        m_objectManager->gainPlayerResources();
     }
     else
     {
         m_inTurnNumber++;
+        m_objectManager->setPlayerInTurn(m_inTurnNumber);
     }
     setTurnLabel();
     setLCDs();
-    m_objectManager->setPlayerInTurn(m_inTurnNumber);
-    m_GEHandler->playerResourceGain(m_inTurn);
+
 }
 
 void MainWindow::setTurnLabel()

@@ -31,18 +31,11 @@ bool Student::GameEventHandler::modifyResources(std::shared_ptr<Course::PlayerBa
         }
         return false;
     }
-    if (derivedPlayer->deductBuildCosts(resources))
-    {
-        return true;
-    }
-    return false;
+    derivedPlayer->gainResorces(resources);
+    return true;
+
 }
 
-void GameEventHandler::playerResourceGain(std::string playerName)
-{
-    std::shared_ptr<Player> player = m_objectManager->getPlayer(playerName);
-    player->gainResorces();
-}
 
 void GameEventHandler::addObjectManager(std::shared_ptr<ObjectManager> objectManager)
 {

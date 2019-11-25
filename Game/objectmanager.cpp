@@ -164,7 +164,7 @@ bool ObjectManager::createBuilding(QString buildingType, QPointF point, std::sha
     }
     try
     {
-        if (m_gameEventHandler->modifyResources(m_playerVector.at(m_intTurnNumber), building->BUILD_COST) == false)
+        if (m_playerVector.at(m_intTurnNumber)->deductBuildCosts(building->BUILD_COST) == false)
         {
             return false;
         }
@@ -225,7 +225,7 @@ bool ObjectManager::createWorker(QString workerType, QPointF point, std::shared_
     }
     try
     {
-        if (m_gameEventHandler->modifyResources(m_playerVector.at(m_intTurnNumber), worker->RECRUITMENT_COST) == false)
+        if (m_playerVector.at(m_intTurnNumber)->deductRecruitmentCosts(worker->RECRUITMENT_COST) == false)
         {
             return false;
         }
@@ -286,6 +286,18 @@ std::shared_ptr<Player> ObjectManager::getPlayer(std::string playerName)
         }
     }
     return nullptr;
+}
+
+void ObjectManager::gainPlayerResources()
+{
+    for (auto const tile : m_tiles)
+    {
+        if (tile->getOwner() != nullptr)
+        {
+            tile->generateResources();
+        }
+
+    }
 }
 
 }

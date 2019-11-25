@@ -74,42 +74,29 @@ void Player::addBuilding(std::shared_ptr<Course::BuildingBase> building)
     m_playerBuildings.push_back(building);
 }
 
-void Player::gainResorces()
-{
-    for (unsigned int i = 0; i < m_playerBuildings.size(); i++)
+void Player::gainResorces(Course::ResourceMap resources)
+{    
+    if ( resources.find(Course::BasicResource::MONEY) != resources.end() )
     {
-        std::shared_ptr<Course::TileBase> tile = m_playerBuildings.at(i)->currentLocationTile();
-        std::vector<std::shared_ptr<Course::WorkerBase>> workers = tile->getWorkers();
-        for (unsigned int j = 0; j < workers.size(); j++)
-        {
-            money += (m_playerBuildings.at(i)->PRODUCTION_EFFECT.at(Course::BasicResource::MONEY) * 100 +
-                      tile->BASE_PRODUCTION.at(Course::BasicResource::MONEY) * 100) *
-                      workers.at(j)->WORKER_EFFICIENCY.at(Course::BasicResource::MONEY);
-
-            food += (m_playerBuildings.at(i)->PRODUCTION_EFFECT.at(Course::BasicResource::FOOD) * 100 +
-                      tile->BASE_PRODUCTION.at(Course::BasicResource::FOOD) * 100) *
-                      workers.at(j)->WORKER_EFFICIENCY.at(Course::BasicResource::FOOD);
-
-            if (m_playerBuildings.at(i)->PRODUCTION_EFFECT.size() > 2)
-            {
-                wood += (m_playerBuildings.at(i)->PRODUCTION_EFFECT.at(Course::BasicResource::WOOD) * 100 +
-                          tile->BASE_PRODUCTION.at(Course::BasicResource::WOOD) * 100) *
-                          workers.at(j)->WORKER_EFFICIENCY.at(Course::BasicResource::WOOD);
-
-                stone += (m_playerBuildings.at(i)->PRODUCTION_EFFECT.at(Course::BasicResource::STONE) * 100 +
-                          tile->BASE_PRODUCTION.at(Course::BasicResource::STONE) * 100) *
-                          workers.at(j)->WORKER_EFFICIENCY.at(Course::BasicResource::STONE);
-
-                if (m_playerBuildings.at(i)->PRODUCTION_EFFECT.size() > 4)
-                {
-                    ore += (m_playerBuildings.at(i)->PRODUCTION_EFFECT.at(Course::BasicResource::ORE) * 100 +
-                              tile->BASE_PRODUCTION.at(Course::BasicResource::ORE) * 100) *
-                              workers.at(j)->WORKER_EFFICIENCY.at(Course::BasicResource::ORE);
-                }
-            }
-
-        }
+      money += resources.at(Course::BasicResource::MONEY);
     }
+    if ( resources.find(Course::BasicResource::FOOD) != resources.end() )
+    {
+      food += resources.at(Course::BasicResource::FOOD);
+    }
+    if ( resources.find(Course::BasicResource::WOOD) != resources.end() )
+    {
+      wood += resources.at(Course::BasicResource::WOOD);
+    }
+    if ( resources.find(Course::BasicResource::STONE) != resources.end() )
+    {
+      stone += resources.at(Course::BasicResource::STONE);
+    }
+    if ( resources.find(Course::BasicResource::ORE) != resources.end() )
+    {
+      ore += resources.at(Course::BasicResource::ORE);
+    }
+
 }
 
 } // namesace Student
