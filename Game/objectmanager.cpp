@@ -288,6 +288,11 @@ std::shared_ptr<Player> ObjectManager::getPlayer(std::string playerName)
     return nullptr;
 }
 
+std::vector<std::shared_ptr<Player> > ObjectManager::getPlayers()
+{
+    return m_playerVector;
+}
+
 void ObjectManager::gainPlayerResources()
 {
     for (auto const tile : m_tiles)

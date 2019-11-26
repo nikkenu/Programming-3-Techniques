@@ -21,6 +21,12 @@ namespace Student {
 class GameGraphicsView : public QGraphicsView
 {
 public:
+
+    /**
+     * @brief Constructor
+     * @param scene points to the student's GameScene.
+     * @param parent
+     */
     GameGraphicsView(GameScene* scene, QWidget *parent = 0);
 
 private:

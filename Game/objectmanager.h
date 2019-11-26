@@ -46,6 +46,7 @@ public:
 
     void setPlayers(std::vector<QString> names);
 
+
     std::vector<int> playerWealth(std::string &name);
 
     /**
@@ -81,6 +82,8 @@ public:
     bool sellBuilding(QPointF point);
 
     std::shared_ptr<Player> getPlayer(std::string playerName);
+
+    std::vector<std::shared_ptr<Student::Player>> getPlayers();
 
     void gainPlayerResources();
 

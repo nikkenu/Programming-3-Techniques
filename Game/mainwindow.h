@@ -35,8 +35,18 @@ public:
     MainWindow(QWidget *parent = 0,
                std::shared_ptr<Student::GameEventHandler> handler = {}
                );
-    ~MainWindow();
+    ~MainWindow()
+    {
+        //delete m_ui;
+        delete m_boardInit;
+        delete m_workerLayout;
+        delete m_buildingLayout;
+    }
 
+    /**
+     * @brief sets a
+     * @param handler
+     */
     void setGEHandler(std::shared_ptr<Student::GameEventHandler> handler);
     void drawItem( std::shared_ptr<Course::GameObject> obj);
     void removeItem( std::shared_ptr<Course::GameObject> obj);
@@ -115,6 +125,7 @@ private:
     std::string m_inTurn;
     unsigned int m_inTurnNumber = 0;
     unsigned int m_round = 1;
+    QString winner;
 };
 
 
