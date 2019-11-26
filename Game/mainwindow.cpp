@@ -31,6 +31,9 @@ MainWindow::MainWindow(QWidget *parent, std::shared_ptr<Student::GameEventHandle
 MainWindow::~MainWindow()
 {
     delete m_ui;
+    delete m_boardInit;
+    delete m_workerLayout;
+    delete m_buildingLayout;
 }
 
 void MainWindow::setGEHandler(std::shared_ptr<Student::GameEventHandler> handler)

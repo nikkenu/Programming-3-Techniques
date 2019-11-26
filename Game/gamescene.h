@@ -57,9 +57,9 @@ public:
               int scale = 50
       );
     /**
-     * @brief Default destructor.
+     * @brief Destructor.
      */
-    ~GameScene() = default;
+    ~GameScene();
 
     void setSize(int width, int height);
 

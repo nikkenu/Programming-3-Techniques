@@ -27,29 +27,54 @@ namespace Ui {
 class MainWindow;
 }
 
+/**
+ * @brief The MainWindow class contains the gameboard and is the place
+ * where the actual playing happens. This class's responsibility is to
+ * handle all modification to the main ui.
+ */
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
+
+    /**
+      *@brief Constructor.
+      */
     MainWindow(QWidget *parent = 0,
                std::shared_ptr<Student::GameEventHandler> handler = {}
                );
-    ~MainWindow()
-    {
-        //delete m_ui;
-        delete m_boardInit;
-        delete m_workerLayout;
-        delete m_buildingLayout;
-    }
 
     /**
-     * @brief sets a
-     * @param handler
+      * @brief Deconstuctor, all pointer that are not smart pointer
+      * are deleted here.
+      */
+    ~MainWindow();
+    /**
+     * @brief sets a pointer to GameEventHandler
+     * @param handler points to student's GameEventHandler.
      */
     void setGEHandler(std::shared_ptr<Student::GameEventHandler> handler);
+
+    /**
+     * @brief drawItem calls GameScene's drawItem.
+     * @param obj points to the object to be drawn.
+     * @see GameScene's drawItem method.
+     */
     void drawItem( std::shared_ptr<Course::GameObject> obj);
+
+    /**
+     * @brief Calls GameScene's removeItem.
+     * @param obj points to the object to be removed.
+     * @see GameScene's removeItem method.
+     */
     void removeItem( std::shared_ptr<Course::GameObject> obj);
+
+    /**
+     * @brief Calls GameScene's updateItem.
+     * @param obj points to the object to be updated.
+     * @see GameScene's updateItem method.
+     */
     void updateItem( std::shared_ptr<Course::GameObject> obj);
 
 public slots:
@@ -58,6 +83,10 @@ public slots:
      * @see Dialog class.
      */
     void startGame(QStringList names);
+
+    /**
+     * @brief Resets LCD's when player resources are modified.
+     */
     void resetLCDslot();
 
 private:

@@ -79,18 +79,47 @@ public:
      */
     void setSize(int size);
 
+    /**
+     * @brief Adds building's pixmap and name.
+     * @param building: pixmap of building.
+     * @param buildingName: type of the building.
+     */
     void addBuilding(QPixmap building, QString buildingName);
 
+    /**
+     * @brief Adds worker's pixmap and name.
+     * @param worker: pixmap of worker.
+     * @param workerName: type of the worker.
+     */
     void addWorker(QPixmap worker, QString workerName);
 
+    /**
+     * @brief Removes building pixmap and erases it's name.
+     */
     void removeBuilding();
 
+    /**
+     * @brief Check if item has a building.
+     * @return True if has and false if not.
+     */
     bool checkForBuildings();
 
+    /**
+     * @brief Check if item has a worker.
+     * @return True if has and false if not.
+     */
     bool checkForWorkers();
 
+    /**
+     * @brief Returns the name of the building in MapItem
+     * @return Name of the building
+     */
     QString getBuildingName();
 
+    /**
+     * @brief Gets names of the workers
+     * @return A vector of worker names.
+     */
     QVector<QString> getWorkerNames();
 
 private:

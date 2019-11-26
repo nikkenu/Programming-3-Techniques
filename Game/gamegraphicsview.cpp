@@ -13,6 +13,11 @@ GameGraphicsView::GameGraphicsView(GameScene* scene, QWidget *parent):
     setContextMenuPolicy(Qt::CustomContextMenu);
 }
 
+GameGraphicsView::~GameGraphicsView()
+{
+    delete m_scene;
+}
+
 }
 
 

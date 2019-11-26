@@ -65,6 +65,11 @@ public:
      */
     void addObjectManager(std::shared_ptr<ObjectManager> objectManager);
 
+    /**
+     * @brief Called when 10 rounds has been player.
+     * @return The player that has most amount of money.
+     * @post Exception guarantee: basic.
+     */
     QString getWinner();
 
 

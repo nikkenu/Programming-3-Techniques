@@ -29,6 +29,8 @@ public:
      */
     GameGraphicsView(GameScene* scene, QWidget *parent = 0);
 
+    ~GameGraphicsView();
+
 private:
     GameScene* m_scene = nullptr;
 };

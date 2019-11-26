@@ -6,6 +6,20 @@
 
 namespace Student {
 
+/**
+ * @brief The Rock class represents Rock in the gameworld.
+ *
+ * Rock has BasicProduction: \n
+ * * Money = 2
+ * * Food = 0
+ * * Wood = 0
+ * * Stone = 5
+ * * Ore = 3
+ *
+ * Building in the forest takes time. So buildings get extra hold-marker.
+ *
+ * Tile supports 3 buildings.
+ */
 class Rock : public Course::TileBase
 {
 public:
@@ -13,6 +27,9 @@ public:
     static const unsigned int MAX_WORKERS;
     static const Course::ResourceMap BASE_PRODUCTION;
 
+    /**
+     * @brief Disabled parameterless constructor.
+     */
     Rock() = delete;
 
     Rock(const Course::Coordinate& location,

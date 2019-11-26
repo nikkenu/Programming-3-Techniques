@@ -22,6 +22,11 @@ GameScene::GameScene(QWidget* parent,
     setScale(scale);
 }
 
+GameScene::~GameScene()
+{
+    delete m_mapBoundRect;
+}
+
 void GameScene::setSize(int width, int height)
 {
     if ( width >= SCENE_MAX_WIDTH.first && width <= SCENE_MAX_WIDTH.second )

@@ -10,7 +10,7 @@ ObjectManager::ObjectManager()
 
 ObjectManager::~ObjectManager()
 {
-
+    delete m_scene;
 }
 
 void ObjectManager::addTiles(const std::vector<std::shared_ptr<Course::TileBase> > &tiles)
