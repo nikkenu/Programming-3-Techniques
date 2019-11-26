@@ -8,7 +8,7 @@
 namespace Student {
 
 /**
- * @brief The Farmer class represents a farmer that can work on a farm
+ * @brief The Farmer class represents a farmer.
  *
  * Farmer has following production-efficiency: \n
  * * Money - 0.25 \n
@@ -47,9 +47,9 @@ public:
                 const std::shared_ptr<Course::PlayerBase>& owner,
                 const int& tilespaces = 1,
                 const Course::ResourceMap& cost =
-                    Student::ConstResourceMaps::BW_RECRUITMENT_COST,
+                    Student::ConstResourceMaps::RECRUITMENT_COST,
                 const Course::ResourceMapDouble& efficiency =
-                    Student::ConstResourceMaps::BW_FARMER_EFFICIENCY
+                    Student::ConstResourceMaps::FARMER_EFFICIENCY
                 );
 
     /**
