@@ -30,6 +30,18 @@ public:
 
     Farmer() = delete;
 
+    /**
+     * @brief Class constructor
+     * @param eventhandler points to the student's GameEventHandler.
+     * @param objectmanager points to the student's ObjectManager.
+     * @param owner points to the player how owns the building.
+     * @param tilespaces number of tiles it takes, always 1.
+     * @param cost is feched from StudentReserceMaps
+     * @param efficiency is feched from StudentReserceMaps
+     * @see StudentResourceMaps header.
+     * @post Exception guarantee: No guarentee.
+     * @exception InvalidPointer, if one or more of pointer are invalid.
+     */
     Farmer(const std::shared_ptr<Course::iGameEventHandler>& eventhandler,
                 const std::shared_ptr<Course::iObjectManager>& objectmanager,
                 const std::shared_ptr<Course::PlayerBase>& owner,
