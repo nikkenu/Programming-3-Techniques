@@ -65,6 +65,11 @@ void ObjectManager::addScene(Student::GameScene *scene)
     m_scene = scene;
 }
 
+GameScene* ObjectManager::getScene()
+{
+    return m_scene;
+}
+
 void ObjectManager::drawTiles()
 {
     for(auto const &tile : m_tiles)
@@ -246,6 +251,11 @@ bool ObjectManager::createWorker(QString workerType, QPointF point, std::shared_
 void ObjectManager::setPlayerInTurn(unsigned int inTurnNumber)
 {
     m_intTurnNumber = inTurnNumber;
+}
+
+unsigned int ObjectManager::getPlayerInTurn()
+{
+    return m_intTurnNumber;
 }
 
 bool ObjectManager::sellBuilding(QPointF point)

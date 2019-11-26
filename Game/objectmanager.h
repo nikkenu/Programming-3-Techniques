@@ -42,6 +42,8 @@ public:
 
     void addScene(Student::GameScene* scene);
 
+    Student::GameScene* getScene();
+
     void drawTiles();
 
     void setPlayers(std::vector<QString> names);
@@ -77,6 +79,8 @@ public:
      * @param New player number in turn.
      */
     void setPlayerInTurn(unsigned int inTurnNumber);
+
+    unsigned int getPlayerInTurn();
 
     bool sellBuilding(QPointF point);
 
