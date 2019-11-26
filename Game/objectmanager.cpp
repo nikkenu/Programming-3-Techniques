@@ -65,9 +65,16 @@ void ObjectManager::addScene(Student::GameScene *scene)
     m_scene = scene;
 }
 
-GameScene* ObjectManager::getScene()
+bool ObjectManager::checkSceneIsAlive()
 {
-    return m_scene;
+    if(m_scene != nullptr)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 void ObjectManager::drawTiles()
@@ -113,6 +120,11 @@ void ObjectManager::addGameEventHandler(std::shared_ptr<GameEventHandler> gameEv
     m_gameEventHandler = gameEventHandler;
 }
 
+std::shared_ptr<GameEventHandler> ObjectManager::getGameEventHandler()
+{
+    return m_gameEventHandler;
+}
+
 bool ObjectManager::createBuilding(QString buildingType, QPointF point, std::shared_ptr<ObjectManager> objectManager)
 {
     int xCoord = static_cast<int>(point.rx());
@@ -123,7 +135,7 @@ bool ObjectManager::createBuilding(QString buildingType, QPointF point, std::sha
     if(tile == nullptr)
     {
         qDebug() << "Tile was null returning from method";
-        return false;;
+        return false;
     }
     if (tile->getBuildingCount() > 0)
     {

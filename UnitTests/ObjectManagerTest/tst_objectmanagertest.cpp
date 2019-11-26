@@ -28,6 +28,7 @@ private slots:
     void testSetAndGetPlayers();
     void testGainPlayerResources();
     void testSetPlayerInTurn();
+    void testCreateBuilding();
 
 private:
     std::shared_ptr<Student::ObjectManager> m_objectManager;
@@ -61,12 +62,16 @@ void ObjectManagerTest::initializeGameEventHandler()
 
 void ObjectManagerTest::testAddScene()
 {
-
+   QCOMPARE(m_objectManager->checkSceneIsAlive(), false);
+   //FIX THIS!
+   //m_objectManager->addScene(new Student::GameScene);
+   //QCOMPARE(m_objectManager->checkSceneIsAlive(), true);
 }
 
 void ObjectManagerTest::testAddingGameEventHandler()
 {
     m_objectManager->addGameEventHandler(m_gameEventHandler);
+    QVERIFY(m_objectManager->getGameEventHandler() != nullptr);
 }
 
 void ObjectManagerTest::testAddTiles()
@@ -103,6 +108,26 @@ void ObjectManagerTest::testSetPlayerInTurn()
     testNumber = 2;
     m_objectManager->setPlayerInTurn(testNumber);
     QVERIFY(m_objectManager->getPlayerInTurn() == testNumber);
+}
+
+void ObjectManagerTest::testCreateBuilding()
+{
+    QString hq = "Headquarter";
+    QPointF point(1,1);
+    Course::Coordinate coord(1,1);
+
+    std::vector<QString> names;
+    QString player1 = "a";
+    QString player2 = "b";
+    names.push_back(player1);
+    names.push_back(player2);
+    m_objectManager->setPlayers(names);
+
+    unsigned int playerTurn = 1;
+    m_objectManager->setPlayerInTurn(playerTurn);
+    m_objectManager->createBuilding(hq, point, m_objectManager);
+    //m_objectManager->getTile(coord)->getBuildings();
+
 }
 
 QTEST_APPLESS_MAIN(ObjectManagerTest)

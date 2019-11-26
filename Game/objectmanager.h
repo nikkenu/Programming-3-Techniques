@@ -42,7 +42,7 @@ public:
 
     void addScene(Student::GameScene* scene);
 
-    Student::GameScene* getScene();
+    bool checkSceneIsAlive();
 
     void drawTiles();
 
@@ -57,6 +57,8 @@ public:
      * MainWindow, so we are not creating new GameEventHandler.
      */
     void addGameEventHandler(std::shared_ptr<GameEventHandler> gameEventHandler);
+
+    std::shared_ptr<GameEventHandler> getGameEventHandler();
 
     /**
      * @brief Creates specific building to a tile.
