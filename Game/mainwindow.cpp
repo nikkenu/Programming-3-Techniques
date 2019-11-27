@@ -31,6 +31,9 @@ MainWindow::MainWindow(QWidget *parent, std::shared_ptr<Student::GameEventHandle
 MainWindow::~MainWindow()
 {
     delete m_ui;
+    delete m_boardInit;
+    delete m_workerLayout;
+    delete m_buildingLayout;
 }
 
 void MainWindow::setGEHandler(std::shared_ptr<Student::GameEventHandler> handler)
@@ -140,14 +143,27 @@ void MainWindow::initializeGame()
 
 void MainWindow::changeTurn()
 {
+
     if (m_inTurnNumber == m_playerNames.size() - 1)
-    {
-        m_inTurnNumber = 0;
-        m_round++;
-        QString roundText = "Round: " + QString::number(m_round);
-        m_ui->roundLabel->setText(roundText);
-        m_objectManager->setPlayerInTurn(m_inTurnNumber);
-        m_objectManager->gainPlayerResources();
+    {      
+        if (m_round == 10)
+        {
+            winner = m_GEHandler->getWinner();
+            QMessageBox msgBox;
+            msgBox.setWindowTitle("Game over");
+            msgBox.setText(winner + " won!");
+            msgBox.exec();
+            this->close();
+        }
+        else
+        {
+            m_inTurnNumber = 0;
+            m_round++;
+            QString roundText = "Round: " + QString::number(m_round);
+            m_ui->roundLabel->setText(roundText);
+            m_objectManager->setPlayerInTurn(m_inTurnNumber);
+            m_objectManager->gainPlayerResources();
+        }
     }
     else
     {

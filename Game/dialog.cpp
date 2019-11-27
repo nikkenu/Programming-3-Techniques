@@ -34,6 +34,10 @@ Dialog::Dialog(QWidget *parent) :
 Dialog::~Dialog()
 {
     delete ui;
+    delete m_lineOne;
+    delete m_lineTwo;
+    delete m_lineThree;
+    delete m_lineFour;
 }
 
 void Dialog::accept()

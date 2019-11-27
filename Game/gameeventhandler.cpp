@@ -42,4 +42,18 @@ void GameEventHandler::addObjectManager(std::shared_ptr<ObjectManager> objectMan
     m_objectManager = objectManager;
 }
 
+QString GameEventHandler::getWinner()
+{
+    std::vector<std::shared_ptr<Student::Player>> playerVector = m_objectManager->getPlayers();
+    std::shared_ptr<Student::Player> winner = playerVector.at(0);
+    for (auto const player : playerVector)
+    {
+        if (player->money > winner->money)
+        {
+            winner = player;
+        }
+    }
+    return QString::fromStdString(winner->getName());
+}
+
 }

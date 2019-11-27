@@ -8,7 +8,7 @@
 namespace Student {
 
 /**
- * @brief The Miner class represents miner that can work at a mine
+ * @brief The Miner class represents miner.
  *
  * Miner has following production-efficiency: \n
  * * Money - 0.25 \n
@@ -35,9 +35,9 @@ public:
                 const std::shared_ptr<Course::PlayerBase>& owner,
                 const int& tilespaces = 1,
                 const Course::ResourceMap& cost =
-                    Student::ConstResourceMaps::BW_RECRUITMENT_COST,
+                    Student::ConstResourceMaps::RECRUITMENT_COST,
                 const Course::ResourceMapDouble& efficiency =
-                    Student::ConstResourceMaps::BW_MINER_EFFICIENCY
+                    Student::ConstResourceMaps::MINER_EFFICIENCY
                 );
 
     /**

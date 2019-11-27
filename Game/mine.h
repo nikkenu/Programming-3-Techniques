@@ -9,8 +9,6 @@ namespace Student {
 
 /**
  * @brief The Mine class represents a mine-building in the game.
- *
- * The farm adds 2 base-production for food.//KORJAA TÄMÄ!!!!!!
  */
 class Mine : public Course::BuildingBase
 {

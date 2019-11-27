@@ -9,8 +9,6 @@ namespace Student {
 
 /**
  * @brief The OilRig class represents an oil rig in the game.
- *
- * The farm adds 2 base-production for food.//KORJAA TÄMÄ!!!!!!
  */
 class OilRig : public Course::BuildingBase
 {

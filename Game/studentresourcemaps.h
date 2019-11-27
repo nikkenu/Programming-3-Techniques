@@ -6,6 +6,12 @@
 namespace Student {
 
 
+/**
+ *@brief This header contains building costs and production of
+ * student-made buildigns and efficiensies, recruiment costs of
+ * student-made workers and resource genarating abilities for
+ * student-made tiles.
+ */
 namespace ConstResourceMaps {
 
 // Building - Mine
@@ -35,7 +41,8 @@ const Course::ResourceMap OILRIG_PRODUCTION = {
     {Course::BasicResource::FOOD, 5}
 };
 
-const Course::ResourceMapDouble BW_FARMER_EFFICIENCY = {
+// Worker - Farmer
+const Course::ResourceMapDouble FARMER_EFFICIENCY = {
     {Course::MONEY, 0.25},
     {Course::FOOD, 1.50},
     {Course::WOOD, 1.50},
@@ -43,7 +50,8 @@ const Course::ResourceMapDouble BW_FARMER_EFFICIENCY = {
     {Course::ORE, 0.25}
 };
 
-const Course::ResourceMapDouble BW_MINER_EFFICIENCY = {
+// Worker - Miner
+const Course::ResourceMapDouble MINER_EFFICIENCY = {
     {Course::MONEY, 0.25},
     {Course::FOOD, 1.00},
     {Course::WOOD, 0.75},
@@ -51,11 +59,13 @@ const Course::ResourceMapDouble BW_MINER_EFFICIENCY = {
     {Course::ORE, 1.50}
 };
 
-const Course::ResourceMap BW_RECRUITMENT_COST = {
+// Recruitment cost for Farmer and Miner
+const Course::ResourceMap RECRUITMENT_COST = {
     {Course::MONEY, 10},
     {Course::FOOD, 25}
 };
 
+// Tile - Rock
 const Course::ResourceMap ROCK_BP = {
     {Course::MONEY, 2},
     {Course::FOOD, 0},
@@ -64,6 +74,7 @@ const Course::ResourceMap ROCK_BP = {
     {Course::ORE, 3},
 };
 
+// Tile - Water
 const Course::ResourceMap WATER_BP = {
     {Course::MONEY, 2},
     {Course::FOOD, 1},
@@ -72,6 +83,7 @@ const Course::ResourceMap WATER_BP = {
     {Course::ORE, 0},
 };
 
+// Tile - Sand
 const Course::ResourceMap SAND_BP = {
     {Course::MONEY, 1},
     {Course::FOOD, 0},

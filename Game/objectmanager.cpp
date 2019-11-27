@@ -10,7 +10,7 @@ ObjectManager::ObjectManager()
 
 ObjectManager::~ObjectManager()
 {
-
+    delete m_scene;
 }
 
 void ObjectManager::addTiles(const std::vector<std::shared_ptr<Course::TileBase> > &tiles)
@@ -299,6 +299,11 @@ std::shared_ptr<Player> ObjectManager::getPlayer(std::string playerName)
         }
     }
     return nullptr;
+}
+
+std::vector<std::shared_ptr<Player> > ObjectManager::getPlayers()
+{
+    return m_playerVector;
 }
 
 void ObjectManager::gainPlayerResources()

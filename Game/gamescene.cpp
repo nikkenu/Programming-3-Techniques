@@ -22,6 +22,11 @@ GameScene::GameScene(QWidget* parent,
     setScale(scale);
 }
 
+GameScene::~GameScene()
+{
+    delete m_mapBoundRect;
+}
+
 void GameScene::setSize(int width, int height)
 {
     if ( width >= SCENE_MAX_WIDTH.first && width <= SCENE_MAX_WIDTH.second )
@@ -46,7 +51,8 @@ void GameScene::setScale(int scale)
 
 void GameScene::resize()
 {
-    if ( m_mapBoundRect != nullptr ){
+    if ( m_mapBoundRect != nullptr )
+    {
         QGraphicsScene::removeItem(m_mapBoundRect);
     }
 
@@ -73,12 +79,15 @@ std::pair<int, int> GameScene::getSize() const
 void GameScene::updateItem(std::shared_ptr<Course::GameObject> obj)
 {
     QList<QGraphicsItem*> items_list = items();
-    if ( items_list.size() == 1 ){
+    if ( items_list.size() == 1 )
+    {
         qDebug() << "Nothing to update.";
     } else {
-        for ( auto item : items_list ){
+        for ( auto item : items_list )
+        {
             MapItem* mapItem = static_cast<MapItem*>(item);
-            if (mapItem->isSameObj(obj)){
+            if (mapItem->isSameObj(obj))
+            {
                 mapItem->updateLoc();
             }
         }

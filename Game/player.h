@@ -17,7 +17,7 @@ namespace Student {
 /**
  * @class Player
  * @brief The Player class is a class for classes used to describe
- * a player in game.
+ * a player in game. It's derived from course's PlayrBase.
  *
  * The class can be used to store and access GameObjects.
  * Expired weak pointers are automatically removed when requesting or removing
@@ -42,16 +42,47 @@ public:
      */
     virtual ~Player() = default;
 
+    /**
+     * @brief Deducts building costs from players's resources.
+     * @param resources: Resources to be deducted from player resources.
+     * @return True is successfull, false if player doesn't afford to build.
+     * @pre BasicResources must be in following order at parameter:
+     * money, food, wood, stone, ore.
+     */
     bool deductBuildCosts(Course::ResourceMap resources);
 
+    /**
+     * @brief Deducts recruitment costs from players's resources.
+     * @param resources: Resources to be deducted from player resources.
+     * @return True is successfull, false if player doesn't afford to recruit.
+     * @pre BasicResources must be in following order at parameter:
+     * money, food, wood, stone, ore.
+     */
     bool deductRecruitmentCosts(Course::ResourceMap resources);
 
+    /**
+     * @brief Adds selling prize to players's resources.
+     * @param resources: Resources to be added to player resources.
+     * @pre BasicResources must be in following order at parameter:
+     * money, food, wood, stone, ore.
+     */
     void collectSellingPrize(Course::ResourceMap prize);
     
+    /**
+     * @brief Adds resources gained from buildings and workers to players's resources.
+     * @param resources: Resources to be added to player resources.
+     * @pre BasicResources must be in following order at parameter:
+     * money, food, wood, stone, ore.
+     */
     void gainResorces(Course::ResourceMap resources);
 
+    /**
+     * @brief Add a pointer to players building to a vector.
+     * @param building: points to the building to be added.
+     */
     void addBuilding(std::shared_ptr<Course::BuildingBase> building);
 
+    //Player resources. Can't be private because outside class access is needed.
     int money = 1500;
     int food = 1500;
     int wood = 1500;

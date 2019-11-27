@@ -31,6 +31,12 @@ class GameScene : public QGraphicsScene
     Q_OBJECT
 
 signals:
+
+    /**
+     * @brief Emitted when player uses his/hers resources or
+     * removes a building. Recieced in class MainWindow.
+     * @see reserLCDslot at Mainwindow.
+     */
     void resetLCDsignal();
 
 public:
@@ -51,9 +57,9 @@ public:
               int scale = 50
       );
     /**
-     * @brief Default destructor.
+     * @brief Destructor.
      */
-    ~GameScene() = default;
+    ~GameScene();
 
     void setSize(int width, int height);
 
@@ -118,12 +124,41 @@ public:
      */
     bool event(QEvent* event);
 
+    /**
+     * @brief Adds pointer to the student's ObjectManager.
+     * @param objectManager points to the student's ObjectManager.
+     * @post Exception guarantee: No-throw.
+     */
     void addObjectManager(std::shared_ptr<ObjectManager> objectManager);
 
+    /**
+     * @brief contextMenu is called when player right-clicks on a tile and opens a menu.
+     * If there's a buildig on the tile, the menu has options "Tile information" and
+     * "Remove building", if not it has only the first one. On clicking "Tile information"
+     * a new window opens that tells the tile's owner and possible building-types on the tile
+     * and workes on the building if it has any.
+     * @param mouse_event position on scene.
+     * @param point position on scene divided by scale.
+     * @post Exception guarantee: No-throw.
+     */
     void contextMenu(QPointF mouse_event, QPointF point);
 
 public slots:
+
+    /**
+     * @brief Recieves a signal from contextMenu when player chooses to
+     * sell a building.Calls sellBuilding from ObejctManager.
+     * @param point is the coordinate of the building to be sold.
+     * @param mapItem point's to the building to be sold.
+     * @post Exception guarantee: No-throw.
+     * @see sellBuilding from ObjectManager.
+     */
     void removeBuildingFromTile(QPointF point, MapItem* mapItem);
+
+    /**
+     * @brief Opens a messagebox when player chooses to wiew tile's information.
+     * @param mapItem points to the tile where player right-clicked.
+     */
     void checkTileInformation(MapItem* mapItem);
 
 private:
