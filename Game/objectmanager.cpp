@@ -5,7 +5,7 @@ namespace Student {
 
 ObjectManager::ObjectManager()
 {
-
+    m_tiles = {};
 }
 
 ObjectManager::~ObjectManager()
@@ -60,29 +60,20 @@ std::vector<std::shared_ptr<Course::TileBase> > ObjectManager::getTiles(const st
     return temporaryContainer;
 }
 
-void ObjectManager::addScene(Student::GameScene *scene)
-{
-    m_scene = scene;
-}
-
-bool ObjectManager::checkSceneIsAlive()
+void ObjectManager::drawTiles()
 {
     if(m_scene != nullptr)
     {
-        return true;
-    }
-    else
-    {
-        return false;
+        for(auto const &tile : m_tiles)
+        {
+            m_scene->drawItem(tile);
+        }
     }
 }
 
-void ObjectManager::drawTiles()
+void ObjectManager::addScene(std::shared_ptr<GameScene> scene)
 {
-    for(auto const &tile : m_tiles)
-    {
-        m_scene->drawItem(tile);
-    }
+    m_scene = scene;
 }
 
 void ObjectManager::setPlayers(std::vector<QString> names)

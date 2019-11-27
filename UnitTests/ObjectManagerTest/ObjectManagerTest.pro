@@ -40,6 +40,7 @@ HEADERS += \
     ../../Game/objectmanager.h \
     ../../Course/CourseLib/core/worldgenerator.h \
     ../../Game/studentresourcemaps.h \
+    ../../Course/CourseLib/tiles/forest.h
 
 SOURCES +=  tst_objectmanagertest.cpp \
     ../../Game/farmer.cpp \
@@ -65,3 +66,4 @@ SOURCES +=  tst_objectmanagertest.cpp \
     ../../Course/CourseLib/core/coordinate.cpp \
     ../../Game/objectmanager.cpp \
     ../../Course/CourseLib/core/worldgenerator.cpp \
+    ../../Course/CourseLib/tiles/forest.cpp

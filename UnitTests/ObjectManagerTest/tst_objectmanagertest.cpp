@@ -22,6 +22,7 @@ public:
 private slots:
     void initializeObjectManager();
     void initializeGameEventHandler();
+    void initializeGameScene();
     void testAddingGameEventHandler();
     void testAddScene();
     void testAddTiles();
@@ -33,7 +34,7 @@ private slots:
 private:
     std::shared_ptr<Student::ObjectManager> m_objectManager;
     std::shared_ptr<Student::GameEventHandler> m_gameEventHandler;
-
+    std::shared_ptr<Student::GameScene> m_scene;
 };
 
 ObjectManagerTest::ObjectManagerTest()
@@ -60,12 +61,17 @@ void ObjectManagerTest::initializeGameEventHandler()
     QVERIFY(m_gameEventHandler != nullptr);
 }
 
+void ObjectManagerTest::initializeGameScene()
+{
+    //m_scene.reset();
+    //m_scene = std::make_shared<Student::GameScene>();
+    //m_objectManager->addScene(m_scene);
+    //QVERIFY(m_scene != nullptr);
+}
+
 void ObjectManagerTest::testAddScene()
 {
-   QCOMPARE(m_objectManager->checkSceneIsAlive(), false);
-   //FIX THIS!
-   //m_objectManager->addScene(new Student::GameScene);
-   //QCOMPARE(m_objectManager->checkSceneIsAlive(), true);
+   //m_objectManager->addScene(m_scene);
 }
 
 void ObjectManagerTest::testAddingGameEventHandler()
@@ -76,11 +82,14 @@ void ObjectManagerTest::testAddingGameEventHandler()
 
 void ObjectManagerTest::testAddTiles()
 {
-    /*const Course::Coordinate coord(0,0);
+    Course::Coordinate coord(1,1);
     std::vector<std::shared_ptr<Course::TileBase>> tiles;
-    std::shared_ptr<Course::TileBase> tile = std::make_shared<Course::TileBase>(coord, m_gameEventHandler, m_objectManager);
+    QVERIFY(m_objectManager != nullptr);
+    auto tile = std::make_shared<Course::TileBase>(coord,m_gameEventHandler,m_objectManager);
+    //std::shared_ptr<Course::Forest> tile = std::make_shared<Course::Forest>(coord, m_gameEventHandler, m_objectManager);
     tiles.push_back(tile);
-    m_objectManager->addTiles(tiles); // CRASHES HERE*/
+    m_objectManager->addTiles(tiles);
+
 }
 
 void ObjectManagerTest::testSetAndGetPlayers()
@@ -97,7 +106,7 @@ void ObjectManagerTest::testSetAndGetPlayers()
 
 void ObjectManagerTest::testGainPlayerResources()
 {
-    //WTF
+    //TODO
 }
 
 void ObjectManagerTest::testSetPlayerInTurn()
@@ -111,7 +120,7 @@ void ObjectManagerTest::testSetPlayerInTurn()
 }
 
 void ObjectManagerTest::testCreateBuilding()
-{
+{   /*
     QString hq = "Headquarter";
     QPointF point(1,1);
     Course::Coordinate coord(1,1);
@@ -125,7 +134,7 @@ void ObjectManagerTest::testCreateBuilding()
 
     unsigned int playerTurn = 1;
     m_objectManager->setPlayerInTurn(playerTurn);
-    m_objectManager->createBuilding(hq, point, m_objectManager);
+    m_objectManager->createBuilding(hq, point, m_objectManager); */
     //m_objectManager->getTile(coord)->getBuildings();
 
 }

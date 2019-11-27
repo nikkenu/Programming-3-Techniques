@@ -13,10 +13,10 @@ MainWindow::MainWindow(QWidget *parent, std::shared_ptr<Student::GameEventHandle
     m_objectManager = std::make_shared<Student::ObjectManager>();
     m_GEHandler = std::make_shared<Student::GameEventHandler>();
     Student::GameScene* gameScene_ptr = m_scene.get();
+    m_objectManager->addScene(m_scene);
     m_graphicsView = std::make_shared<Student::GameGraphicsView>(gameScene_ptr);
     m_graphicsView->setScene(gameScene_ptr);
     m_ui->verticalLayout->addWidget(m_graphicsView.get());
-    m_objectManager->addScene(m_scene.get());
     m_scene->addObjectManager(m_objectManager);
     m_objectManager->addGameEventHandler(m_GEHandler);
     m_GEHandler->addObjectManager(m_objectManager);

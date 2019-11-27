@@ -14,6 +14,7 @@
 #include "core/placeablegameobject.h"
 #include "core/basicresources.h"
 #include "workers/workerbase.h"
+#include "mainwindow.h"
 #include "miner.h"
 #include "farmer.h"
 
@@ -40,11 +41,9 @@ public:
     std::vector<std::shared_ptr<Course::TileBase>> getTiles(
                 const std::vector<Course::Coordinate>& coordinates);
 
-    void addScene(Student::GameScene* scene);
-
-    bool checkSceneIsAlive();
-
     void drawTiles();
+
+    void addScene(std::shared_ptr<GameScene> scene);
 
     void setPlayers(std::vector<QString> names);
 
@@ -92,7 +91,8 @@ public:
 
 
 private:
-    Student::GameScene* m_scene;
+    //Student::GameScene* m_scene;
+    std::shared_ptr<GameScene> m_scene = nullptr;
     std::vector<std::shared_ptr<Course::TileBase>> m_tiles;
     std::vector<std::shared_ptr<Student::Player>> m_playerVector;
     std::vector<std::shared_ptr<Course::BuildingBase>> m_buildings;
