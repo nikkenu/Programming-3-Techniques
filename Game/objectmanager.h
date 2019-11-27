@@ -14,6 +14,7 @@
 #include "core/placeablegameobject.h"
 #include "core/basicresources.h"
 #include "workers/workerbase.h"
+#include "mainwindow.h"
 #include "miner.h"
 #include "farmer.h"
 
@@ -70,22 +71,10 @@ public:
     std::vector<std::shared_ptr<Course::TileBase>> getTiles(
                 const std::vector<Course::Coordinate>& coordinates);
 
-    /**
-     * @brief Add pointer to GameScene
-     * @param scene points to student's GameScene.
-     */
-    void addScene(Student::GameScene* scene);
-
-    /**
-     * @brief Call GameScene's drawItem for every tile.
-     * @see GameScene's drawItem.
-     */
     void drawTiles();
 
-    /**
-     * @brief Creates Player objects and adds them to a vector.
-     * @param names: vector of player names.
-     */
+    void addScene(std::shared_ptr<GameScene> scene);
+
     void setPlayers(std::vector<QString> names);
 
 
@@ -104,6 +93,8 @@ public:
      * MainWindow, so we are not creating new GameEventHandler.
      */
     void addGameEventHandler(std::shared_ptr<GameEventHandler> gameEventHandler);
+
+    std::shared_ptr<GameEventHandler> getGameEventHandler();
 
     /**
      * @brief Creates specific building to a tile.
@@ -127,11 +118,8 @@ public:
      */
     void setPlayerInTurn(unsigned int inTurnNumber);
 
-    /**
-     * @brief sellBuilding
-     * @param point: locations of the building.
-     * @return True if successful, false if not.
-     */
+    unsigned int getPlayerInTurn();
+
     bool sellBuilding(QPointF point);
 
     /**
@@ -157,7 +145,8 @@ public:
 
 
 private:
-    Student::GameScene* m_scene;
+    //Student::GameScene* m_scene;
+    std::shared_ptr<GameScene> m_scene = nullptr;
     std::vector<std::shared_ptr<Course::TileBase>> m_tiles;
     std::vector<std::shared_ptr<Student::Player>> m_playerVector;
     std::vector<std::shared_ptr<Course::BuildingBase>> m_buildings;

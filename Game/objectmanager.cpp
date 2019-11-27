@@ -5,7 +5,7 @@ namespace Student {
 
 ObjectManager::ObjectManager()
 {
-
+    m_tiles = {};
 }
 
 ObjectManager::~ObjectManager()
@@ -60,17 +60,20 @@ std::vector<std::shared_ptr<Course::TileBase> > ObjectManager::getTiles(const st
     return temporaryContainer;
 }
 
-void ObjectManager::addScene(Student::GameScene *scene)
-{
-    m_scene = scene;
-}
-
 void ObjectManager::drawTiles()
 {
-    for(auto const &tile : m_tiles)
+    if(m_scene != nullptr)
     {
-        m_scene->drawItem(tile);
+        for(auto const &tile : m_tiles)
+        {
+            m_scene->drawItem(tile);
+        }
     }
+}
+
+void ObjectManager::addScene(std::shared_ptr<GameScene> scene)
+{
+    m_scene = scene;
 }
 
 void ObjectManager::setPlayers(std::vector<QString> names)
@@ -108,6 +111,11 @@ void ObjectManager::addGameEventHandler(std::shared_ptr<GameEventHandler> gameEv
     m_gameEventHandler = gameEventHandler;
 }
 
+std::shared_ptr<GameEventHandler> ObjectManager::getGameEventHandler()
+{
+    return m_gameEventHandler;
+}
+
 bool ObjectManager::createBuilding(QString buildingType, QPointF point, std::shared_ptr<ObjectManager> objectManager)
 {
     int xCoord = static_cast<int>(point.rx());
@@ -118,7 +126,7 @@ bool ObjectManager::createBuilding(QString buildingType, QPointF point, std::sha
     if(tile == nullptr)
     {
         qDebug() << "Tile was null returning from method";
-        return false;;
+        return false;
     }
     if (tile->getBuildingCount() > 0)
     {
@@ -246,6 +254,11 @@ bool ObjectManager::createWorker(QString workerType, QPointF point, std::shared_
 void ObjectManager::setPlayerInTurn(unsigned int inTurnNumber)
 {
     m_intTurnNumber = inTurnNumber;
+}
+
+unsigned int ObjectManager::getPlayerInTurn()
+{
+    return m_intTurnNumber;
 }
 
 bool ObjectManager::sellBuilding(QPointF point)
