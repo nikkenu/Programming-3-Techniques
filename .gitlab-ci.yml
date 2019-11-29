@@ -11,16 +11,6 @@ stages:
 
 ################################
 
-BuildUnitTests:
-  stage: build
-  tags:
-    - qt
-  script:
-    - qmake UnitTests.pro
-    - make
-    - make clean
-    expire_in: 1d:
-    
 
 ################################
 
