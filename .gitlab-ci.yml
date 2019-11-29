@@ -11,6 +11,17 @@ stages:
 
 ################################
 
+BuildUnitTests:
+  stage: build
+  tags:
+    - qt
+  script:
+    - cd UnitTests
+    - qmake UnitTests.pro
+    - make
+    - make clean
+  artifacts:
+    expire_in: 2d
 
 ################################
 
@@ -45,3 +56,18 @@ PerformAnalysis:
     - master
   dependencies:
     - PrepareAnalysis
+    
+PerformBranchAnalysis:
+  image: pervasivetut/sonar-qt-analyzer
+  stage: analysis
+  tags:
+    - analysis
+  script:
+    - sonar-scanner -Dsonar.host.url=$SONARQUBE_URL -Dsonar.login=$SONARQUBE_TOKEN -Dsonar.projectKey=$SONAR_PROJECT_KEY -Dsonar.branch.name=$CI_COMMIT_REF_NAME -Dsonar.gitlab.commit_sha=$CI_COMMIT_SHA -Dsonar.gitlab.ref_name=$CI_COMMIT_REF_NAME -Dsonar.gitlab.project_id=$CI_PROJECT_ID
+  when: always
+  except:
+    refs:
+    - master
+  dependencies:
+    - PrepareAnalysis
+    - GameBoard
