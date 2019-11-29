@@ -9,49 +9,6 @@ stages:
   - test
   - analysis
 
-################################
-
-BuildUnitTests:
-  stage: build
-  tags:
-    - qt
-  script:
-    - cd UnitTests
-    - qmake UnitTests.pro
-    - make
-    - make clean
-  artifacts:
-    paths:
-      - "UnitTests/*/bin/*"
-      - "UnitTests/*/*.gcno"
-    expire_in: 1d
-
-ObjectManager:
-  stage: build
-  tags:
-    - qt
-  script:
-    - cd UnitTests/ObjectManagerTest
-    - ./bin/tst_objectmanagertest
-  artifacts:
-    expire_in: 1d
-  dependencies:
-    - BuildUnitTests
-    
-GameEventHandler:
-  stage: build
-  tags:
-    - qt
-  script:
-    - cd UnitTests/GameEventHandlerTest
-    - ./bin/tst_gameeventhandlertest
-  artifacts:
-    expire_in: 1d
-  dependencies:
-    - BuildUnitTests
-
-################################
-
 # Preparations for SonarQube analysis
 PrepareAnalysis:
   image: pervasivetut/sonar-qt-analyzer
