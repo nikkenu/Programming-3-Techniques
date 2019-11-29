@@ -66,6 +66,12 @@ public:
     void addObjectManager(std::shared_ptr<ObjectManager> objectManager);
 
     /**
+     * @brief Returns ObjectManager if not nullptr
+     * @post Exception guarantee: No-throw.
+     */
+    std::shared_ptr<ObjectManager> getObjectManager();
+
+    /**
      * @brief Called when 10 rounds has been player.
      * @return The player that has most amount of money.
      * @post Exception guarantee: basic.

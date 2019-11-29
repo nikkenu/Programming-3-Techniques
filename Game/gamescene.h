@@ -137,11 +137,10 @@ public:
      * "Remove building", if not it has only the first one. On clicking "Tile information"
      * a new window opens that tells the tile's owner and possible building-types on the tile
      * and workes on the building if it has any.
-     * @param mouse_event position on scene.
      * @param point position on scene divided by scale.
      * @post Exception guarantee: No-throw.
      */
-    void contextMenu(QPointF mouse_event, QPointF point);
+    void contextMenu(QPointF point);
 
 public slots:
 

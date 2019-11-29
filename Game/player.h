@@ -17,7 +17,7 @@ namespace Student {
 /**
  * @class Player
  * @brief The Player class is a class for classes used to describe
- * a player in game. It's derived from course's PlayrBase.
+ * a player in game. It's derived from course's PlayerBase.
  *
  * The class can be used to store and access GameObjects.
  * Expired weak pointers are automatically removed when requesting or removing

@@ -13,7 +13,7 @@ MainWindow::MainWindow(QWidget *parent, std::shared_ptr<Student::GameEventHandle
     m_objectManager = std::make_shared<Student::ObjectManager>();
     m_GEHandler = std::make_shared<Student::GameEventHandler>();
     Student::GameScene* gameScene_ptr = m_scene.get();
-    m_objectManager->addScene(m_scene);
+    //m_objectManager->addScene(m_scene);
     m_graphicsView = std::make_shared<Student::GameGraphicsView>(gameScene_ptr);
     m_graphicsView->setScene(gameScene_ptr);
     m_ui->verticalLayout->addWidget(m_graphicsView.get());
@@ -55,7 +55,6 @@ void MainWindow::updateItem(std::shared_ptr<Course::GameObject> obj)
 {
     m_scene->updateItem(obj);
 }
-
 
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
@@ -139,6 +138,11 @@ void MainWindow::initializeGame()
     initializeWorkerMenu();
     initializeBuildingMenu();
     setLCDpalette();
+
+    for(auto k : m_objectManager->getAllTiles())
+    {
+        m_scene->drawItem(k);
+    }
 }
 
 void MainWindow::changeTurn()

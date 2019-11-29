@@ -10,32 +10,37 @@ StaticStorage& StaticStorage::getInstance()
 
 QPixmap StaticStorage::getItemPixmap(Items item)
 {
-    switch(item)
+    if(item == Items::FARM)
     {
-        case Items::FARM:
         return m_farmPic;
-
-        case Items::MINE:
+    }
+    else if(item == Items::MINE)
+    {
         return m_minePic;
-
-        case Items::MINER:
+    }
+    else if(item == Items::MINER)
+    {
         return m_minerPic;
-
-        case Items::FARMER:
+    }
+    else if(item == Items::FARMER)
+    {
         return m_farmerPic;
-
-        case Items::OILRIG:
+    }
+    else if(item == Items::OILRIG)
+    {
         return m_oilrigPic;
-
-        case Items::WORKER:
+    }
+    else if(item == Items::WORKER)
+    {
         return m_workerPic;
-
-        case Items::OUTPOST:
+    }
+    else if(item == Items::OUTPOST)
+    {
         return m_outpostPic;
-
-        case Items::HEADQUARTER:
+    }
+    else
+    {
         return m_headquarterPic;
-
     }
 }
 

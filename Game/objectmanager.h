@@ -71,12 +71,12 @@ public:
     std::vector<std::shared_ptr<Course::TileBase>> getTiles(
                 const std::vector<Course::Coordinate>& coordinates);
 
-    void drawTiles();
-
-    void addScene(std::shared_ptr<GameScene> scene);
-
+    /**
+     * @brief Sets up all players to game.
+     * @param Vector which includes all player names.
+     * @post Exception guarentee: No-throw.
+     */
     void setPlayers(std::vector<QString> names);
-
 
     /**
      * @brief Gets resources amounts from wanted player.
@@ -143,10 +143,10 @@ public:
      */
     void gainPlayerResources();
 
+    std::vector<std::shared_ptr<Course::TileBase>> getAllTiles();
+
 
 private:
-    //Student::GameScene* m_scene;
-    std::shared_ptr<GameScene> m_scene = nullptr;
     std::vector<std::shared_ptr<Course::TileBase>> m_tiles;
     std::vector<std::shared_ptr<Student::Player>> m_playerVector;
     std::vector<std::shared_ptr<Course::BuildingBase>> m_buildings;
