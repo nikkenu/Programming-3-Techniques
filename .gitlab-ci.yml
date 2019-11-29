@@ -1,0 +1,48 @@
+image: pervasivetut/alpine_qt_5.9.6:latest
+
+variables:
+  SONAR_PROJECT_KEY: tie-02402-ohj3_2019-2020-$CI_PROJECT_NAME
+  GIT_SUBMODULE_STRATEGY: normal
+
+stages:
+  - build
+  - test
+  - analysis
+
+################################
+
+## INSERT YOUR UNITTESTS HERE ##
+
+################################
+
+# Preparations for SonarQube analysis
+PrepareAnalysis:
+  image: pervasivetut/sonar-qt-analyzer
+  stage: build
+  tags:
+    - qt
+  script:
+    - qmake
+    - build-wrapper-linux-x86-64 --out-dir bw_output make clean all
+    - make clean
+  when: always
+  artifacts:
+    paths:
+      - bw_output
+    expire_in: 1d
+
+# Performs the normal analysis and sends results to SonarQube
+PerformAnalysis:
+  image: pervasivetut/sonar-qt-analyzer
+  stage: analysis
+  tags:
+    - qt
+  allow_failure: True
+  script:
+    - sonar-scanner -Dsonar.host.url=$SONARQUBE_URL -Dsonar.login=$SONARQUBE_TOKEN -Dsonar.projectKey=$SONAR_PROJECT_KEY -Dsonar.gitlab.commit_sha=$CI_COMMIT_SHA -Dsonar.gitlab.ref_name=$CI_COMMIT_REF_NAME -Dsonar.gitlab.project_id=$CI_PROJECT_ID
+  when: always
+  only:
+    refs:
+    - master
+  dependencies:
+    - PrepareAnalysis
