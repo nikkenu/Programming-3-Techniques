@@ -16,7 +16,6 @@ BuildUnitTests:
   tags:
     - qt
   script:
-    - cd UnitTests
     - qmake UnitTests.pro
     - make
     - make clean
