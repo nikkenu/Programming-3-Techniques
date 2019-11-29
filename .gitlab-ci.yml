@@ -11,7 +11,21 @@ stages:
 
 ################################
 
-## INSERT YOUR UNITTESTS HERE ##
+BuildUnitTests:
+  stage: build
+  tags:
+    - qt
+  script:
+    - cd UnitTests
+    - qmake UnitTests.pro
+    - make
+    - make clean
+  artifacts:
+    paths:
+      - "UnitTests/*/bin/*"
+      - "UnitTests/*/*.gcno"
+    expire_in: 1d:
+    
 
 ################################
 
