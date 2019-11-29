@@ -20,10 +20,6 @@ BuildUnitTests:
     - qmake UnitTests.pro
     - make
     - make clean
-  artifacts:
-    paths:
-      - "UnitTests/*/bin/*"
-      - "UnitTests/*/*.gcno"
     expire_in: 1d:
     
 
