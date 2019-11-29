@@ -27,9 +27,61 @@ DEL_FILE      = del
 SYMLINK       = $(QMAKE) -install ln -f -s
 DEL_DIR       = rmdir
 MOVE          = move
-SUBTARGETS    = 
+SUBTARGETS    =  \
+		sub-ObjectManagerTest \
+		sub-GameEventHandlerTest
 
 
+sub-ObjectManagerTest-qmake_all:  FORCE
+	@if not exist ObjectManagerTest\ mkdir ObjectManagerTest\ & if not exist ObjectManagerTest\ exit 1
+	cd ObjectManagerTest\ && $(QMAKE) -o Makefile C:\Users\Nikke\Desktop\project\oijoi\UnitTests\ObjectManagerTest\ObjectManagerTest.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
+	cd ObjectManagerTest\ && $(MAKE) -f Makefile qmake_all
+sub-ObjectManagerTest: FORCE
+	@if not exist ObjectManagerTest\ mkdir ObjectManagerTest\ & if not exist ObjectManagerTest\ exit 1
+	cd ObjectManagerTest\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\Nikke\Desktop\project\oijoi\UnitTests\ObjectManagerTest\ObjectManagerTest.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile
+sub-ObjectManagerTest-make_first: FORCE
+	@if not exist ObjectManagerTest\ mkdir ObjectManagerTest\ & if not exist ObjectManagerTest\ exit 1
+	cd ObjectManagerTest\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\Nikke\Desktop\project\oijoi\UnitTests\ObjectManagerTest\ObjectManagerTest.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile 
+sub-ObjectManagerTest-all: FORCE
+	@if not exist ObjectManagerTest\ mkdir ObjectManagerTest\ & if not exist ObjectManagerTest\ exit 1
+	cd ObjectManagerTest\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\Nikke\Desktop\project\oijoi\UnitTests\ObjectManagerTest\ObjectManagerTest.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile all
+sub-ObjectManagerTest-clean: FORCE
+	@if not exist ObjectManagerTest\ mkdir ObjectManagerTest\ & if not exist ObjectManagerTest\ exit 1
+	cd ObjectManagerTest\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\Nikke\Desktop\project\oijoi\UnitTests\ObjectManagerTest\ObjectManagerTest.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile clean
+sub-ObjectManagerTest-distclean: FORCE
+	@if not exist ObjectManagerTest\ mkdir ObjectManagerTest\ & if not exist ObjectManagerTest\ exit 1
+	cd ObjectManagerTest\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\Nikke\Desktop\project\oijoi\UnitTests\ObjectManagerTest\ObjectManagerTest.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile distclean
+sub-ObjectManagerTest-install_subtargets: FORCE
+	@if not exist ObjectManagerTest\ mkdir ObjectManagerTest\ & if not exist ObjectManagerTest\ exit 1
+	cd ObjectManagerTest\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\Nikke\Desktop\project\oijoi\UnitTests\ObjectManagerTest\ObjectManagerTest.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile install
+sub-ObjectManagerTest-uninstall_subtargets: FORCE
+	@if not exist ObjectManagerTest\ mkdir ObjectManagerTest\ & if not exist ObjectManagerTest\ exit 1
+	cd ObjectManagerTest\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\Nikke\Desktop\project\oijoi\UnitTests\ObjectManagerTest\ObjectManagerTest.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile uninstall
+sub-GameEventHandlerTest-qmake_all:  FORCE
+	@if not exist GameEventHandlerTest\ mkdir GameEventHandlerTest\ & if not exist GameEventHandlerTest\ exit 1
+	cd GameEventHandlerTest\ && $(QMAKE) -o Makefile C:\Users\Nikke\Desktop\project\oijoi\UnitTests\GameEventHandlerTest\GameEventHandlerTest.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
+	cd GameEventHandlerTest\ && $(MAKE) -f Makefile qmake_all
+sub-GameEventHandlerTest: FORCE
+	@if not exist GameEventHandlerTest\ mkdir GameEventHandlerTest\ & if not exist GameEventHandlerTest\ exit 1
+	cd GameEventHandlerTest\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\Nikke\Desktop\project\oijoi\UnitTests\GameEventHandlerTest\GameEventHandlerTest.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile
+sub-GameEventHandlerTest-make_first: FORCE
+	@if not exist GameEventHandlerTest\ mkdir GameEventHandlerTest\ & if not exist GameEventHandlerTest\ exit 1
+	cd GameEventHandlerTest\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\Nikke\Desktop\project\oijoi\UnitTests\GameEventHandlerTest\GameEventHandlerTest.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile 
+sub-GameEventHandlerTest-all: FORCE
+	@if not exist GameEventHandlerTest\ mkdir GameEventHandlerTest\ & if not exist GameEventHandlerTest\ exit 1
+	cd GameEventHandlerTest\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\Nikke\Desktop\project\oijoi\UnitTests\GameEventHandlerTest\GameEventHandlerTest.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile all
+sub-GameEventHandlerTest-clean: FORCE
+	@if not exist GameEventHandlerTest\ mkdir GameEventHandlerTest\ & if not exist GameEventHandlerTest\ exit 1
+	cd GameEventHandlerTest\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\Nikke\Desktop\project\oijoi\UnitTests\GameEventHandlerTest\GameEventHandlerTest.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile clean
+sub-GameEventHandlerTest-distclean: FORCE
+	@if not exist GameEventHandlerTest\ mkdir GameEventHandlerTest\ & if not exist GameEventHandlerTest\ exit 1
+	cd GameEventHandlerTest\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\Nikke\Desktop\project\oijoi\UnitTests\GameEventHandlerTest\GameEventHandlerTest.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile distclean
+sub-GameEventHandlerTest-install_subtargets: FORCE
+	@if not exist GameEventHandlerTest\ mkdir GameEventHandlerTest\ & if not exist GameEventHandlerTest\ exit 1
+	cd GameEventHandlerTest\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\Nikke\Desktop\project\oijoi\UnitTests\GameEventHandlerTest\GameEventHandlerTest.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile install
+sub-GameEventHandlerTest-uninstall_subtargets: FORCE
+	@if not exist GameEventHandlerTest\ mkdir GameEventHandlerTest\ & if not exist GameEventHandlerTest\ exit 1
+	cd GameEventHandlerTest\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\Nikke\Desktop\project\oijoi\UnitTests\GameEventHandlerTest\GameEventHandlerTest.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile uninstall
 
 Makefile: UnitTests.pro D:/qt/5.12.2/mingw73_64/mkspecs/win32-g++/qmake.conf D:/qt/5.12.2/mingw73_64/mkspecs/features/spec_pre.prf \
 		D:/qt/5.12.2/mingw73_64/mkspecs/qdevice.pri \
@@ -363,23 +415,47 @@ UnitTests.pro:
 qmake: FORCE
 	@$(QMAKE) -o Makefile UnitTests.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 
-qmake_all: FORCE
+qmake_all: sub-ObjectManagerTest-qmake_all sub-GameEventHandlerTest-qmake_all FORCE
 
-make_first:  FORCE
-all:  FORCE
-clean:  FORCE
-distclean:  FORCE
+make_first: sub-ObjectManagerTest-make_first sub-GameEventHandlerTest-make_first  FORCE
+all: sub-ObjectManagerTest-all sub-GameEventHandlerTest-all  FORCE
+clean: sub-ObjectManagerTest-clean sub-GameEventHandlerTest-clean  FORCE
+distclean: sub-ObjectManagerTest-distclean sub-GameEventHandlerTest-distclean  FORCE
 	-$(DEL_FILE) Makefile
-install_subtargets: FORCE
-uninstall_subtargets: FORCE
+install_subtargets: sub-ObjectManagerTest-install_subtargets sub-GameEventHandlerTest-install_subtargets FORCE
+uninstall_subtargets: sub-ObjectManagerTest-uninstall_subtargets sub-GameEventHandlerTest-uninstall_subtargets FORCE
 
-debug:
+sub-ObjectManagerTest-debug:
+	@if not exist ObjectManagerTest\ mkdir ObjectManagerTest\ & if not exist ObjectManagerTest\ exit 1
+	cd ObjectManagerTest\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\Nikke\Desktop\project\oijoi\UnitTests\ObjectManagerTest\ObjectManagerTest.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile debug
+sub-GameEventHandlerTest-debug:
+	@if not exist GameEventHandlerTest\ mkdir GameEventHandlerTest\ & if not exist GameEventHandlerTest\ exit 1
+	cd GameEventHandlerTest\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\Nikke\Desktop\project\oijoi\UnitTests\GameEventHandlerTest\GameEventHandlerTest.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile debug
+debug: sub-ObjectManagerTest-debug sub-GameEventHandlerTest-debug
 
-release:
+sub-ObjectManagerTest-release:
+	@if not exist ObjectManagerTest\ mkdir ObjectManagerTest\ & if not exist ObjectManagerTest\ exit 1
+	cd ObjectManagerTest\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\Nikke\Desktop\project\oijoi\UnitTests\ObjectManagerTest\ObjectManagerTest.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile release
+sub-GameEventHandlerTest-release:
+	@if not exist GameEventHandlerTest\ mkdir GameEventHandlerTest\ & if not exist GameEventHandlerTest\ exit 1
+	cd GameEventHandlerTest\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\Nikke\Desktop\project\oijoi\UnitTests\GameEventHandlerTest\GameEventHandlerTest.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile release
+release: sub-ObjectManagerTest-release sub-GameEventHandlerTest-release
 
-check:
+sub-ObjectManagerTest-check:
+	@if not exist ObjectManagerTest\ mkdir ObjectManagerTest\ & if not exist ObjectManagerTest\ exit 1
+	cd ObjectManagerTest\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\Nikke\Desktop\project\oijoi\UnitTests\ObjectManagerTest\ObjectManagerTest.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile check
+sub-GameEventHandlerTest-check:
+	@if not exist GameEventHandlerTest\ mkdir GameEventHandlerTest\ & if not exist GameEventHandlerTest\ exit 1
+	cd GameEventHandlerTest\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\Nikke\Desktop\project\oijoi\UnitTests\GameEventHandlerTest\GameEventHandlerTest.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile check
+check: sub-ObjectManagerTest-check sub-GameEventHandlerTest-check
 
-benchmark:
+sub-ObjectManagerTest-benchmark:
+	@if not exist ObjectManagerTest\ mkdir ObjectManagerTest\ & if not exist ObjectManagerTest\ exit 1
+	cd ObjectManagerTest\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\Nikke\Desktop\project\oijoi\UnitTests\ObjectManagerTest\ObjectManagerTest.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile benchmark
+sub-GameEventHandlerTest-benchmark:
+	@if not exist GameEventHandlerTest\ mkdir GameEventHandlerTest\ & if not exist GameEventHandlerTest\ exit 1
+	cd GameEventHandlerTest\ && ( if not exist Makefile $(QMAKE) -o Makefile C:\Users\Nikke\Desktop\project\oijoi\UnitTests\GameEventHandlerTest\GameEventHandlerTest.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile benchmark
+benchmark: sub-ObjectManagerTest-benchmark sub-GameEventHandlerTest-benchmark
 install:install_subtargets  FORCE
 
 uninstall: uninstall_subtargets FORCE

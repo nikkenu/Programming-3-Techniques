@@ -17,7 +17,7 @@ GameEventHandler::~GameEventHandler()
 bool Student::GameEventHandler::modifyResource(std::shared_ptr<Course::PlayerBase> player, Course::BasicResource resource, int amount)
 {
     Q_UNUSED(player) Q_UNUSED(resource) Q_UNUSED(amount)
-    return true;
+    return false;
 }
 
 bool Student::GameEventHandler::modifyResources(std::shared_ptr<Course::PlayerBase> player, Course::ResourceMap resources)
@@ -40,6 +40,11 @@ bool Student::GameEventHandler::modifyResources(std::shared_ptr<Course::PlayerBa
 void GameEventHandler::addObjectManager(std::shared_ptr<ObjectManager> objectManager)
 {
     m_objectManager = objectManager;
+}
+
+std::shared_ptr<ObjectManager> GameEventHandler::getObjectManager()
+{
+    return m_objectManager;
 }
 
 QString GameEventHandler::getWinner()

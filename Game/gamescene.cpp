@@ -113,7 +113,7 @@ bool GameScene::event(QEvent *event)
 
             if ( pressed != m_mapBoundRect )
             {
-                contextMenu(mouse_event->scenePos(), point);
+                contextMenu(point);
                 return true;
             }
 
@@ -167,7 +167,7 @@ void GameScene::addObjectManager(std::shared_ptr<ObjectManager> objectManager)
     m_objectManager = objectManager;
 }
 
-void GameScene::contextMenu(QPointF mouse_event, QPointF point)
+void GameScene::contextMenu(QPointF point)
 {
     QPointF newPoint = point;
     point.rx() = floor(point.rx());
@@ -188,9 +188,7 @@ void GameScene::contextMenu(QPointF mouse_event, QPointF point)
         QObject::connect(removeAct, &QAction::triggered, std::bind(&GameScene::removeBuildingFromTile, this, newPoint, mapItem));
         menu->addAction(removeAct);
     }
-
-    menu->exec(views().at(0)->mapToGlobal(mouse_event.toPoint()));
-
+    menu->exec(QCursor::pos());
 
 }
 

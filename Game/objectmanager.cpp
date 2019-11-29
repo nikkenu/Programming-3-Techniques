@@ -10,13 +10,12 @@ ObjectManager::ObjectManager()
 
 ObjectManager::~ObjectManager()
 {
-    delete m_scene;
+
 }
 
 void ObjectManager::addTiles(const std::vector<std::shared_ptr<Course::TileBase> > &tiles)
 {
     m_tiles = tiles;
-    drawTiles();
 }
 
 std::shared_ptr<Course::TileBase> ObjectManager::getTile(const Course::Coordinate &coordinate)
@@ -58,22 +57,6 @@ std::vector<std::shared_ptr<Course::TileBase> > ObjectManager::getTiles(const st
         }
     }
     return temporaryContainer;
-}
-
-void ObjectManager::drawTiles()
-{
-    if(m_scene != nullptr)
-    {
-        for(auto const &tile : m_tiles)
-        {
-            m_scene->drawItem(tile);
-        }
-    }
-}
-
-void ObjectManager::addScene(std::shared_ptr<GameScene> scene)
-{
-    m_scene = scene;
 }
 
 void ObjectManager::setPlayers(std::vector<QString> names)
@@ -277,7 +260,7 @@ bool ObjectManager::sellBuilding(QPointF point)
         qDebug() << "Not your building!";
         return false;
     }
-    for (unsigned int i; i < m_buildings.size(); i++)
+    for (unsigned int i = 0; i < m_buildings.size(); i++)
     {
         if (m_buildings.at(i)->getCoordinate() == coord)
         {
@@ -316,6 +299,11 @@ void ObjectManager::gainPlayerResources()
         }
 
     }
+}
+
+std::vector<std::shared_ptr<Course::TileBase> > ObjectManager::getAllTiles()
+{
+    return m_tiles;
 }
 
 }

@@ -22,14 +22,15 @@ public:
 private slots:
     void initializeObjectManager();
     void initializeGameEventHandler();
-    void initializeGameScene();
     void testAddingGameEventHandler();
-    void testAddScene();
     void testAddTiles();
     void testSetAndGetPlayers();
-    void testGainPlayerResources();
     void testSetPlayerInTurn();
     void testCreateBuilding();
+    void testCreateWorker();
+    void testPlayerWealth();
+    void testGainPlayerResources();
+    void testSellBuilding();
 
 private:
     std::shared_ptr<Student::ObjectManager> m_objectManager;
@@ -61,18 +62,6 @@ void ObjectManagerTest::initializeGameEventHandler()
     QVERIFY(m_gameEventHandler != nullptr);
 }
 
-void ObjectManagerTest::initializeGameScene()
-{
-    //m_scene.reset();
-    //m_scene = std::make_shared<Student::GameScene>();
-    //m_objectManager->addScene(m_scene);
-    //QVERIFY(m_scene != nullptr);
-}
-
-void ObjectManagerTest::testAddScene()
-{
-   //m_objectManager->addScene(m_scene);
-}
 
 void ObjectManagerTest::testAddingGameEventHandler()
 {
@@ -82,13 +71,14 @@ void ObjectManagerTest::testAddingGameEventHandler()
 
 void ObjectManagerTest::testAddTiles()
 {
-    Course::Coordinate coord(1,1);
+    QVERIFY(m_objectManager->getAllTiles().empty());
+    Course::Coordinate coord(0,0);
     std::vector<std::shared_ptr<Course::TileBase>> tiles;
     QVERIFY(m_objectManager != nullptr);
-    auto tile = std::make_shared<Course::TileBase>(coord,m_gameEventHandler,m_objectManager);
-    //std::shared_ptr<Course::Forest> tile = std::make_shared<Course::Forest>(coord, m_gameEventHandler, m_objectManager);
+    std::shared_ptr<Course::TileBase> tile = std::make_shared<Course::TileBase>(coord, m_gameEventHandler, m_objectManager);
     tiles.push_back(tile);
     m_objectManager->addTiles(tiles);
+    QVERIFY(!m_objectManager->getAllTiles().empty());
 
 }
 
@@ -104,11 +94,6 @@ void ObjectManagerTest::testSetAndGetPlayers()
     QVERIFY(m_objectManager->getPlayer("b"));
 }
 
-void ObjectManagerTest::testGainPlayerResources()
-{
-    //TODO
-}
-
 void ObjectManagerTest::testSetPlayerInTurn()
 {
     unsigned int testNumber = 1;
@@ -117,25 +102,64 @@ void ObjectManagerTest::testSetPlayerInTurn()
     testNumber = 2;
     m_objectManager->setPlayerInTurn(testNumber);
     QVERIFY(m_objectManager->getPlayerInTurn() == testNumber);
+
+    // Set player turn back to 1, for other tests...
+    testNumber = 1;
+    m_objectManager->setPlayerInTurn(testNumber);
 }
 
 void ObjectManagerTest::testCreateBuilding()
-{   /*
+{
     QString hq = "Headquarter";
-    QPointF point(1,1);
-    Course::Coordinate coord(1,1);
+    Course::Coordinate coord(0,0);
+    QPointF point(0,0);
+    QVERIFY(m_objectManager->getTile(coord)->getBuildingCount() == 0);
+    m_objectManager->createBuilding(hq, point, m_objectManager);
+    QVERIFY(m_objectManager->getTile(coord)->getBuildingCount() == 1);
+}
 
-    std::vector<QString> names;
-    QString player1 = "a";
-    QString player2 = "b";
-    names.push_back(player1);
-    names.push_back(player2);
-    m_objectManager->setPlayers(names);
+void ObjectManagerTest::testCreateWorker()
+{
+    QString worker = "Worker";
+    Course::Coordinate coord(0,0);
+    QPointF point(0,0);
 
-    unsigned int playerTurn = 1;
-    m_objectManager->setPlayerInTurn(playerTurn);
-    m_objectManager->createBuilding(hq, point, m_objectManager); */
-    //m_objectManager->getTile(coord)->getBuildings();
+    QVERIFY(m_objectManager->getTile(coord)->getWorkerCount() == 0);
+    m_objectManager->createWorker(worker, point, m_objectManager);
+    QVERIFY(m_objectManager->getTile(coord)->getWorkerCount() == 1);
+}
+
+void ObjectManagerTest::testPlayerWealth()
+{
+    std::string player = "a";
+    std::vector<int> wealth = m_objectManager->playerWealth(player);
+    for(unsigned int i = 0; i < wealth.size(); ++i)
+    {
+        QCOMPARE(wealth.at(i), 1500);
+    }
+}
+
+void ObjectManagerTest::testSellBuilding()
+{
+    QPointF point(0,0);
+    std::string player = "b";
+    std::vector<int> wealthAtStart = m_objectManager->playerWealth(player);
+    QCOMPARE(m_objectManager->sellBuilding(point), true);
+    std::vector<int> wealthAfter = m_objectManager->playerWealth(player);
+    QVERIFY(wealthAtStart.at(0) != wealthAfter.at(0));
+    qDebug() << "Money before selling the building: " << wealthAtStart.at(0) << "\n" <<
+                "Money after selling the building: " << wealthAfter.at(0);
+}
+
+void ObjectManagerTest::testGainPlayerResources()
+{
+    std::string player = "b";
+    std::vector<int> wealthAtStart = m_objectManager->playerWealth(player);
+    m_objectManager->gainPlayerResources();
+    std::vector<int> wealthAfter = m_objectManager->playerWealth(player);
+    QVERIFY(wealthAtStart.at(0) != wealthAfter.at(0));
+    qDebug() << "Money before gain resource call the building: " << wealthAtStart.at(0) << "\n" <<
+                "Money after gain resource call the building: " << wealthAfter.at(0);
 
 }
 
