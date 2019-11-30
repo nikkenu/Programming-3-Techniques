@@ -25,6 +25,7 @@ GameScene::GameScene(QWidget* parent,
 GameScene::~GameScene()
 {
     delete m_mapBoundRect;
+    delete m_menu;
 }
 
 void GameScene::setSize(int width, int height)
@@ -176,19 +177,20 @@ void GameScene::contextMenu(QPointF point)
     QGraphicsItem* item = itemAt(newPoint * m_scale, QTransform());
     Student::MapItem* mapItem = static_cast<Student::MapItem*>(item);
 
-    QMenu* menu = new QMenu();
+    m_menu = new QMenu();
 
     QAction *buildingInfo = new QAction("Tile information...", this);
     QObject::connect(buildingInfo, &QAction::triggered, std::bind(&GameScene::checkTileInformation, this, mapItem));
-    menu->addAction(buildingInfo);
+    m_menu->addAction(buildingInfo);
 
     if(mapItem->checkForBuildings())
     {
         QAction *removeAct = new QAction("Remove building", this);
         QObject::connect(removeAct, &QAction::triggered, std::bind(&GameScene::removeBuildingFromTile, this, newPoint, mapItem));
-        menu->addAction(removeAct);
+        m_menu->addAction(removeAct);
     }
-    menu->exec(QCursor::pos());
+    m_cursor = new QCursor();
+    m_menu->exec(m_cursor->pos());
 
 }
 

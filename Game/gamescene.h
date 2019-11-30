@@ -5,6 +5,7 @@
 #include <QGraphicsView>
 #include <QDebug>
 #include <QMimeData>
+#include <QCursor>
 #include <QMenu>
 #include <QMessageBox>
 
@@ -161,6 +162,8 @@ public slots:
     void checkTileInformation(MapItem* mapItem);
 
 private:
+    QCursor* m_cursor;
+    QMenu* m_menu;
     QGraphicsItem* m_mapBoundRect;
     std::shared_ptr<ObjectManager> m_objectManager = nullptr;
     int m_width;
