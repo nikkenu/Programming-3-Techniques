@@ -31,6 +31,8 @@ public:
 
     ItemLabel(StaticStorage::Items item, QWidget *parent = 0);
 
+    ~ItemLabel();
+
     /**
      * @brief If label is clicked and dragged
      * it saves label information for drop event.

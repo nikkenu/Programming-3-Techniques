@@ -22,7 +22,6 @@ HEADERS += \
     ../../Course/CourseLib/interfaces/igameeventhandler.h \
     ../../Game/objectmanager.h \
     ../../Game/gamescene.h \
-    ../../Game/itemlabel.h \
     ../../Game/boardinit.h \
     ../../Game/gamegraphicsview.h \
     ../../Course/CourseLib/core/coordinate.h \
@@ -56,7 +55,6 @@ SOURCES +=  tst_gameeventhandlertest.cpp \
     ../../Course/CourseLib/core/playerbase.cpp \
     ../../Game/objectmanager.cpp \
     ../../Game/gamescene.cpp \
-    ../../Game/itemlabel.cpp \
     ../../Game/boardinit.cpp \
     ../../Game/gamegraphicsview.cpp \
     ../../Course/CourseLib/core/coordinate.cpp \
