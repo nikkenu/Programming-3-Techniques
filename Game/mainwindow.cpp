@@ -133,7 +133,7 @@ void MainWindow::initializeBuildingMenu()
 
 void MainWindow::initializeGame()
 {
-    m_boardInit = new Student::BoardInit(m_scene.get(), m_objectManager, m_GEHandler);
+    m_boardInit = new Student::BoardInit(m_objectManager, m_GEHandler);
     initializeWorkerMenu();
     initializeBuildingMenu();
     setLCDpalette();

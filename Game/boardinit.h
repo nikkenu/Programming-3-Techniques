@@ -1,5 +1,4 @@
 #include "core/worldgenerator.h"
-#include "gamescene.h"
 #include "tiles/forest.h"
 #include "tiles/grassland.h"
 #include "tiles/tilebase.h"
@@ -36,7 +35,7 @@ public:
      * @post Exception guarantee: No guarantee.
      * @exception InvalidPointer, if one more of parameters are invalid
      */
-    BoardInit(GameScene* scene, std::shared_ptr<ObjectManager> objectManager,
+    BoardInit(std::shared_ptr<ObjectManager> objectManager,
               std::shared_ptr<GameEventHandler> gameEventHandler);
 
 
@@ -51,7 +50,6 @@ public:
 private:
     std::shared_ptr<ObjectManager> m_objectManager = nullptr;
     std::shared_ptr<GameEventHandler> m_gameEventHandler = nullptr;
-    GameScene* m_scene;
 };
 }
 #endif // BOARDINIT_H

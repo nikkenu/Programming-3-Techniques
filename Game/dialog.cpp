@@ -42,6 +42,7 @@ Dialog::~Dialog()
 
 void Dialog::accept()
 {
+
     if (m_lineOne->text().isEmpty() && m_lineTwo->text().isEmpty())
     {
         ui->infoLabel->setText("You must have at least two players!");
@@ -70,6 +71,10 @@ void Dialog::accept()
                 ui->infoLabel->setText("Fix line, it has invisible characters only");
                 return;
             }
+        }
+        else
+        {
+
         }
 
         m_playerList.push_back(m_lineOne->text());

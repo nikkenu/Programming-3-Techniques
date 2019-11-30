@@ -71,7 +71,6 @@ QString StaticStorage::getItemName(StaticStorage::Items item)
 
         case Items::HEADQUARTER:
         return "Headquarter";
-
     }
 }
 

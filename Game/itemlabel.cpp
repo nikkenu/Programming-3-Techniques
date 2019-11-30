@@ -4,9 +4,9 @@ namespace Student {
 
 
 ItemLabel::ItemLabel(StaticStorage::Items item, QWidget *parent):
-    QLabel(parent)
+    QLabel(parent),
+    m_item(item)
 {
-    m_item = item;
     setPixmap(StaticStorage::getInstance().getItemPixmap(m_item));
     setToolTip(StaticStorage::getInstance().getItemName(m_item));
     setMaximumSize(50,50);

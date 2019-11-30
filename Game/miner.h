@@ -79,8 +79,6 @@ public:
      */
     virtual const Course::ResourceMapDouble tileWorkAction() override;
 
-private:
-
 }; // class Miner
 
 } // namespace Student

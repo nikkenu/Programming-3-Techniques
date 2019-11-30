@@ -29,7 +29,8 @@ std::string Farmer::getType() const
 
 void Farmer::doSpecialAction()
 {
-
+    // We dont use this method
+    return;
 }
 
 const Course::ResourceMapDouble Farmer::tileWorkAction()

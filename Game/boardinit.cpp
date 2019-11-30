@@ -3,11 +3,10 @@
 namespace Student {
 
 
-BoardInit::BoardInit(Student::GameScene* scene, std::shared_ptr<ObjectManager> objectManager, std::shared_ptr<GameEventHandler> gameEventHandler)
+BoardInit::BoardInit(std::shared_ptr<ObjectManager> objectManager, std::shared_ptr<GameEventHandler> gameEventHandler):
+    m_objectManager(objectManager),
+    m_gameEventHandler(gameEventHandler)
 {
-    m_scene = scene;
-    m_objectManager = objectManager;
-    m_gameEventHandler = gameEventHandler;
     initialiseWorldGenerator();
 }
 

@@ -91,7 +91,6 @@ public:
      */
     virtual const Course::ResourceMapDouble tileWorkAction() override;
 
-private:
 
 }; // class Farmer
 

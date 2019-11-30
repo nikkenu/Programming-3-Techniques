@@ -90,8 +90,8 @@ public:
     int ore = 1500;
 
 private:
-    std::string playerName;
-    std::vector<std::weak_ptr<Course::GameObject> > playerObjects;
+    std::string m_playerName;
+    std::vector<std::weak_ptr<Course::GameObject> > m_playerObjects;
     std::vector<std::shared_ptr<Course::BuildingBase>> m_playerBuildings;
 
 };

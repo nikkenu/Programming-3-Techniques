@@ -3,10 +3,10 @@
 namespace Student {
 
 GameGraphicsView::GameGraphicsView(GameScene* scene, QWidget *parent):
-    QGraphicsView(parent)
+    QGraphicsView(parent),
+    m_scene(scene)
 {
     setAcceptDrops(true);
-    m_scene = scene;
     setMinimumSize(500,500);
     setFrameStyle(0);
     setStyleSheet("background:transparent");

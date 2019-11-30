@@ -26,6 +26,7 @@ GameScene::~GameScene()
 {
     delete m_mapBoundRect;
     delete m_menu;
+    delete m_cursor;
 }
 
 void GameScene::setSize(int width, int height)

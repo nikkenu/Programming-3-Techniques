@@ -29,7 +29,8 @@ std::string Miner::getType() const
 
 void Miner::doSpecialAction()
 {
-
+    // We dont use this method.
+    return;
 }
 
 const Course::ResourceMapDouble Miner::tileWorkAction()
