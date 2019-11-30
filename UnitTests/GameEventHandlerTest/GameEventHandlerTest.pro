@@ -16,7 +16,7 @@ DEPENDPATH += \
 
 HEADERS += \
     ../../Game/gameeventhandler.h \
-    ../../Game/mainwindow.h \
+    #../../Game/mainwindow.h \
     ../../Game/player.h \
     ../../Course/CourseLib/core/playerbase.h \
     ../../Course/CourseLib/core/resourcemaps.h \
@@ -53,7 +53,7 @@ HEADERS += \
 
 SOURCES +=  tst_gameeventhandlertest.cpp \
     ../../Game/gameeventhandler.cpp \
-    ../../Game/mainwindow.cpp \
+    #../../Game/mainwindow.cpp \
     ../../Game/player.cpp \
     ../../Course/CourseLib/core/playerbase.cpp \
     ../../Game/objectmanager.cpp \
