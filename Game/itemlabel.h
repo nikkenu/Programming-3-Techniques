@@ -40,6 +40,7 @@ public:
 
 private:
     StaticStorage::Items m_item;
+    QDrag* m_drag;
 };
 
 }

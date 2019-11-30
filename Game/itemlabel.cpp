@@ -14,19 +14,24 @@ ItemLabel::ItemLabel(StaticStorage::Items item, QWidget *parent):
     setFrameStyle(1);
 }
 
+ItemLabel::~ItemLabel()
+{
+    delete m_drag;
+}
+
 void ItemLabel::mousePressEvent(QMouseEvent *ev)
 {
 
     if(ev->button() == Qt::LeftButton){
-        QDrag *drag = new QDrag(this);
+        m_drag = new QDrag(this);
         QMimeData *mimeData = new QMimeData;
 
         mimeData->setText(StaticStorage::getInstance().getItemName(m_item));
         QPixmap pixmap(*this->pixmap());
 
-        drag->setMimeData(mimeData);
-        drag->setPixmap(pixmap.scaled(50,50,Qt::KeepAspectRatio));
-        drag->exec();
+        m_drag->setMimeData(mimeData);
+        m_drag->setPixmap(pixmap.scaled(50,50,Qt::KeepAspectRatio));
+        m_drag->exec();
     }
 
 }
